@@ -50,7 +50,7 @@
 }
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
   .articleBody {
     background-color: transparent;
     height: 87vh;
@@ -75,8 +75,5 @@
     border-radius: 3px;
   }
 
-  .fgt {
-    font-size: 2em !important;
-    color: #c76171 !important;
-  }
+
 }
