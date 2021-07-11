@@ -1,5 +1,6 @@
 .App {
-  background: linear-gradient(180deg, #800622, white);
+  background: url(assets/c.jpg) repeat fixed center center;
+  background: linear-gradient(180deg, #800622b5, #2f2424d1), url(assets/c.jpg) repeat fixed center center;
   width: 100vw;
   height: 100vh;
   display: flex;
