@@ -1,3 +1,18 @@
-.App{
-  
+.App {
+  background: linear-gradient(180deg, navy, white);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.articleBody {
+  background-color: white;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 80vh;
+  width: 80vw;
+  margin: 10vh 0;
+  border-radius: 16px;
+  box-shadow: 0 0 24px #0f0f88;
 }

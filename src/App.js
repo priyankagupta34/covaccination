@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       
-      <article>
+      <article className="articleBody">
         <FaqComponent />
       </article>
     </div>
