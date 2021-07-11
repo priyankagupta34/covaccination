@@ -1,6 +1,11 @@
 export const CoServices = {
-    getAllMiscInfo,
-    getAllStates
+    getOTPToRegister,
+    confirmOTPToRegister,
+    getStatesList,
+    sha256Conversion,
+    getAllDistricts,
+    getSessionSlots,
+    test
 }
 
 // const headers = {
@@ -10,15 +15,39 @@ export const CoServices = {
 const axios = require('axios');
 // axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
 // axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://apps.healthifyme.com';
-const host_misc = 'https://covifit-assets.s3.ap-south-1.amazonaws.com/locales/en/translation.json';
-const host = 'https://www.healthifyme.com/api/v1/cowin/';
+// const host_misc = 'https://covifit-assets.s3.ap-south-1.amazonaws.com/locales/en/translation.json';
+const host = 'https://cdn-api.co-vin.in/api/v2/';
 
-function getAllMiscInfo(){
-    return axios.get(host_misc);
+// let config = {
+//     headers: {'Access-Control-Allow-Origin': '*'}
+// };
+
+function getOTPToRegister(mobile) {
+    return axios.post(`${host}auth/public/generateOTP`, { mobile })
 }
 
-function getAllStates(){
-    return axios.get(`${host}states?language=en`, {headers:{
-        Accept: 'application/json',
-       'Content-Type': 'application/json'}});
+function confirmOTPToRegister(otp, txnId) {
+    return axios.post(`${host}auth/public/confirmOTP`, { otp, txnId });
+}
+
+function getStatesList() {
+    return axios.get(`${host}admin/location/states`);
+}
+
+function getSessionSlots(pincode, date) {
+    return axios.get(`${host}appointment/sessions/public/findByPin?pincode=${pincode}&date=${date}`);
+}
+function test() {
+    return axios.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=801503&date=11-07-2021');
+}
+
+async function sha256Conversion(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function getAllDistricts(state_id) {
+    return axios.get(`${host}admin/location/districts/${state_id}`);
 }

@@ -1,6 +1,6 @@
 .App {
   background: url(assets/c.jpg) repeat fixed center center;
-  background: linear-gradient(180deg, #800622b5, #2f2424d1), url(assets/c.jpg) repeat fixed center center;
+  background: linear-gradient(180deg, #800622d9, #2f2424db), url(assets/c.jpg) repeat fixed center center;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -17,4 +17,20 @@
   margin: 10vh;
   border-radius: 16px;
   box-shadow: 0 0 24px #800622;
+  text-align: center;
+}
+
+.searchSl{
+  /* text-align: center; */
+
+}
+
+
+@media screen and (max-width: 500px) {
+  .articleBody {
+    height: 87vh;
+    width: 100%;
+    margin: 4.5vh;
+    border-radius: 16px;
+  }
 }
