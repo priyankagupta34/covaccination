@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import MotivateComponent from './components/motivate-component/MotivateComponent';
 import { CoServices } from './services/CoServices';
 
 
@@ -7,6 +8,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchByPin: true,
       pincode: '',
       mobile: '',
       txnId: '',
@@ -21,7 +23,7 @@ export default class App extends Component {
     this.handlerForPincode = this.handlerForPincode.bind(this);
   }
 
-  handlerForPincode(event){
+  handlerForPincode(event) {
     this.setState({
       ...this.state,
       pincode: event.target.value
@@ -38,21 +40,21 @@ export default class App extends Component {
   }
 
 
-  getAllStates(){
-    this.setState(state=>{
-      state.loadState=true;
+  getAllStates() {
+    this.setState(state => {
+      state.loadState = true;
       return state;
     })
     CoServices.getStatesList()
-    .then((result) => {
-      this.setState(state=>{
-        state.loadState=false;
-        state.stateList = result.data.states;
-        return state;
-      })
-    }).catch((err) => {
-      
-    });
+      .then((result) => {
+        this.setState(state => {
+          state.loadState = false;
+          state.stateList = result.data.states;
+          return state;
+        })
+      }).catch((err) => {
+
+      });
   }
 
 
@@ -102,14 +104,27 @@ export default class App extends Component {
   }
 
   render() {
-    const {pincode} = this.state;
+    const { pincode, searchByPin, selectedState } = this.state;
     return (
       <div className="App">
 
         <article className="articleBody">
-        <div className="searchSl">Search Slots</div>
-          <div>
-            <input value={pincode} onChange={this.handlerForPincode} />
+          <div className="part">
+            <div className="firstPart">
+              <MotivateComponent />
+            </div>
+
+            <div className="scndPart">
+              <div className="searchSl">Search Slots</div>
+              <div className="slider"></div>
+              {searchByPin ? <div>
+                <input value={pincode} onChange={this.handlerForPincode} />
+              </div> :
+                <div>
+                  <input value={selectedState} />
+                </div>}
+
+            </div>
           </div>
         </article>
       </div>
