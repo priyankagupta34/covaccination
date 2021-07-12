@@ -117,9 +117,10 @@
     .tabs{
         width: 85vw;
         height: 65vh;
+        margin: 0 10px;
     }
     .viab{
-        width: 118vw;
+        width: 124vw;
     }
 
     .ghfd{
