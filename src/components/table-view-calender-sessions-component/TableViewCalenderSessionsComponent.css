@@ -31,17 +31,23 @@
 .ghfd{
     display: inline-block;
     margin: 0 8px;
-    font-size: 0.9em;
+    font-size: 0.8em;
+}
+
+.hj7{
+    background-color: #ffe7e7 !important;
+    border-bottom: 1px solid #efcaca !important;
+    font-weight: 500 !important;
+    border-right: 1px solid #efcaca !important;
+    z-index: 3 !important;
 }
 
 
 .tabs{
-    /* box-shadow: 0 0 11px #964141;
-      border-radius: 5px; */
-      height: 33vh;
-      padding: 5px;
-      overflow-y: auto;
-      margin: 0 auto;
+    height: 34vh;
+    padding: 5px 17px;
+    overflow-y: auto;
+    margin: 0 auto;
   }
 
 .uih{
@@ -81,19 +87,23 @@
     position: sticky;
     left: 0;
     background: white;
-    z-index: 1;
+    z-index: 4 !important;
+}
+
+.as4{
+    z-index: 1 !important;
 }
 
 
 
 .bookn{
-    background-color: #d68c8c;
+    background-color: #ffe7e7;
     font-size: 0.9em;
-    font-weight: 700;
+    font-weight: 500;
     padding: 3px;
     border-radius: 2px;
     cursor: pointer;
-    border: 1px solid maroon;
+    border: 0.4px solid #f1c1c1;
     color: maroon;
 }
 

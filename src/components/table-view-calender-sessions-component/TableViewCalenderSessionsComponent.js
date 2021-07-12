@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import './TableViewCalenderSessionsComponent.css';
-// import { centers } from './../../services/test'
+import { centers } from './../../services/test'
 
 export default class TableViewCalenderSessionsComponent extends Component {
     render() {
-        const {centers} = this.props; 
+        // const {centers} = this.props; 
         return (
             <div>
                 <div className="kla">
@@ -25,13 +25,13 @@ export default class TableViewCalenderSessionsComponent extends Component {
                     <div className="viab">
                         <div className="hjab">
                             <div className="grfsd">
-                                <div className="uih tys">Name</div>
-                                <div className="uih">Fee Type </div>
-                                <div className="uih">Min Age</div>
-                                <div className="uih">All Slots</div>
-                                <div className="uih">Dose 1</div>
-                                <div className="uih">Dose 2</div>
-                                <div className="uih">Action</div>
+                                <div className="uih tys hj7">Name</div>
+                                <div className="uih hj7">Fee Type </div>
+                                <div className="uih hj7">Min Age</div>
+                                <div className="uih hj7">All Slots</div>
+                                <div className="uih hj7">Dose 1</div>
+                                <div className="uih hj7">Dose 2</div>
+                                <div className="uih hj7">Action</div>
                             </div>
                         </div>
                         {centers.map((item, index) => (
@@ -39,7 +39,7 @@ export default class TableViewCalenderSessionsComponent extends Component {
 
                                 {item.sessions.map((item2, index2) =>
                                     <>
-                                        <div className="ui tys">{item.name}</div>
+                                        <div className="ui tys hj7 as4">{item.name}</div>
                                         <div className="ui">{item.fee_type}</div>
                                         <div className="ui">{item2.min_age_limit}</div>
                                         <div className="ui">{item2.available_capacity}</div>
