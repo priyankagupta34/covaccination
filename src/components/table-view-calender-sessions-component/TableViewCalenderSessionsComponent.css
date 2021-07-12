@@ -40,7 +40,7 @@
 
 .uih, .ui{
     border-bottom: 1px solid #f7e9e9;
-    border-left: 1px solid #f7e9e9;
+    border-right: 1px solid #f7e9e9;
     padding: 5px;
     display: flex;
     justify-content: center;
