@@ -26,18 +26,16 @@ export default class TableViewCalenderSessionsComponent extends Component {
                         <div className="hjab">
                             <div className="grfsd">
                                 <div className="uih tys">Name</div>
-                                {/* <div className="uih">Address</div> */}
                                 <div className="uih">Fee Type </div>
                                 <div className="uih">Min Age</div>
                                 <div className="uih">All Slots</div>
                                 <div className="uih">Dose 1</div>
                                 <div className="uih">Dose 2</div>
+                                <div className="uih">Action</div>
                             </div>
                         </div>
                         {centers.map((item, index) => (
                             <div className="grfsd">
-
-                                {/* <div className="ui">{item.address}</div> */}
 
                                 {item.sessions.map((item2, index2) =>
                                     <>
@@ -47,6 +45,9 @@ export default class TableViewCalenderSessionsComponent extends Component {
                                         <div className="ui">{item2.available_capacity}</div>
                                         <div className="ui">{item2.available_capacity_dose1}</div>
                                         <div className="ui">{item2.available_capacity_dose2}</div>
+                                        <div className="ui">
+                                            <div className="bookn">Book</div>
+                                        </div>
                                     </>
                                 )}
 

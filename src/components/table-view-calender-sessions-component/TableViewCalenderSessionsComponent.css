@@ -1,6 +1,6 @@
 .grfsd{
     display: grid;
-    grid-template-columns: 3.5fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 3.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
     font-size: 0.8em;
 }
 
@@ -86,8 +86,15 @@
 
 
 
-.chbc{
-
+.bookn{
+    background-color: #d68c8c;
+    font-size: 0.9em;
+    font-weight: 700;
+    padding: 3px;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid maroon;
+    color: maroon;
 }
 
 
@@ -95,14 +102,14 @@
 @media screen and (max-width: 1000px) {
 
     .grfsd{
-        grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
     }
     .tabs{
         width: 85vw;
         height: 65vh;
     }
     .viab{
-        width: 113vw;
+        width: 118vw;
     }
 
     .ghfd{
