@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import './TableViewCalenderSessionsComponent.css';
-import { centers } from './../../services/test'
+// import { centers } from './../../services/test'
 
 export default class TableViewCalenderSessionsComponent extends Component {
     render() {
-        const service = centers
+        const {centers} = this.props; 
         return (
             <div>
                 <div className="kla">
@@ -34,7 +34,7 @@ export default class TableViewCalenderSessionsComponent extends Component {
                                 <div className="uih">Dose 2</div>
                             </div>
                         </div>
-                        {service.map((item, index) => (
+                        {centers.map((item, index) => (
                             <div className="grfsd">
 
                                 {/* <div className="ui">{item.address}</div> */}

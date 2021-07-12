@@ -19,7 +19,8 @@ export default class App extends Component {
       loaderOfOtp: false,
       loadState: false,
       stateList: [],
-      availableSession: []
+      availableSession: [],
+      centers: []
     };
     this.handlerForPincode = this.handlerForPincode.bind(this);
     this.changeSearchBy = this.changeSearchBy.bind(this);
@@ -29,7 +30,11 @@ export default class App extends Component {
   findCalenderSlotByPin(){
     CoServices.calenderByPin(this.state.pincode)
     .then((result) => {
-      console.log('result', result);
+      // console.log('result', result);
+      this.setState(state=>{
+        state.centers = result.data.centers;
+        return state;
+      })
     }).catch((err) => {
       
     });
@@ -122,7 +127,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { pincode, searchByPin, selectedState } = this.state;
+    const { pincode, searchByPin, selectedState, centers } = this.state;
     return (
       <div className="App">
 
@@ -151,10 +156,9 @@ export default class App extends Component {
                   <input value={selectedState} />
                 </div>}
 
-                <div>
-                  <TableViewCalenderSessionsComponent />
-
-                </div>
+               {centers.length ? <div>
+                  <TableViewCalenderSessionsComponent centers={centers} />
+                </div>:<></>}
 
             </div>
           </div>
