@@ -8,15 +8,16 @@ export default class TableViewCalenderSessionsComponent extends Component {
         return (
             <div>
                 <div className="kla">
-                    <div>
+                    <div >
                         <div className="fresd">Fee Type</div>
-                        <label htmlFor="free">Free</label><input type="checkbox" id="free" />
-                        <label htmlFor="paid">Paid</label><input type="checkbox" id="paid" />
+                        <div className="ghfd"> <label htmlFor="free">Free</label><input type="checkbox" id="free" /></div>
+                        <div className="ghfd"> <label htmlFor="paid">Paid</label><input type="checkbox" id="paid" /></div>
                     </div>
                     <div>
                         <div className="fresd">Age Limit</div>
-                        <label htmlFor="tya">45+</label><input type="checkbox" id="tya" />
-                        <label htmlFor="tyb">18-44</label><input type="checkbox" id="tyb" />
+
+                        <div className="ghfd">  <label htmlFor="tya">45+</label><input type="checkbox" id="tya" /></div>
+                        <div className="ghfd"><label htmlFor="tyb">18-44</label><input type="checkbox" id="tyb" /></div>
                     </div>
                 </div>
 

@@ -144,7 +144,7 @@ export default class App extends Component {
               {searchByPin ? <div className="pinclas">
                 <label htmlFor="ji8">Pincode*</label>
                 <div className="flex">
-                <input id="ji8" value={pincode} onChange={this.handlerForPincode} /> 
+                <input id="ji8" value={pincode} onChange={this.handlerForPincode}/> 
                 <div className="go" onClick={this.findCalenderSlotByPin}>Go</div></div>
               </div> :
                 <div className="pinclas">

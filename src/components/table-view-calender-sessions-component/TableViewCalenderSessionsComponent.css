@@ -14,8 +14,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 10px;
-    width: 52%;
+    width: 91%;
     margin: 0 auto;
+}
+
+.ghfd{
+    display: inline-block;
+    margin: 0 8px;
 }
 
 
@@ -80,6 +85,10 @@
     }
     .viab{
         width: 95vw;
+    }
+
+    .ghfd{
+        margin: 0 4px;
     }
 
 }

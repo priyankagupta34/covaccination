@@ -134,8 +134,9 @@
 }
 
 .pinclas label {
-  font-size: 1.1em;
-  color: maroon;
+  font-size: 0.9em;
+    color: maroon;
+    font-weight: 600;
 }
 
 .pinclas input {
@@ -148,6 +149,7 @@
   border-right: none;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  height: 30px;
 }
 
 .go{
@@ -162,7 +164,10 @@
   color: #7e061d;
   font-weight: 700;
   cursor: pointer;
+  height: 30px;
 }
+
+
 
 
 
@@ -177,7 +182,7 @@
     background-color: transparent;
     height: 87vh;
     width: 100%;
-    margin: 4.5vh;
+    margin: 2.5vh;
     border-radius: 16px;
   }
 
