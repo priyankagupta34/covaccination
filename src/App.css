@@ -20,7 +20,8 @@
   text-align: center;
 }
 
-.searchSl, .searchS2 {
+.searchSl,
+.searchS2 {
   font-size: 1.5em;
   color: maroon;
   font-weight: 500;
@@ -36,7 +37,7 @@
   box-shadow: 0 0 2px #e86b6b;
 }
 
-.searchS2{
+.searchS2 {
   font-size: 1em;
   margin: 16px auto;
   margin-bottom: -13px;
@@ -91,6 +92,7 @@
   background: #d68c8c;
   box-shadow: 0 0 4px #f17c7c;
   font-weight: 500;
+  border: 1px solid;
 }
 
 .goLeft {
@@ -110,7 +112,7 @@
   margin: 7px auto;
   margin-top: 26px;
   grid-gap: 10px;
-  
+
 }
 
 @keyframes goLeft {
@@ -135,8 +137,8 @@
 
 .pinclas label {
   font-size: 0.9em;
-    color: maroon;
-    font-weight: 600;
+  color: maroon;
+  font-weight: 600;
 }
 
 .pinclas input {
@@ -152,7 +154,7 @@
   height: 30px;
 }
 
-.go{
+.go {
   width: 43px;
   display: flex;
   justify-content: center;
@@ -165,6 +167,9 @@
   font-weight: 700;
   cursor: pointer;
   height: 30px;
+  outline: none;
+  border: 1px solid #8f1919;
+  border-left: none;
 }
 
 

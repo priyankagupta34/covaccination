@@ -27,7 +27,8 @@ export default class App extends Component {
     this.findCalenderSlotByPin = this.findCalenderSlotByPin.bind(this);
   }
 
-  findCalenderSlotByPin(){
+  findCalenderSlotByPin(e){
+    e.preventDefault();
     CoServices.calenderByPin(this.state.pincode)
     .then((result) => {
       // console.log('result', result);
@@ -148,9 +149,9 @@ export default class App extends Component {
 
               {searchByPin ? <div className="pinclas">
                 <label htmlFor="ji8">Pincode*</label>
-                <div className="flex">
+                <form className="flex" onSubmit={this.findCalenderSlotByPin}>
                 <input id="ji8" value={pincode} onChange={this.handlerForPincode}/> 
-                <div className="go" onClick={this.findCalenderSlotByPin}>Go</div></div>
+                <button className="go" onClick={this.findCalenderSlotByPin} type="submit" disabled={pincode===''}>Go</button></form>
               </div> :
                 <div className="pinclas">
                   <input value={selectedState} />
