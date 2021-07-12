@@ -14,7 +14,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 10px;
-    width: 79%;
+    width: 52%;
     margin: 0 auto;
 }
 
@@ -44,7 +44,42 @@
 
 .hjab{
     position: sticky;
-    top: -5px;
+    top: -7px;
     background-color: white;
-    
+    z-index: 2;
+}
+
+.viab{
+    /* width: 95vw; */
+    padding-right: 18px;
+    font-size: 0.9em;
+}
+
+.uih:first-child{
+    border-left: none !important;
+    /* background-color: rgb(238, 105, 105); */
+}
+
+.tys{
+    position: sticky;
+    left: 0;
+    background: white;
+    z-index: 1;
+}
+
+
+
+@media screen and (max-width: 1000px) {
+
+    .grfsd{
+        grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr 1fr;
+    }
+    .tabs{
+        width: 85vw;
+
+    }
+    .viab{
+        width: 95vw;
+    }
+
 }
