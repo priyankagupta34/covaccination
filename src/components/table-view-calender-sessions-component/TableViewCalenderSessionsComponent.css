@@ -10,6 +10,16 @@
     margin-bottom: 10px;
 }
 
+.fresd::after{
+    content: '';
+    display: block;
+    height: 1px;
+    width: 50px;
+    background-color: coral;
+    margin: 2px auto;
+    margin-bottom: 0;
+}
+
 .kla{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -31,6 +41,7 @@
       height: 33vh;
       padding: 5px;
       overflow-y: auto;
+      margin: 0 auto;
   }
 
 .uih{
@@ -75,6 +86,12 @@
 
 
 
+.chbc{
+
+}
+
+
+
 @media screen and (max-width: 1000px) {
 
     .grfsd{
@@ -83,7 +100,6 @@
     .tabs{
         width: 85vw;
         height: 65vh;
-
     }
     .viab{
         width: 113vw;
@@ -91,6 +107,10 @@
 
     .ghfd{
         margin: 0 4px;
+    }
+
+    .fresd{
+        margin-bottom: 3px; 
     }
 
 }
