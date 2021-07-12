@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import MotivateComponent from './components/motivate-component/MotivateComponent';
+import TableViewCalenderSessionsComponent from './components/table-view-calender-sessions-component/TableViewCalenderSessionsComponent';
 import { CoServices } from './services/CoServices';
 
 
@@ -21,6 +22,17 @@ export default class App extends Component {
       availableSession: []
     };
     this.handlerForPincode = this.handlerForPincode.bind(this);
+    this.changeSearchBy = this.changeSearchBy.bind(this);
+    this.findCalenderSlotByPin = this.findCalenderSlotByPin.bind(this);
+  }
+
+  findCalenderSlotByPin(){
+    CoServices.calenderByPin(this.state.pincode)
+    .then((result) => {
+      console.log('result', result);
+    }).catch((err) => {
+      
+    });
   }
 
   handlerForPincode(event) {
@@ -30,15 +42,21 @@ export default class App extends Component {
     })
   }
   componentDidMount() {
-    CoServices.test(5)
-      .then((result) => {
-        console.log(result);
-      }).catch((err) => {
+    // CoServices.test(5)
+    //   .then((result) => {
+    //     console.log(result);
+    //   }).catch((err) => {
 
-      });
+    //   });
 
   }
 
+  changeSearchBy(){
+    this.setState({
+      ...this.state,
+      searchByPin: this.state.searchByPin?false:true
+    })
+  }
 
   getAllStates() {
     this.setState(state => {
@@ -115,14 +133,28 @@ export default class App extends Component {
             </div>
 
             <div className="scndPart">
-              <div className="searchSl">Search Slots</div>
-              <div className="slider"></div>
-              {searchByPin ? <div>
-                <input value={pincode} onChange={this.handlerForPincode} />
+              <div className="searchSl">Let's Vaccinate</div>
+              <div className="searchS2">Search Slots</div>
+              <div className="slider">
+                <div className={`${searchByPin && 'selectedSlider goLeft'} oiq1`} onClick={this.changeSearchBy}>Pincode</div>
+                <div className={`${!searchByPin && 'selectedSlider goRight'} oiq2`} onClick={this.changeSearchBy}>District</div>
+              </div>
+
+
+              {searchByPin ? <div className="pinclas">
+                <label htmlFor="ji8">Pincode*</label>
+                <div className="flex">
+                <input id="ji8" value={pincode} onChange={this.handlerForPincode} /> 
+                <div className="go" onClick={this.findCalenderSlotByPin}>Go</div></div>
               </div> :
-                <div>
+                <div className="pinclas">
                   <input value={selectedState} />
                 </div>}
+
+                <div>
+                  <TableViewCalenderSessionsComponent />
+
+                </div>
 
             </div>
           </div>

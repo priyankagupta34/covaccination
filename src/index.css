@@ -13,3 +13,12 @@ code {
 }
 
 /* color: #800622 */
+
+*, *::after, *::before{
+  box-sizing: border-box;
+  color: maroon;
+}
+
+.flex{
+  display: flex;
+}

@@ -5,7 +5,9 @@ export const CoServices = {
     sha256Conversion,
     getAllDistricts,
     getSessionSlots,
-    test
+    test,
+    getTodaysDate,
+    calenderByPin
 }
 
 // const headers = {
@@ -50,4 +52,14 @@ async function sha256Conversion(message) {
 
 function getAllDistricts(state_id) {
     return axios.get(`${host}admin/location/districts/${state_id}`);
+}
+
+function calenderByPin(pincode) {
+    return axios.get(`${host}appointment/sessions/public/calendarByPin?pincode=${pincode}&date=${getTodaysDate()}`);
+}
+
+function getTodaysDate(){
+    let tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate()+1);
+    return `${tomorrow.getDate().toString().padStart(2,'0')}-${(tomorrow.getMonth() + 1).toString().padStart(2,'0')}-${tomorrow.getFullYear()}`;
 }

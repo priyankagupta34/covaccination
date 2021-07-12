@@ -1,0 +1,50 @@
+.grfsd{
+    display: grid;
+    grid-template-columns: 3.5fr 1fr 1fr 1fr 1fr 1fr;
+    font-size: 0.8em;
+}
+
+.fresd{
+    font-weight: 500;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.kla{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px;
+    width: 79%;
+    margin: 0 auto;
+}
+
+
+.tabs{
+    /* box-shadow: 0 0 11px #964141;
+      border-radius: 5px; */
+      height: 33vh;
+      padding: 5px;
+      overflow-y: auto;
+  }
+
+.uih{
+    font-weight: 500;
+    top: 0;
+    position: sticky;
+}
+
+.uih, .ui{
+    border-bottom: 1px solid #f7e9e9;
+    border-left: 1px solid #f7e9e9;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hjab{
+    position: sticky;
+    top: -5px;
+    background-color: white;
+    
+}
