@@ -45,9 +45,9 @@
 
 .tabs{
     height: 34vh;
-    padding: 5px 17px;
     overflow-y: auto;
-    margin: 0 auto;
+    margin: 0 20px;
+    border-radius: 6px;
   }
 
 .uih{
@@ -67,7 +67,7 @@
 
 .hjab{
     position: sticky;
-    top: -7px;
+    top: 0;
     background-color: white;
     z-index: 2;
 }
