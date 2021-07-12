@@ -157,7 +157,7 @@ export default class App extends Component {
                   <input value={selectedState} />
                 </div>}
 
-               {!centers.length ? <div>
+               {centers.length ? <div>
                   <TableViewCalenderSessionsComponent centers={centers} />
                 </div>:<></>}
 

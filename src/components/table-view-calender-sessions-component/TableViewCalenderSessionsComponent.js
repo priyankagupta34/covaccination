@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import './TableViewCalenderSessionsComponent.css';
-import { centers } from './../../services/test'
+// import { centers } from './../../services/test'
 
 export default class TableViewCalenderSessionsComponent extends Component {
     render() {
-        // const {centers} = this.props; 
+        const {centers} = this.props; 
         return (
             <div>
                 <div className="kla">

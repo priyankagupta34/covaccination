@@ -10,7 +10,7 @@
     margin-bottom: 10px;
 }
 
-.fresd::after{
+/* .fresd::after{
     content: '';
     display: block;
     height: 1px;
@@ -18,7 +18,7 @@
     background-color: coral;
     margin: 2px auto;
     margin-bottom: 0;
-}
+} */
 
 .kla{
     display: grid;
