@@ -134,13 +134,13 @@ export default class App extends Component {
     return (
       <div className="App">
 
-        <article className="articleBody">
+        <article className={`${ !centers.length && "whenNoList1" } articleBody`}>
           <div className="part">
             <div className="firstPart">
               <MotivateComponent />
             </div>
 
-            <div className="scndPart">
+            <div className={`${ !centers.length && "whenNoList2" } scndPart`}>
               <div className="searchSl">Let's Vaccinate</div>
               <div className="searchS2">Search Slots</div>
               <div className="slider">

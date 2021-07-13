@@ -253,4 +253,13 @@
         position: sticky;
     }
 
+    .whenNoList1{
+        height: 82vh !important;
+    }
+
+    .whenNoList2{
+        height: 62vh !important;
+    }
+
+
 }
