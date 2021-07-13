@@ -43,6 +43,7 @@ export default class App extends Component {
 
   handleStateChangeFilter(e) {
     this.setState(state => {
+      state.selectedState = e.target.value;
       state.filteredStateList = state.stateList.filter(a => a.state_name.toLowerCase().search(e.target.value.toLowerCase()) !== -1).map(a=>a.state_name);
       return state;
     })
@@ -50,6 +51,7 @@ export default class App extends Component {
 
   handleDistrictChangeFilter(e) {
     this.setState(state => {
+      state.selectedDistrict = e.target.value;
       state.filteredDistrictList = state.districtList.filter(a => a.district_name.toLowerCase().search(e.target.value.toLowerCase()) !== -1).map(a=>a.district_name);
       return state;
     })
