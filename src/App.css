@@ -154,6 +154,8 @@
   height: 30px;
 }
 
+.pinclagh {}
+
 .go {
   width: 43px;
   display: flex;
@@ -172,15 +174,69 @@
   border-left: none;
 }
 
+.go.bh {
+  background: white;
+  font-size: 1.2em;
+  border: 2px solid #d68c8c;
+  border-left: none;
+}
 
+.option {
+  background: white;
+  box-shadow: 0 10px 7px 2px #a54141;
+  border-radius: 6px;
+  padding: 14px;
+  position: absolute;
+  z-index: 6;
+  max-height: 44vh;
+  overflow-y: auto;
+  width: 100%;
+  top: 25px;
+  font-size: 0.9em;
+}
 
+.keysta {
+  font-size: 0.8em;
+  text-align: left;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #f3cfcf;
+  margin-top: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
 
+.drivg {
+  width: 29vw;
+  justify-content: space-between;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 11px;
+}
+
+.pinclagh {
+  margin: 0;
+  margin-bottom: 7px;
+}
+
+.gh65::placeholder {
+  font-weight: 500;
+}
+
+.turna{
+  transform: rotate(180deg);
+  transition: all 0.4s;
+}
+.turnb{
+  transform: rotate(0);
+  transition: all 0.4s;
+}
 
 @media screen and (max-width: 1000px) {
 
   .pinclas {
-    width: 239px;
-    grid-gap: 8px;
+    width: 40vw;
+    /* grid-gap: 8px; */
   }
 
   .articleBody {
@@ -227,4 +283,18 @@
     height: 95vh !important;
   }
 
+  .drivg {
+    width: 82vw;
+  }
+
+
+  .opt2,
+  .opt1 {
+    width: 56vw;
+    left: -17vw;
+  }
+
+  .opt1 {
+    left: 0vw;
+  }
 }

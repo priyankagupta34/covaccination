@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './TableViewCalenderSessionsComponent.css';
-// import { centers } from './../../services/test'
+import { centers } from './../../services/test'
 
 export default class TableViewCalenderSessionsComponent extends Component {
     constructor(props) {
@@ -33,8 +33,8 @@ export default class TableViewCalenderSessionsComponent extends Component {
         }, 400);
     }
     render() {
-        // console.log('centers', centers)
-        const {centers} = this.props; 
+        console.log('centers', centers)
+        // const {centers} = this.props; 
         const { openFilter } = this.state;
         return (
             <div className="relative">
