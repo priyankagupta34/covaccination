@@ -22,8 +22,10 @@ export default class App extends Component {
       loaderOfOtp: false,
       showState: false,
       showDistrict: false,
-      stateList:[],
+      stateList: [],
+      filteredStateList: [],
       districtList: [],
+      filteredDistrictList: [],
       availableSession: [],
       centers: [1, 1, 2],
       book: false
@@ -35,6 +37,22 @@ export default class App extends Component {
     this.hideStateList = this.hideStateList.bind(this);
     this.hideDistrictList = this.hideDistrictList.bind(this);
     this.showDistrictList = this.showDistrictList.bind(this);
+    this.handleStateChangeFilter = this.handleStateChangeFilter.bind(this);
+    this.handleDistrictChangeFilter = this.handleDistrictChangeFilter.bind(this);
+  }
+
+  handleStateChangeFilter(e) {
+    this.setState(state => {
+      state.filteredStateList = state.stateList.filter(a => a.state_name.toLowerCase().search(e.target.value.toLowerCase()) !== -1).map(a=>a.state_name);
+      return state;
+    })
+  }
+
+  handleDistrictChangeFilter(e) {
+    this.setState(state => {
+      state.filteredDistrictList = state.districtList.filter(a => a.district_name.toLowerCase().search(e.target.value.toLowerCase()) !== -1).map(a=>a.district_name);
+      return state;
+    })
   }
 
 
@@ -63,6 +81,7 @@ export default class App extends Component {
         this.setState(state => {
           state.selectedState = selectedState;
           state.districtList = result.data.districts;
+          state.filteredDistrictList = result.data.districts.map(a=>a.district_name);
           state.showState = false;
           return state;
         })
@@ -72,7 +91,7 @@ export default class App extends Component {
 
   }
 
-  clickToSelecteDistrict(selectedDistrict){
+  clickToSelecteDistrict(selectedDistrict) {
     const state = this.state.districtList.filter(a => a.district_name === selectedDistrict)[0].district_id;
     CoServices.getAllDistricts(state)
       .then((result) => {
@@ -161,6 +180,7 @@ export default class App extends Component {
         this.setState(state => {
           // state.loadState = false;
           state.stateList = result.data.states;
+          state.filteredStateList = result.data.states.map(a=>a.state_name);
           return state;
         })
       }).catch((err) => {
@@ -214,8 +234,9 @@ export default class App extends Component {
   }
 
   render() {
-    const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList } = this.state;
-    districtList.length && console.log('stateList', districtList.map(a => a.district_name));
+    const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
+      , filteredDistrictList, filteredStateList } = this.state;
+    console.log('stateList',this.state);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
 
@@ -247,12 +268,13 @@ export default class App extends Component {
                     {/* <label htmlFor="ji8">State*</label> */}
                     <div className="flex">
                       <input value={selectedState} onFocus={this.showStateList} onBlur={this.hideStateList}
+                        onChange={this.handleStateChangeFilter}
                         className="gh65"
                         placeholder="State" />
-                      <span className="go bh"> <span className={`${showState ? 'turna':'turnb'}`}>&#5123;</span></span>
+                      <span className="go bh"> <span className={`${showState ? 'turna' : 'turnb'}`}>&#5123;</span></span>
                     </div>
                     {(showState && stateList.length) && <div className="option opt1">
-                      {stateList.map(a => a.state_name).map(item => (
+                      {filteredStateList.map(item => (
                         <div key={item} className="keysta" onClick={this.clickToSelecteState.bind(this, item)}>
                           {item}
                         </div>
@@ -263,14 +285,16 @@ export default class App extends Component {
                     {/* <label htmlFor="ji8">District*</label> */}
                     <div className="flex">
                       <input value={selectedDistrict} onFocus={this.showDistrictList} onBlur={this.hideDistrictList}
+                      disabled={districtList.length === 0}
+                        onChange={this.handleDistrictChangeFilter}
                         className="gh65"
                         placeholder="District"
                       />
-                      <span className="go bh"> <span className={`${showDistrict ? 'turna':'turnb'}`}>&#5123;</span></span>
+                      <span className="go bh"> <span className={`${showDistrict ? 'turna' : 'turnb'}`}>&#5123;</span></span>
                     </div>
-                    {showDistrict && <div className="option opt2">
-                      {districtList.map(a => a.district_name).map(item => (
-                        <div key={item.district_id} className="keysta" onClick={this.clickToSelecteDistrict.bind(this, item)}>
+                    {(showDistrict && districtList.length) && <div className="option opt2">
+                      {filteredDistrictList.map(item => (
+                        <div key={item} className="keysta" onClick={this.clickToSelecteDistrict.bind(this, item)}>
                           {item}
                         </div>
                       ))}
