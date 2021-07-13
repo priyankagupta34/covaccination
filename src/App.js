@@ -27,7 +27,7 @@ export default class App extends Component {
       districtList: [],
       filteredDistrictList: [],
       availableSession: [],
-      centers: [1, 1, 2],
+      centers: [],
       book: false
     };
     this.handlerForPincode = this.handlerForPincode.bind(this);
@@ -78,9 +78,9 @@ export default class App extends Component {
     const state = this.state.stateList.filter(a => a.state_name === selectedState)[0].state_id;
     CoServices.getAllDistricts(state)
       .then((result) => {
-        console.log('result', result.data);
 
         this.setState(state => {
+          state.showDistrict = true;
           state.selectedState = selectedState;
           state.districtList = result.data.districts;
           state.filteredDistrictList = result.data.districts.map(a=>a.district_name);
@@ -94,13 +94,14 @@ export default class App extends Component {
   }
 
   clickToSelecteDistrict(selectedDistrict) {
-    const state = this.state.districtList.filter(a => a.district_name === selectedDistrict)[0].district_id;
-    CoServices.getAllDistricts(state)
+    const district_id = this.state.districtList.filter(a => a.district_name === selectedDistrict)[0].district_id;
+    CoServices.calenderByDistrict(district_id)
       .then((result) => {
         // console.log('result', result.data);
 
         this.setState(state => {
           state.selectedDistrict = selectedDistrict;
+          state.centers = result.data.centers;
           // state.districtList = result.data.districts;
           state.showDistrict = false;
           return state;
@@ -275,7 +276,7 @@ export default class App extends Component {
                         placeholder="State" />
                       <span className="go bh"> <span className={`${showState ? 'turna' : 'turnb'}`}>&#5123;</span></span>
                     </div>
-                    {(showState && stateList.length) && <div className="option opt1">
+                    {(showState && stateList.length) && <div  className={`${!centers.length && "optionListWhen4"} option opt1`}>
                       {filteredStateList.map(item => (
                         <div key={item} className="keysta" onClick={this.clickToSelecteState.bind(this, item)}>
                           {item}
@@ -294,7 +295,7 @@ export default class App extends Component {
                       />
                       <span className="go bh"> <span className={`${showDistrict ? 'turna' : 'turnb'}`}>&#5123;</span></span>
                     </div>
-                    {(showDistrict && districtList.length) && <div className="option opt2">
+                    {(showDistrict && districtList.length) && <div className={`${!centers.length && "optionListWhen4"} option opt2`}>
                       {filteredDistrictList.map(item => (
                         <div key={item} className="keysta" onClick={this.clickToSelecteDistrict.bind(this, item)}>
                           {item}

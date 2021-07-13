@@ -7,7 +7,8 @@ export const CoServices = {
     getSessionSlots,
     test,
     getTodaysDate,
-    calenderByPin
+    calenderByPin,
+    calenderByDistrict
 }
 
 // const headers = {
@@ -56,6 +57,10 @@ function getAllDistricts(state_id) {
 
 function calenderByPin(pincode) {
     return axios.get(`${host}appointment/sessions/public/calendarByPin?pincode=${pincode}&date=${getTodaysDate()}`);
+}
+
+function calenderByDistrict(district_id) {
+    return axios.get(`${host}appointment/sessions/public/calendarByDistrict?district_id=${district_id}&date=${getTodaysDate()}`);
 }
 
 function getTodaysDate(){
