@@ -132,7 +132,7 @@ export default class App extends Component {
   render() {
     const { pincode, searchByPin, selectedState, centers, book } = this.state;
     return (
-      <div className="App">
+      <div className={`${ !centers.length && "whenNoList3" } App`}>
 
         <article className={`${ !centers.length && "whenNoList1" } articleBody`}>
           <div className="part">

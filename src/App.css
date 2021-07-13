@@ -215,5 +215,16 @@
     border-top-right-radius: 14px;
   }
 
+  .whenNoList1 {
+    height: 72vh !important;
+  }
+
+  .whenNoList2 {
+    height: 52vh !important;
+  }
+
+  .whenNoList3 {
+    height: 95vh !important;
+  }
 
 }
