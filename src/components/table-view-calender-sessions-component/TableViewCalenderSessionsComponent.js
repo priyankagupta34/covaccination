@@ -1,13 +1,47 @@
 import React, { Component } from 'react'
 import './TableViewCalenderSessionsComponent.css';
-// import { centers } from './../../services/test'
+import { centers } from './../../services/test'
 
 export default class TableViewCalenderSessionsComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            openFilter: false
+        };
+        this.openFilterHandler = this.openFilterHandler.bind(this);
+        this.closeFilterHandler = this.closeFilterHandler.bind(this);
+    }
+    openFilterHandler() {
+        this.setState({
+            ...this.state,
+            openFilter: this.state.openFilter ? false : true
+        })
+    }
+    closeFilterHandler() {
+        const id = document.getElementById('ndh7agd');
+        id && id.classList.add('retractKle');
+        setTimeout(() => {
+            id && id.classList.remove('retractKle');
+            setTimeout(() => {
+                this.setState({
+                    ...this.state,
+                    openFilter: false
+                })
+            }, 0);
+
+
+        }, 400);
+    }
     render() {
-        const {centers} = this.props; 
+        console.log('centers', centers)
+        // const {centers} = this.props; 
+        const { openFilter } = this.state;
         return (
-            <div>
-                <div className="kla">
+            <div className="relative">
+                {openFilter && <div className="kla" id="ndh7agd">
+                    <div className="nmjh">Please select the required checkboxes
+                        <span className="mnhg7" onClick={this.closeFilterHandler}>&times;</span>
+                    </div>
                     <div className="chbc">
                         <div className="fresd">Fee Type</div>
                         <div className="ghfd"> <label htmlFor="free">Free</label><input type="checkbox" id="free" /></div>
@@ -15,23 +49,31 @@ export default class TableViewCalenderSessionsComponent extends Component {
                     </div>
                     <div className="chbc">
                         <div className="fresd">Age Limit</div>
-
                         <div className="ghfd">  <label htmlFor="tya">45+</label><input type="checkbox" id="tya" /></div>
                         <div className="ghfd"><label htmlFor="tyb">18-44</label><input type="checkbox" id="tyb" /></div>
                     </div>
-                </div>
+                    <div className="chbc">
+                        <div className="fresd">Vaccine</div>
+                        <div className="ghfd"> <label htmlFor="free">Covishield</label><input type="checkbox" id="free" /></div>
+                        <div className="ghfd"> <label htmlFor="paid">Covaxin</label><input type="checkbox" id="paid" /></div>
+                        <div className="ghfd"> <label htmlFor="paid">Sputnik</label><input type="checkbox" id="paid" /></div>
+                    </div>
+                </div>}
 
                 <div className="tabs">
+                    <div className="filt6" onClick={this.openFilterHandler}>Filter</div>
                     <div className="viab">
                         <div className="hjab">
                             <div className="grfsd">
-                                <div className="uih tys hj7">Name</div>
-                                <div className="uih hj7">Fee Type </div>
-                                <div className="uih hj7">Min Age</div>
-                                <div className="uih hj7">All Slots</div>
-                                <div className="uih hj7">Dose 1</div>
-                                <div className="uih hj7">Dose 2</div>
-                                <div className="uih hj7">Action</div>
+                                <div className="uih tys hj7 nmb">Name</div>
+                                <div className="uih hj7 nmb">Vaccine</div>
+                                <div className="uih hj7 nmb">Date</div>
+                                <div className="uih hj7 nmb">Fee Type </div>
+                                <div className="uih hj7 nmb">Min Age</div>
+                                <div className="uih hj7 nmb">All Slots</div>
+                                <div className="uih hj7 nmb">Dose 1</div>
+                                <div className="uih hj7 nmb">Dose 2</div>
+                                <div className="uih hj7 nmb">Action</div>
                             </div>
                         </div>
                         {centers.map((item, index) => (
@@ -40,6 +82,8 @@ export default class TableViewCalenderSessionsComponent extends Component {
                                 {item.sessions.map((item2, index2) =>
                                     <>
                                         <div className="ui tys hj7 as4">{item.name}</div>
+                                        <div className="ui">{item2.vaccine}</div>
+                                        <div className="ui">{item2.date}</div>
                                         <div className="ui">{item.fee_type}</div>
                                         <div className="ui">{item2.min_age_limit}</div>
                                         <div className="ui">{item2.available_capacity}</div>

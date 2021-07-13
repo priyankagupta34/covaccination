@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import DisplaySlotAndBookComponent from './components/display-slot-and-book-component/DisplaySlotAndBookComponent';
 import MotivateComponent from './components/motivate-component/MotivateComponent';
 import TableViewCalenderSessionsComponent from './components/table-view-calender-sessions-component/TableViewCalenderSessionsComponent';
 import { CoServices } from './services/CoServices';
@@ -20,7 +21,8 @@ export default class App extends Component {
       loadState: false,
       stateList: [],
       availableSession: [],
-      centers: []
+      centers: [],
+      book: false
     };
     this.handlerForPincode = this.handlerForPincode.bind(this);
     this.changeSearchBy = this.changeSearchBy.bind(this);
@@ -128,7 +130,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { pincode, searchByPin, selectedState, centers } = this.state;
+    const { pincode, searchByPin, selectedState, centers, book } = this.state;
     return (
       <div className="App">
 
@@ -157,9 +159,13 @@ export default class App extends Component {
                   <input value={selectedState} />
                 </div>}
 
-               {centers.length ? <div>
+               {!book ? <>{!centers.length ? <div>
                   <TableViewCalenderSessionsComponent centers={centers} />
-                </div>:<></>}
+                </div>:<></>}</>:
+                
+                <div>
+                  <DisplaySlotAndBookComponent />
+                </div>}
 
             </div>
           </div>

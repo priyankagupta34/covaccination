@@ -1,13 +1,13 @@
-.grfsd{
+.grfsd {
     display: grid;
-    grid-template-columns: 3.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 3.5fr 1.4fr 1.4fr 1fr 1fr 1fr 1fr 1fr 1fr;
     font-size: 0.8em;
 }
 
-.fresd{
-    font-weight: 500;
-    font-size: 0.9em;
-    margin-bottom: 10px;
+.fresd {
+    font-weight: 700;
+    font-size: 0.8em;
+    padding: 3px;
 }
 
 /* .fresd::after{
@@ -20,43 +20,92 @@
     margin-bottom: 0;
 } */
 
-.kla{
+.kla {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     padding: 10px;
-    width: 91%;
+    /* width: 91%; */
     margin: 0 auto;
+    position: absolute;
+    background: white;
+    z-index: 11;
+    box-shadow: 0 6px 12px #caa8a8;
+    border-radius: 3px;
+    animation: kla 0.5s linear;
+    overflow: hidden;
+    top: 27px;
+    left: 16px;
 }
 
-.ghfd{
+@keyframes kla {
+    0% {
+        height: 9vh;
+        opacity: 0.5;
+    }
+
+    100% {
+        height: 20vh;
+        opacity: 1;
+    }
+}
+
+
+.retractKle {
+    animation: retractKle 0.5s linear;
+}
+
+@keyframes retractKle {
+    0% {
+        height: 20vh;
+        opacity: 1;
+    }
+
+    100% {
+        height: 0;
+        opacity: 0;
+    }
+
+}
+
+
+
+.ghfd {
     display: inline-block;
     margin: 0 8px;
     font-size: 0.8em;
 }
 
-.hj7{
+.ghfd label {
+    margin: 0px 9px;
+    color: black;
+}
+
+.ghfd input {
+    margin-top: 7px;
+    margin-left: -6px;
+    height: 12px;
+}
+
+.hj7 {
     background-color: #ffe7e7 !important;
     border-bottom: 1px solid #efcaca !important;
-    font-weight: 500 !important;
+    /* font-weight: 500 !important; */
     border-right: 1px solid #efcaca !important;
     z-index: 3 !important;
 }
 
 
-.tabs{
-    height: 34vh;
+.tabs {
+    height: 41.5vh;
     overflow-y: auto;
     margin: 0 20px;
     border-radius: 6px;
-  }
-
-.uih{
-    font-weight: 500;
-    top: 0;
-    position: sticky;
 }
 
-.uih, .ui{
+
+
+.uih,
+.ui {
     border-bottom: 1px solid #f7e9e9;
     border-right: 1px solid #f7e9e9;
     padding: 5px;
@@ -65,38 +114,50 @@
     align-items: center;
 }
 
-.hjab{
+.hjab {
     position: sticky;
     top: 0;
     background-color: white;
     z-index: 2;
 }
 
-.viab{
+.viab {
     /* width: 95vw; */
     /* padding-right: 18px; */
     font-size: 0.9em;
 }
 
-.uih:first-child{
+.uih:first-child {
     border-left: none !important;
     /* background-color: rgb(238, 105, 105); */
 }
 
-.tys{
+.tys {
     position: sticky;
     left: 0;
     background: white;
     z-index: 4 !important;
 }
 
-.as4{
+.as4 {
     z-index: 1 !important;
 }
 
+.filt6 {
+    width: 61px;
+    border: 1px solid;
+    margin: 3px;
+    border-radius: 4px;
+    background: #dea1a1;
+    font-weight: 500;
+    font-size: 0.9em;
+    position: sticky;
+    left: 4px;
+    cursor: pointer;
+}
 
 
-.bookn{
+.bookn {
     background-color: #ffe7e7;
     font-size: 0.9em;
     font-weight: 500;
@@ -107,28 +168,89 @@
     color: maroon;
 }
 
+.chbc {
+    display: flex;
+    height: 42px;
+    border-bottom: 0.5px solid #fde7f3;
+    padding-top: 10px;
+}
 
+.nmjh {
+    text-align: left;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.nmjh::after {
+    content: '';
+    background-color: #caa8a8;
+    height: 1px;
+    width: 239px;
+    display: block;
+    margin: 2px 0;
+}
+
+.mnhg7 {
+    text-align: right;
+    position: relative;
+    left: 63px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.uih {
+    font-weight: 700 !important;
+    top: 0;
+    position: sticky;
+}
+
+.nmb{
+
+}
 
 @media screen and (max-width: 1000px) {
 
-    .grfsd{
-        grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    .grfsd {
+        grid-template-columns: 2.5fr 1.35fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
     }
-    .tabs{
+
+    .tabs {
         width: 85vw;
         height: 65vh;
         margin: 0 10px;
     }
-    .viab{
-        width: 124vw;
+
+    .viab {
+        width: 150vw;
     }
 
-    .ghfd{
-        margin: 0 4px;
+    .ghfd {
+        margin: 0 1px;
+        font-size: 0.75em;
     }
 
-    .fresd{
-        margin-bottom: 3px; 
+    .fresd {
+        margin: 4px 0;
+        font-size: 0.7em;
+    }
+
+    .kla {
+        width: 91%;
+        left: 9px;
+        top: 30px;
+    }
+
+    .mnhg7 {
+        left: 31px;
+    }
+
+    .hj7 {
+        /* font-weight: 400 !important; */
+    }
+    .nmb {
+        font-weight: 500;
+        top: 0;
+        position: sticky;
     }
 
 }
