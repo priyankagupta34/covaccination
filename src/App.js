@@ -101,7 +101,7 @@ export default class App extends Component {
 
     setTimeout(() => {
       this.setState(state => {
-        // state.showDistrict = false;
+        state.showDistrict = false;
         return state;
       })
     }, 800);
