@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import BeneficiariesListCcomponent from './components/beneficiaries-list-component/BeneficiariesListCcomponent';
 import DisplaySlotAndBookComponent from './components/display-slot-and-book-component/DisplaySlotAndBookComponent';
 import MotivateComponent from './components/motivate-component/MotivateComponent';
 import TableViewCalenderSessionsComponent from './components/table-view-calender-sessions-component/TableViewCalenderSessionsComponent';
@@ -31,6 +32,7 @@ export default class App extends Component {
       book: false,
       logged: false,
       showOtpModal: false,
+      beneficiaries: []
 
     };
     this.onchangeHandler = this.onchangeHandler.bind(this);
@@ -249,13 +251,18 @@ export default class App extends Component {
           .then((result) => {
             this.setState(state => {
               state.loaderOfOtp = false;
+              state.logged = true;
               state.showOtpModal = false;
               state.token = result.data.token;
               return state;
             }, () => {
               CoServices.getBeneficiaries(this.state.token)
                 .then((result) => {
-                  console.log('rwss', result);
+                  this.setState(state => {
+                    // state.beneficiaries = beneficiaries;
+                    state.beneficiaries = result.data.beneficiaries;
+                    return state;
+                  })
                 }).catch((err) => {
 
                 });
@@ -271,7 +278,7 @@ export default class App extends Component {
 
   render() {
     const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
-      , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal } = this.state;
+      , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries } = this.state;
     console.log('stateList', centers);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
@@ -366,7 +373,7 @@ export default class App extends Component {
                         </form>
                       </div>
 
-                      {showOtpModal ? <div className="modalkl">
+                      {(!logged && showOtpModal) ? <div className="modalkl">
                         <div className="pinclas relative">
                           <form className="flex" onSubmit={this.confirmOtp}>
                             <input value={otp}
@@ -379,7 +386,14 @@ export default class App extends Component {
                           </form>
                         </div>
 
-                      </div> : <>/</>}
+                      </div> : <></>}
+
+                      {(!logged && beneficiaries.length) ?
+                        <div>
+                          <BeneficiariesListCcomponent beneficiaries={beneficiaries} />
+                        </div> :
+                        <></>
+                      }
 
                     </>}
                 </>

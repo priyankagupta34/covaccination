@@ -512,3 +512,36 @@ export const stateList = [
         "state_name": "West Bengal"
     }
 ]
+
+export const beneficiaries = [
+    {
+        "beneficiary_reference_id": "19536408964140",
+        "name": "Priyanka Gupta",
+        "birth_year": "1993",
+        "gender": "Female",
+        "mobile_number": "5508",
+        "photo_id_type": 1,
+        "photo_id_number": "XXXXXXXX2726",
+        "comorbidity_ind": "N",
+        "vaccination_status": "Partially Vaccinated",
+        "vaccine": "COVISHIELD",
+        "dose1_date": "27-06-2021",
+        "dose2_date": "",
+        "appointments": [
+            {
+                "appointment_id": "e7b0a5db-c151-4496-b88e-60f9935f467b",
+                "center_id": 562088,
+                "name": "IGIMS Patna",
+                "state_name": "Bihar",
+                "district_name": "Patna",
+                "block_name": "Patna Sadar",
+                "from": "09:00",
+                "to": "15:30",
+                "dose": 1,
+                "session_id": "30b55712-205f-4524-a76a-54ba88faef92",
+                "date": "28-06-2021",
+                "slot": "10:00AM-11:00AM"
+            }
+        ]
+    }
+]
