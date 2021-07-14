@@ -31,7 +31,7 @@ function getOTPToRegister(mobile) {
 }
 
 function confirmOTPToRegister(otp, txnId) {
-    return axios.post(`${host}auth/public/confirmOTP`, { otp, txnId });
+    return axios.post(`${host}auth/validateMobileOtp`, { otp, txnId });
 }
 
 function getStatesList() {

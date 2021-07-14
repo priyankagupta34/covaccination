@@ -238,6 +238,7 @@ export default class App extends Component {
       });
   }
 
+  /* Confirm otp by converting it into sh256 */
   confirmOtp(e) {
     e.preventDefault();
     this.setState(state => {
