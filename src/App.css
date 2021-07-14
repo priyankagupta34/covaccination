@@ -223,13 +223,43 @@
   font-weight: 500;
 }
 
-.turna{
+.turna {
   transform: rotate(180deg);
   transition: all 0.4s;
 }
-.turnb{
+
+.turnb {
   transform: rotate(0);
   transition: all 0.4s;
+}
+
+.bngf {
+  font-size: 0.8em;
+  padding: 10px;
+  margin-bottom: -15px;
+  font-weight: 500;
+}
+
+.modalkl{
+  position: absolute;
+  text-align: center;
+  background: #82061e36;
+  height: 33.5vh;
+  width: 57.3vw;
+  border-radius: 15px;
+  box-shadow: 0 -4px 6px 2px #8000004f;
+  padding-top: 3vh;
+  bottom: 10vh;
+  animation: modalkl 0.6s linear;
+}
+
+@keyframes modalkl {
+  0%{
+    height: 10vh;
+  }
+  100%{
+    height: 34vh;
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -283,7 +313,7 @@
     height: 95vh !important;
   }
 
-  .optionListWhen4{
+  .optionListWhen4 {
     max-height: 23vh !important;
   }
 
@@ -301,4 +331,9 @@
   .opt1 {
     left: 0vw;
   }
+
+  .modalkl {
+    width: 89.3vw;
+    bottom: 0;
+}
 }

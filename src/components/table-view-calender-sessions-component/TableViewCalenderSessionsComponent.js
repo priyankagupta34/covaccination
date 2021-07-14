@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './TableViewCalenderSessionsComponent.css';
-// import { centers } from './../../services/test'
+import { centers } from './../../services/test'
 
 export default class TableViewCalenderSessionsComponent extends Component {
     constructor(props) {
@@ -33,8 +33,8 @@ export default class TableViewCalenderSessionsComponent extends Component {
         }, 400);
     }
     render() {
-        // console.log('centers', centers)
-        const {centers} = this.props; 
+        console.log('centers', centers)
+        // const {centers} = this.props; 
         const { openFilter } = this.state;
         return (
             <div className="relative">
@@ -68,6 +68,7 @@ export default class TableViewCalenderSessionsComponent extends Component {
                                 <div className="uih tys hj7 nmb">Name</div>
                                 <div className="uih hj7 nmb">Vaccine</div>
                                 <div className="uih hj7 nmb">Date</div>
+                                <div className="uih hj7 nmb">Pincode</div>
                                 <div className="uih hj7 nmb">Fee Type </div>
                                 <div className="uih hj7 nmb">Min Age</div>
                                 <div className="uih hj7 nmb">All Slots</div>
@@ -84,13 +85,14 @@ export default class TableViewCalenderSessionsComponent extends Component {
                                         <div className="ui tys hj7 as4">{item.name}</div>
                                         <div className="ui">{item2.vaccine}</div>
                                         <div className="ui">{item2.date}</div>
+                                        <div className="ui">{item.pincode}</div>
                                         <div className="ui">{item.fee_type}</div>
                                         <div className="ui">{item2.min_age_limit}</div>
                                         <div className="ui">{item2.available_capacity}</div>
                                         <div className="ui">{item2.available_capacity_dose1}</div>
                                         <div className="ui">{item2.available_capacity_dose2}</div>
                                         <div className="ui">
-                                            <div className="bookn">Book</div>
+                                            <div className="bookn" onClick={()=>this.props.bookThisDose(item, item2)}>Book</div>
                                         </div>
                                     </>
                                 )}

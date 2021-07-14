@@ -27,10 +27,12 @@ export default class App extends Component {
       districtList: [],
       filteredDistrictList: [],
       availableSession: [],
-      centers: [],
-      book: false
+      centers: [1, 2, 3],
+      book: false,
+      logged: false,
+
     };
-    this.handlerForPincode = this.handlerForPincode.bind(this);
+    this.onchangeHandler = this.onchangeHandler.bind(this);
     this.changeSearchBy = this.changeSearchBy.bind(this);
     this.findCalenderSlotByPin = this.findCalenderSlotByPin.bind(this);
     this.showStateList = this.showStateList.bind(this);
@@ -39,12 +41,31 @@ export default class App extends Component {
     this.showDistrictList = this.showDistrictList.bind(this);
     this.handleStateChangeFilter = this.handleStateChangeFilter.bind(this);
     this.handleDistrictChangeFilter = this.handleDistrictChangeFilter.bind(this);
+    this.bookThisDose = this.bookThisDose.bind(this);
+    this.generateOTP = this.generateOTP.bind(this);
+    this.confirmOtp = this.confirmOtp.bind(this);
+  }
+
+  handleMobile(e) {
+    this.setState({
+      ...this.state,
+      mobile: e.target.value
+    });
+  }
+
+  bookThisDose(main, sessiondata) {
+    console.log('main', main);
+    console.log('sessiondata', sessiondata);
+    this.setState({
+      ...this.state,
+      book: true
+    })
   }
 
   handleStateChangeFilter(e) {
     this.setState(state => {
       state.selectedState = e.target.value;
-      state.filteredStateList = state.stateList.filter(a => a.state_name.toLowerCase().search(e.target.value.toLowerCase()) !== -1).map(a=>a.state_name);
+      state.filteredStateList = state.stateList.filter(a => a.state_name.toLowerCase().search(e.target.value.toLowerCase()) !== -1).map(a => a.state_name);
       return state;
     })
   }
@@ -52,7 +73,7 @@ export default class App extends Component {
   handleDistrictChangeFilter(e) {
     this.setState(state => {
       state.selectedDistrict = e.target.value;
-      state.filteredDistrictList = state.districtList.filter(a => a.district_name.toLowerCase().search(e.target.value.toLowerCase()) !== -1).map(a=>a.district_name);
+      state.filteredDistrictList = state.districtList.filter(a => a.district_name.toLowerCase().search(e.target.value.toLowerCase()) !== -1).map(a => a.district_name);
       return state;
     })
   }
@@ -83,7 +104,7 @@ export default class App extends Component {
           state.showDistrict = true;
           state.selectedState = selectedState;
           state.districtList = result.data.districts;
-          state.filteredDistrictList = result.data.districts.map(a=>a.district_name);
+          state.filteredDistrictList = result.data.districts.map(a => a.district_name);
           state.showState = false;
           return state;
         })
@@ -100,6 +121,7 @@ export default class App extends Component {
         // console.log('result', result.data);
 
         this.setState(state => {
+          state.book = false;
           state.selectedDistrict = selectedDistrict;
           state.centers = result.data.centers;
           // state.districtList = result.data.districts;
@@ -135,6 +157,7 @@ export default class App extends Component {
       .then((result) => {
         // console.log('result', result);
         this.setState(state => {
+          state.book = false;
           state.centers = result.data.centers;
           return state;
         })
@@ -148,10 +171,10 @@ export default class App extends Component {
 
   }
 
-  handlerForPincode(event) {
+  onchangeHandler(event) {
     this.setState({
       ...this.state,
-      pincode: event.target.value
+      [event.target.name]: event.target.value
     })
   }
   componentDidMount() {
@@ -183,7 +206,7 @@ export default class App extends Component {
         this.setState(state => {
           // state.loadState = false;
           state.stateList = result.data.states;
-          state.filteredStateList = result.data.states.map(a=>a.state_name);
+          state.filteredStateList = result.data.states.map(a => a.state_name);
           return state;
         })
       }).catch((err) => {
@@ -193,7 +216,8 @@ export default class App extends Component {
 
 
 
-  generateOTP() {
+  generateOTP(e) {
+    e.preventDefault();
     this.setState(state => {
       state.loaderOfOtp = true;
       return state;
@@ -210,7 +234,8 @@ export default class App extends Component {
       });
   }
 
-  confirmOtp() {
+  confirmOtp(e) {
+    e.preventDefault();
     this.setState(state => {
       state.loaderOfOtp = true;
       return state;
@@ -238,8 +263,8 @@ export default class App extends Component {
 
   render() {
     const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
-      , filteredDistrictList, filteredStateList } = this.state;
-    console.log('stateList',this.state);
+      , filteredDistrictList, filteredStateList, logged, mobile, otp } = this.state;
+    console.log('stateList', centers);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
 
@@ -263,7 +288,7 @@ export default class App extends Component {
               {searchByPin ? <div className="pinclas">
                 {/* <label htmlFor="ji8">Pincode*</label> */}
                 <form className="flex" onSubmit={this.findCalenderSlotByPin}>
-                  <input id="ji8" value={pincode} onChange={this.handlerForPincode} placeholder="Pincode" className="gh65" />
+                  <input id="ji8" value={pincode} onChange={this.onchangeHandler} placeholder="Pincode" className="gh65" name="pincode" />
                   <button className="go" onClick={this.findCalenderSlotByPin} type="submit" disabled={pincode === ''}>Go</button></form>
               </div> :
                 <div className=" drivg">
@@ -276,43 +301,82 @@ export default class App extends Component {
                         placeholder="State" />
                       <span className="go bh"> <span className={`${showState ? 'turna' : 'turnb'}`}>&#5123;</span></span>
                     </div>
-                    {(showState && stateList.length) && <div  className={`${!centers.length && "optionListWhen4"} option opt1`}>
+                    {(showState && stateList.length) ? <div className={`${!centers.length && "optionListWhen4"} option opt1`}>
                       {filteredStateList.map(item => (
                         <div key={item} className="keysta" onClick={this.clickToSelecteState.bind(this, item)}>
                           {item}
                         </div>
                       ))}
-                    </div>}
+                    </div> : <></>}
                   </div>
                   <div className="pinclas pinclagh relative">
-                    {/* <label htmlFor="ji8">District*</label> */}
                     <div className="flex">
                       <input value={selectedDistrict} onFocus={this.showDistrictList} onBlur={this.hideDistrictList}
-                      disabled={districtList.length === 0}
+                        disabled={districtList.length === 0}
                         onChange={this.handleDistrictChangeFilter}
                         className="gh65"
                         placeholder="District"
                       />
                       <span className="go bh"> <span className={`${showDistrict ? 'turna' : 'turnb'}`}>&#5123;</span></span>
                     </div>
-                    {(showDistrict && districtList.length) && <div className={`${!centers.length && "optionListWhen4"} option opt2`}>
+                    {(showDistrict && districtList.length) ? <div className={`${!centers.length && "optionListWhen4"} option opt2`}>
                       {filteredDistrictList.map(item => (
                         <div key={item} className="keysta" onClick={this.clickToSelecteDistrict.bind(this, item)}>
                           {item}
                         </div>
                       ))}
-                    </div>}
+                    </div> : <></>}
                   </div>
 
                 </div>}
 
-              {!book ? <>{centers.length ? <div>
-                <TableViewCalenderSessionsComponent centers={centers} />
-              </div> : <></>}</> :
+              {!book ?
 
-                <div>
-                  <DisplaySlotAndBookComponent />
-                </div>}
+                <>{centers.length ?
+                  <div><TableViewCalenderSessionsComponent centers={centers} bookThisDose={this.bookThisDose} /></div> :
+                  <></>}</>
+                :
+
+                <>
+                  <div>
+                    <DisplaySlotAndBookComponent />
+                  </div>
+
+                  {logged === false &&
+                    <>
+                      <div className="bngf">Please login with your registered mobile before booking the slot</div>
+
+                      <div className="pinclas relative">
+                        <form className="flex" onSubmit={this.generateOTP}>
+                          <input value={mobile}
+                            name="mobile"
+                            onChange={this.onchangeHandler}
+                            className="gh65"
+                            placeholder="Mobile Number"
+                          />
+                          <button className="go" type="submit">OTP</button>
+                        </form>
+                      </div>
+
+                      <div className="modalkl">
+                        <div className="pinclas relative">
+                          <form className="flex" onSubmit={this.confirmOtp}>
+                            <input value={otp}
+                              name="otp"
+                              onChange={this.onchangeHandler}
+                              className="gh65"
+                              placeholder="OTP"
+                            />
+                            <button className="go" type="submit">Ok</button>
+                          </form>
+                        </div>
+                      </div>
+
+                    </>}
+                </>
+
+              }
+
 
             </div>
           </div>
