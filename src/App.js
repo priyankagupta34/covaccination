@@ -241,29 +241,27 @@ export default class App extends Component {
       return state;
     })
     const { otp, txnId } = this.state;
-    CoServices.confirmOTPToRegister(otp, txnId)
-      .then((result) => {
-        this.setState(state => {
-          state.loaderOfOtp = false;
-          state.txnId = result.data.txnId;
-          return state;
-        })
-      }).catch((err) => {
-
-      });
-  }
-
-  sha256Conversion(otp) {
     CoServices.sha256Conversion(otp)
       .then((result) => {
+        CoServices.confirmOTPToRegister(result, txnId)
+        .then((result) => {
+          this.setState(state => {
+            state.loaderOfOtp = false;
+            state.token = result.data.token;
+            return state;
+          })
+        }).catch((err) => {
+  
+        });
       }).catch((err) => {
 
       });
+   
   }
 
   render() {
     const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
-      , filteredDistrictList, filteredStateList, logged, mobile, otp } = this.state;
+      , filteredDistrictList, filteredStateList, logged, mobile, otp, token } = this.state;
     console.log('stateList', centers);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
@@ -370,6 +368,8 @@ export default class App extends Component {
                             <button className="go" type="submit">Ok</button>
                           </form>
                         </div>
+
+                        {token}
                       </div>
 
                     </>}
