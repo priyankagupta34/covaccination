@@ -27,11 +27,15 @@ const host = 'https://cdn-api.co-vin.in/api/v2/';
 // };
 
 function getOTPToRegister(mobile) {
-    return axios.post(`${host}auth/public/generateOTP`, { mobile })
+    return axios.post(`${host}auth/generateMobileOTP`, { mobile, secret: "U2FsdGVkX1+Qv4iGD8jOlYu6INWkBe3zw0OBN7IRQWo+mMcXKQo96YvfIzJi7XAOGV295AKaBfIaH3NY0XgFYw==" },  {headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
+    }})
 }
 
 function confirmOTPToRegister(otp, txnId) {
-    return axios.post(`${host}auth/validateMobileOtp`, { otp, txnId });
+    return axios.post(`${host}auth/validateMobileOtp`, { otp, txnId },{headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
+    }});
 }
 
 function getStatesList() {

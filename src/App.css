@@ -245,9 +245,10 @@
 }
 
 .modalkl {
+  bottom: 10vh;
   position: fixed;
   text-align: center;
-  background: #82061e36;
+  background: #ecd8dc;
   height: 34vh;
   border-radius: 20px;
   width: 57vw;
@@ -265,6 +266,26 @@
   100% {
     height: 34vh;
   }
+}
+
+.errobody{
+  position: fixed;
+  background: #00000070;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.errops{
+  height: 63vh;
+    background: white;
+    width: 50vw;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width: 1000px) {

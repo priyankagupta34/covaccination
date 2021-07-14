@@ -5,6 +5,8 @@ import DisplaySlotAndBookComponent from './components/display-slot-and-book-comp
 import MotivateComponent from './components/motivate-component/MotivateComponent';
 import TableViewCalenderSessionsComponent from './components/table-view-calender-sessions-component/TableViewCalenderSessionsComponent';
 import { CoServices } from './services/CoServices';
+import { sha256 } from 'js-sha256';
+// import { sha256 } from './services/Sha256';
 // import { stateList } from './services/test';
 
 
@@ -20,6 +22,7 @@ export default class App extends Component {
       selectedStateId: '',
       selectedStateName: '',
       selectedDistrict: '',
+      errorMessage: '',
       loaderOfOtp: false,
       showState: false,
       showDistrict: false,
@@ -126,6 +129,7 @@ export default class App extends Component {
         this.setState(state => {
           state.book = false;
           state.selectedDistrict = selectedDistrict;
+          state.showOtpModal = false;
           state.centers = result.data.centers;
           // state.districtList = result.data.districts;
           state.showDistrict = false;
@@ -234,7 +238,11 @@ export default class App extends Component {
           return state;
         })
       }).catch((err) => {
-
+        this.setState({
+          ...this.state,
+          showError: true,
+          errorMessage: 'Exceeded number of wrong OTP entry. Please refresh and try again.'
+        })
       });
   }
 
@@ -246,9 +254,13 @@ export default class App extends Component {
       return state;
     })
     const { otp, txnId } = this.state;
-    CoServices.sha256Conversion(otp)
-      .then((result) => {
-        CoServices.confirmOTPToRegister(result, txnId)
+    // const result1 = CryptoJS.SHA256(otp).toString(CryptoJS.enc.Hex);
+    console.log('typeofff ',typeof otp)
+    const result1 = sha256(otp.toString());
+    console.log('result1', result1)
+    // CoServices.sha256Conversion(otp)
+    //   .then((result) => {
+        CoServices.confirmOTPToRegister(result1, txnId)
           .then((result) => {
             this.setState(state => {
               state.loaderOfOtp = false;
@@ -271,16 +283,17 @@ export default class App extends Component {
           }).catch((err) => {
 
           });
-      }).catch((err) => {
+      // }).catch((err) => {
 
-      });
+      // });
 
   }
 
   render() {
+    console.log('sha256(otp);',sha256('261294'))
     const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
-      , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries } = this.state;
-    console.log('stateList', centers);
+      , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries, showError, errorMessage } = this.state;
+    // console.log('stateList', centers);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
 
@@ -405,6 +418,13 @@ export default class App extends Component {
             </div>
           </div>
         </article>
+
+        {showError && <div className="errobody">
+          <div className="errops">
+            <div></div>
+            <div>{errorMessage}</div>
+          </div>
+        </div>}
       </div>
     )
   }
