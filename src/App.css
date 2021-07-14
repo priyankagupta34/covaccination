@@ -241,7 +241,7 @@
 }
 
 .modalkl{
-  position: absolute;
+  position: fixed;
   text-align: center;
   background: #82061e36;
   height: 33.5vh;
@@ -333,7 +333,7 @@
   }
 
   .modalkl {
-    width: 89.3vw;
-    bottom: 0;
+    width: 91vw;
+    bottom: -6vh;
 }
 }
