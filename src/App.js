@@ -16,7 +16,7 @@ export default class App extends Component {
       pincode: '',
       mobile: '',
       txnId: '',
-      otp: 0,
+      otp: null,
       selectedStateId: '',
       selectedStateName: '',
       selectedDistrict: '',
