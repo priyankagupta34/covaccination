@@ -8,7 +8,8 @@ export const CoServices = {
     test,
     getTodaysDate,
     calenderByPin,
-    calenderByDistrict
+    calenderByDistrict,
+    getBeneficiaries
 }
 
 // const headers = {
@@ -35,6 +36,14 @@ function confirmOTPToRegister(otp, txnId) {
 
 function getStatesList() {
     return axios.get(`${host}admin/location/states`);
+}
+
+function getBeneficiaries(token) {
+    return axios.get(`${host}appointment/beneficiaries`,  {
+        headers: {
+        'authorization': `Bearer ${token}`
+        }
+      });
 }
 
 function getSessionSlots(pincode, date) {

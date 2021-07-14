@@ -27,9 +27,10 @@ export default class App extends Component {
       districtList: [],
       filteredDistrictList: [],
       availableSession: [],
-      centers: [1, 2, 3],
+      centers: [],
       book: false,
       logged: false,
+      showOtpModal: false,
 
     };
     this.onchangeHandler = this.onchangeHandler.bind(this);
@@ -226,6 +227,7 @@ export default class App extends Component {
       .then((result) => {
         this.setState(state => {
           state.loaderOfOtp = false;
+          state.showOtpModal = true;
           state.txnId = result.data.txnId;
           return state;
         })
@@ -244,24 +246,32 @@ export default class App extends Component {
     CoServices.sha256Conversion(otp)
       .then((result) => {
         CoServices.confirmOTPToRegister(result, txnId)
-        .then((result) => {
-          this.setState(state => {
-            state.loaderOfOtp = false;
-            state.token = result.data.token;
-            return state;
-          })
-        }).catch((err) => {
-  
-        });
+          .then((result) => {
+            this.setState(state => {
+              state.loaderOfOtp = false;
+              state.showOtpModal = false;
+              state.token = result.data.token;
+              return state;
+            }, () => {
+              CoServices.getBeneficiaries(this.state.token)
+                .then((result) => {
+                  console.log('rwss', result);
+                }).catch((err) => {
+
+                });
+            })
+          }).catch((err) => {
+
+          });
       }).catch((err) => {
 
       });
-   
+
   }
 
   render() {
     const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
-      , filteredDistrictList, filteredStateList, logged, mobile, otp, token } = this.state;
+      , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal } = this.state;
     console.log('stateList', centers);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
@@ -356,7 +366,7 @@ export default class App extends Component {
                         </form>
                       </div>
 
-                      <div className="modalkl">
+                      {showOtpModal ? <div className="modalkl">
                         <div className="pinclas relative">
                           <form className="flex" onSubmit={this.confirmOtp}>
                             <input value={otp}
@@ -369,8 +379,7 @@ export default class App extends Component {
                           </form>
                         </div>
 
-                        {token}
-                      </div>
+                      </div> : <>/</>}
 
                     </>}
                 </>
