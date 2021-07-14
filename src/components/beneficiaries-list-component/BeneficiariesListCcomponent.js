@@ -6,7 +6,7 @@ export default class BeneficiariesListCcomponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showFull: -1
+            showFull: 0
         }
     }
 
