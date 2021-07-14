@@ -19,6 +19,7 @@ export default class BeneficiariesListCcomponent extends Component {
     }
     render() {
         const {beneficiaries} = this.props;
+        console.log('beneficiaries', beneficiaries);
         const { showFull } = this.state;
 
         return (

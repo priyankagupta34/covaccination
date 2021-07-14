@@ -286,9 +286,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 16px 2px maroon;
+}
+
+.bnahyts{
+  text-align: center;
+}
+
+.closgh{
+  margin-top: 12px;
+  border: 1px solid #480310;
+  border-radius: 4px;
+  padding: 2px 9px;
+  background: white;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1000px) {
+
+  .errops{
+    height: 34vh;
+    width: 80vw;
+    padding: 5vh;
+  }
 
   .pinclas {
     width: 40vw;

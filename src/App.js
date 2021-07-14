@@ -26,6 +26,7 @@ export default class App extends Component {
       loaderOfOtp: false,
       showState: false,
       showDistrict: false,
+      showError: false,
       stateList: [],
       filteredStateList: [],
       districtList: [],
@@ -50,14 +51,17 @@ export default class App extends Component {
     this.bookThisDose = this.bookThisDose.bind(this);
     this.generateOTP = this.generateOTP.bind(this);
     this.confirmOtp = this.confirmOtp.bind(this);
+    this.closeError = this.closeError.bind(this);
   }
 
-  handleMobile(e) {
+
+  closeError() {
     this.setState({
       ...this.state,
-      mobile: e.target.value
+      showError: false
     });
   }
+
 
   bookThisDose(main, sessiondata) {
     console.log('main', main);
@@ -255,45 +259,46 @@ export default class App extends Component {
     })
     const { otp, txnId } = this.state;
     // const result1 = CryptoJS.SHA256(otp).toString(CryptoJS.enc.Hex);
-    console.log('typeofff ',typeof otp)
+    console.log('typeofff ', typeof otp)
     const result1 = sha256(otp.toString());
     console.log('result1', result1)
     // CoServices.sha256Conversion(otp)
     //   .then((result) => {
-        CoServices.confirmOTPToRegister(result1, txnId)
-          .then((result) => {
-            this.setState(state => {
-              state.loaderOfOtp = false;
-              state.logged = true;
-              state.showOtpModal = false;
-              state.token = result.data.token;
-              return state;
-            }, () => {
-              CoServices.getBeneficiaries(this.state.token)
-                .then((result) => {
-                  this.setState(state => {
-                    // state.beneficiaries = beneficiaries;
-                    state.beneficiaries = result.data.beneficiaries;
-                    return state;
-                  })
-                }).catch((err) => {
+    CoServices.confirmOTPToRegister(result1, txnId)
+      .then((result) => {
+        this.setState(state => {
+          state.loaderOfOtp = false;
+          state.logged = true;
+          state.showOtpModal = false;
+          state.token = result.data.token;
+          return state;
+        }, () => {
+          CoServices.getBeneficiaries(this.state.token)
+            .then((result) => {
+              console.log('beneficiaries', result.data);
+              this.setState(state => {
+                // state.beneficiaries = beneficiaries;
+                state.beneficiaries = result.data.beneficiaries;
+                return state;
+              })
+            }).catch((err) => {
 
-                });
-            })
-          }).catch((err) => {
+            });
+        })
+      }).catch((err) => {
 
-          });
-      // }).catch((err) => {
+      });
+    // }).catch((err) => {
 
-      // });
+    // });
 
   }
 
   render() {
-    console.log('sha256(otp);',sha256('261294'))
+    console.log('sha256(otp);', sha256('261294'))
     const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
       , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries, showError, errorMessage } = this.state;
-    // console.log('stateList', centers);
+    console.log('stateList', this.state);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
 
@@ -371,7 +376,7 @@ export default class App extends Component {
                     <DisplaySlotAndBookComponent />
                   </div>
 
-                  {logged === false &&
+                  {logged === false ?
                     <>
                       <div className="bngf">Please login with your registered mobile before booking the slot</div>
 
@@ -402,13 +407,19 @@ export default class App extends Component {
 
                       </div> : <></>}
 
-                      {(!logged && beneficiaries.length) ?
+                      {/* {(!logged && beneficiaries.length) ?
                         <div>
                           <BeneficiariesListCcomponent beneficiaries={beneficiaries} />
                         </div> :
                         <></>
-                      }
+                      } */}
 
+                    </> :
+
+                    <>
+                      <div>
+                        <BeneficiariesListCcomponent beneficiaries={beneficiaries} />
+                      </div>
                     </>}
                 </>
 
@@ -421,8 +432,12 @@ export default class App extends Component {
 
         {showError && <div className="errobody">
           <div className="errops">
-            <div></div>
-            <div>{errorMessage}</div>
+            <div>
+              <div>{errorMessage}</div>
+              <div className="bnahyts">
+                <button className="closgh" onClick={this.closeError}>Close</button>
+              </div>
+            </div>
           </div>
         </div>}
       </div>
