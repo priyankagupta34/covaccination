@@ -313,7 +313,7 @@ export default class App extends Component {
             <div className={`${!centers.length && "whenNoList2"} scndPart`}>
               <div className="searchSl">Let's Vaccinate</div>
               {/* <div className="searchS2"></div> */}
-              <TitleNIconCcomponent icon="search" title="Search Slots" description="Find slots via pincode or district."/>
+              <TitleNIconCcomponent icon="search" title="Search Slots" description="Find slots via pincode or district." />
               <div className="slider">
                 <div className={`${searchByPin && 'selectedSlider goLeft'} oiq1`} onClick={this.changeSearchBy}>Pincode</div>
                 <div className={`${!searchByPin && 'selectedSlider goRight'} oiq2`} onClick={this.changeSearchBy}>District</div>
@@ -340,7 +340,7 @@ export default class App extends Component {
                     </div>
                     {(showState && stateList.length) ? <div className={`${!centers.length && "optionListWhen4"} option opt1`}>
                       {filteredStateList.map(item => (
-                        <div key={item} className="keysta" onClick={this.clickToSelecteState.bind(this, item)}>
+                        <div key={item} className={`${((selectedState && item) &&selectedState.toLowerCase() === item.toLowerCase()) ? 'seletsfd':''} keysta`} onClick={this.clickToSelecteState.bind(this, item)}>
                           {item}
                         </div>
                       ))}
@@ -358,7 +358,7 @@ export default class App extends Component {
                     </div>
                     {(showDistrict && districtList.length) ? <div className={`${!centers.length && "optionListWhen4"} option opt2`}>
                       {filteredDistrictList.map(item => (
-                        <div key={item} className="keysta" onClick={this.clickToSelecteDistrict.bind(this, item)}>
+                        <div key={item} className={`${((selectedDistrict && item) &&selectedDistrict.toLowerCase() === item.toLowerCase()) ? 'seletsfd':''} keysta`} onClick={this.clickToSelecteDistrict.bind(this, item)}>
                           {item}
                         </div>
                       ))}
