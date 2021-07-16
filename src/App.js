@@ -313,59 +313,63 @@ export default class App extends Component {
             <div className={`${!centers.length && "whenNoList2"} scndPart`}>
               <div className="searchSl">Let's Vaccinate</div>
               {/* <div className="searchS2"></div> */}
-              <TitleNIconCcomponent icon="search" title="Search Slots" description="Find slots via pincode or district." />
-              <div className="slider">
-                <div className={`${searchByPin && 'selectedSlider goLeft'} oiq1`} onClick={this.changeSearchBy}>Pincode</div>
-                <div className={`${!searchByPin && 'selectedSlider goRight'} oiq2`} onClick={this.changeSearchBy}>District</div>
-              </div>
+
+              <article className="artic1">
+                <TitleNIconCcomponent icon="search" title="Search Slots" description="Find slots via pincode or district." />
+                <div className="slider">
+                  <div className={`${searchByPin && 'selectedSlider goLeft'} oiq1`} onClick={this.changeSearchBy}>Pincode</div>
+                  <div className={`${!searchByPin && 'selectedSlider goRight'} oiq2`} onClick={this.changeSearchBy}>District</div>
+                </div>
 
 
-              {/* By pincode and district */}
+                {/* By pincode and district */}
 
-              {searchByPin ? <div className="pinclas">
-                {/* <label htmlFor="ji8">Pincode*</label> */}
-                <form className="flex" onSubmit={this.findCalenderSlotByPin}>
-                  <input id="ji8" value={pincode} onChange={this.onchangeHandler} placeholder="Pincode" className="gh65" name="pincode" />
-                  <button className="go" onClick={this.findCalenderSlotByPin} type="submit" disabled={pincode === ''}>Go</button></form>
-              </div> :
-                <div className=" drivg">
-                  <div className="pinclas pinclagh relative">
-                    {/* <label htmlFor="ji8">State*</label> */}
-                    <div className="flex">
-                      <input value={selectedState} onFocus={this.showStateList} onBlur={this.hideStateList}
-                        onChange={this.handleStateChangeFilter}
-                        className="gh65"
-                        placeholder="State" />
-                      <span className="go bh"> <span className={`${showState ? 'turna' : 'turnb'}`}>&#5123;</span></span>
+                {searchByPin ? <div className="pinclas">
+                  {/* <label htmlFor="ji8">Pincode*</label> */}
+                  <form className="flex" onSubmit={this.findCalenderSlotByPin}>
+                    <input id="ji8" value={pincode} onChange={this.onchangeHandler} placeholder="Pincode" className="gh65" name="pincode" />
+                    <button className="go" onClick={this.findCalenderSlotByPin} type="submit" disabled={pincode === ''}>Go</button></form>
+                </div> :
+                  <div className=" drivg">
+                    <div className="pinclas pinclagh relative">
+                      {/* <label htmlFor="ji8">State*</label> */}
+                      <div className="flex">
+                        <input value={selectedState} onFocus={this.showStateList} onBlur={this.hideStateList}
+                          onChange={this.handleStateChangeFilter}
+                          className="gh65"
+                          placeholder="State" />
+                        <span className="go bh"> <span className={`${showState ? 'turna' : 'turnb'}`}>&#5123;</span></span>
+                      </div>
+                      {(showState && stateList.length) ? <div className={`${!centers.length && "optionListWhen4"} option opt1`}>
+                        {filteredStateList.map(item => (
+                          <div key={item} className={`${((selectedState && item) && selectedState.toLowerCase() === item.toLowerCase()) ? 'seletsfd' : ''} keysta`} onClick={this.clickToSelecteState.bind(this, item)}>
+                            {item}
+                          </div>
+                        ))}
+                      </div> : <></>}
                     </div>
-                    {(showState && stateList.length) ? <div className={`${!centers.length && "optionListWhen4"} option opt1`}>
-                      {filteredStateList.map(item => (
-                        <div key={item} className={`${((selectedState && item) &&selectedState.toLowerCase() === item.toLowerCase()) ? 'seletsfd':''} keysta`} onClick={this.clickToSelecteState.bind(this, item)}>
-                          {item}
-                        </div>
-                      ))}
-                    </div> : <></>}
-                  </div>
-                  <div className="pinclas pinclagh relative">
-                    <div className="flex">
-                      <input value={selectedDistrict} onFocus={this.showDistrictList} onBlur={this.hideDistrictList}
-                        disabled={districtList.length === 0}
-                        onChange={this.handleDistrictChangeFilter}
-                        className="gh65"
-                        placeholder="District"
-                      />
-                      <span className="go bh"> <span className={`${showDistrict ? 'turna' : 'turnb'}`}>&#5123;</span></span>
+                    <div className="pinclas pinclagh relative">
+                      <div className="flex">
+                        <input value={selectedDistrict} onFocus={this.showDistrictList} onBlur={this.hideDistrictList}
+                          disabled={districtList.length === 0}
+                          onChange={this.handleDistrictChangeFilter}
+                          className="gh65"
+                          placeholder="District"
+                        />
+                        <span className="go bh"> <span className={`${showDistrict ? 'turna' : 'turnb'}`}>&#5123;</span></span>
+                      </div>
+                      {(showDistrict && districtList.length) ? <div className={`${!centers.length && "optionListWhen4"} option opt2`}>
+                        {filteredDistrictList.map(item => (
+                          <div key={item} className={`${((selectedDistrict && item) && selectedDistrict.toLowerCase() === item.toLowerCase()) ? 'seletsfd' : ''} keysta`} onClick={this.clickToSelecteDistrict.bind(this, item)}>
+                            {item}
+                          </div>
+                        ))}
+                      </div> : <></>}
                     </div>
-                    {(showDistrict && districtList.length) ? <div className={`${!centers.length && "optionListWhen4"} option opt2`}>
-                      {filteredDistrictList.map(item => (
-                        <div key={item} className={`${((selectedDistrict && item) &&selectedDistrict.toLowerCase() === item.toLowerCase()) ? 'seletsfd':''} keysta`} onClick={this.clickToSelecteDistrict.bind(this, item)}>
-                          {item}
-                        </div>
-                      ))}
-                    </div> : <></>}
-                  </div>
 
-                </div>}
+                  </div>}
+
+              </article>
 
               {!book ?
 
@@ -382,8 +386,10 @@ export default class App extends Component {
                   </div>
 
                   {logged === false ?
-                    <>
-                      <div className="bngf littleInf">Please login with your registered mobile before booking the slot</div>
+                    <article className="artic2">
+                      {/* <div className="bngf littleInf">Please login with your registered mobile before booking the slot</div> */}
+                      <TitleNIconCcomponent title="Login" description="Please login with your registered mobile before booking the slot"
+                        icon="phone" />
 
                       <div className="pinclas relative">
                         <form className="flex" onSubmit={this.generateOTP}>
@@ -419,7 +425,7 @@ export default class App extends Component {
                         <></>
                       } */}
 
-                    </> :
+                    </article> :
 
                     <>
                       <div>
