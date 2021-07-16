@@ -14,7 +14,7 @@ export default class BeneficiariesListCcomponent extends Component {
         console.log(e);
         this.setState({
             ...this.state,
-            showFull: this.state.showFull===showFull?-1:showFull
+            showFull: this.state.showFull === showFull ? -1 : showFull
         })
     }
     render() {
@@ -28,33 +28,39 @@ export default class BeneficiariesListCcomponent extends Component {
                 {beneficiaries.map((item, index) => (
                     <div>
                         <div className="titlbenf1">
-                            <div>{item.name}</div>
-                            <div>{item.vaccination_status}</div>
-                            <span className={`${showFull === index ? 'turna' : 'turnb'}`} onClick={this.expandDetails.bind(this,index)}>&#5123;</span>
+                            <div>{item.name}<span className="bonji"><small className="extras"><span className="expbtn"> | REF ID :</span>{item.beneficiary_reference_id}</small>|<small className="extras"> secret: <span className="deng">{item.beneficiary_reference_id.slice(-4)}</span></small></span></div>
+                            <div>{item.vaccination_status}
+                                <span className={`${showFull === index ? 'turna' : 'turnb'} vots`} onClick={this.expandDetails.bind(this, index)}>&#5123;</span>
+                            </div>
                         </div>
                         {showFull === index ?
                             <div className="titlbenf2">
 
-                                <div>
-                                    <div>Birth Year: {item.birth_year}</div>
-                                    <div>Gender: {item.gender}</div>
-                                    <div>Vaccine: {item.vaccine}</div>
+                                <div className="myinf">
+                                    <div className="ops">Birth Year: {item.birth_year}</div>
+                                    <div className="ops">Gender: {item.gender}</div>
                                 </div>
 
                                 {item.appointments.length !== 0 ?
-                                    <div>
+                                    <div className="nopi">
                                         {item.appointments.map((appo) => (
-                                            <div>
+                                            <div className="kopi">
+                                                <div>
+                                                    <div className="ops2"><b>Dose:</b> {appo.dose}</div>
+                                                    <div className="ops1"><b>Vaccine:</b> {item.vaccine}</div>
+                                                </div>
 
-                                                <div className="dose4f">Dose: {appo.dose}</div>
 
-                                                <div>Center: {appo.name}, {appo.block_name}, {appo.block_name}</div>
-                                                <div>Date of vaccination: {appo.date}</div>
-                                                <div>Slot of Vaccination: {appo.slot}</div>
+                                                <div className="opscont">
+
+                                                    <div className="ops"><b>Center:</b> {appo.name}, {appo.block_name}, {appo.block_name}</div>
+                                                    <div className="ops"><b>Date of vaccination:</b> {appo.date}</div>
+                                                    <div className="ops"><b>Slot of Vaccination:</b> {appo.slot}</div>
+                                                </div>
                                             </div>
                                         ))}
 
-                                        
+
                                     </div>
                                     :
                                     <></>

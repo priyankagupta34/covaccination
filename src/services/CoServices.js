@@ -9,7 +9,8 @@ export const CoServices = {
     getTodaysDate,
     calenderByPin,
     calenderByDistrict,
-    getBeneficiaries
+    getBeneficiaries,
+    getIDTypes
 }
 
 // const headers = {
@@ -49,6 +50,11 @@ function getBeneficiaries(token) {
         }
       });
 }
+
+function getIDTypes(token) {
+    return axios.get(`${host}registration/beneficiary/idTypes`);
+}
+
 
 function getSessionSlots(pincode, date) {
     return axios.get(`${host}appointment/sessions/public/findByPin?pincode=${pincode}&date=${date}`);

@@ -40,6 +40,50 @@
 .artic3{
   height: 45vh;
   overflow-y: auto;
+  margin-top: -40px;
+}
+
+
+.expandedArtic3{
+  position: absolute;
+  top: 16vh;
+  width: 61vw;
+  height: 75vh;
+  box-shadow: 0px -3px 8px #e8b1b1;
+  border-top: 1px solid;
+  animation: expandedArtic3 0.5s linear;
+}
+
+@keyframes expandedArtic3 {
+  0%{
+    top: 46vh;
+  }
+  100%{
+    top: 16vh;
+  }
+}
+
+.expbtn{
+  border: 1px solid cornsilk;
+  background: white;
+  padding: 8px;
+  top: 16px;
+  position: relative;
+  right: -25.2vw;
+  border-radius: 5px;
+  box-shadow: 0 0 4px #f3bebe;
+  font-size: 0.6em;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.expbtnOn{
+  top: -25vh !important;
+}
+
+.exspan{
+  position: relative;
+    top: -6px;
 }
 
 .searchSl,
@@ -87,6 +131,8 @@
 
 .scndPart {
   padding-top: 30px;
+  position: relative;
+  overflow: hidden;
 }
 
 .oiq1,
@@ -378,6 +424,8 @@
     margin-top: 17px;
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
+    position: relative;
+    overflow: visible;
   }
 
   .whenNoList1 {
@@ -415,5 +463,15 @@
     width: 92vw;
     bottom: -4vh;
     left: 4vw;
+  }
+
+  .artic3{
+    margin-top: 13px;
+    height: auto;
+  }
+
+.expbtn{
+  display: none;
+    
   }
 }

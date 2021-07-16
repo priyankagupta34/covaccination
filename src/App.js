@@ -37,8 +37,10 @@ export default class App extends Component {
       centers: [],
       book: false,
       logged: true,
+      expandArtic3: false,
       showOtpModal: false,
-      beneficiaries: []
+      beneficiaries: [],
+      allIdTypes: []
 
     };
     this.onchangeHandler = this.onchangeHandler.bind(this);
@@ -54,6 +56,14 @@ export default class App extends Component {
     this.generateOTP = this.generateOTP.bind(this);
     this.confirmOtp = this.confirmOtp.bind(this);
     this.closeError = this.closeError.bind(this);
+    this.expandArtic3Handler = this.expandArtic3Handler.bind(this);
+  }
+
+  expandArtic3Handler(){
+    this.setState({
+      ...this.state,
+      expandArtic3: this.state.expandArtic3?false:true
+    })
   }
 
 
@@ -227,7 +237,17 @@ export default class App extends Component {
       });
   }
 
-
+  /* Get Valid Id-types */
+  getIDTypes() {
+    CoServices.getIDTypes()
+      .then(res => {
+        this.setState(state => {
+          state.allIdTypes = res.data.types;
+          return state;
+        })
+      })
+      .catch(er => { });
+  }
 
   generateOTP(e) {
     e.preventDefault();
@@ -299,7 +319,8 @@ export default class App extends Component {
   render() {
     // console.log('sha256(otp);', sha256('261294'))
     const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
-      , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries, showError, errorMessage } = this.state;
+      , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries, showError, errorMessage,
+      expandArtic3 } = this.state;
     // console.log('stateList', this.state);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
@@ -418,17 +439,19 @@ export default class App extends Component {
 
                       </div> : <></>}
 
-               
+
 
                     </article> :
-
-                    <article className="artic3">
-                      <TitleNIconCcomponent icon="group" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this Number`} />
+                    <>
+                    <button className={`${expandArtic3 && "expbtnOn"} expbtn`} onClick={this.expandArtic3Handler}><span className="exspan">Expand Panel</span> <i class="material-icons  material-icons-outlined icmns">fullscreen</i></button>
+                    <article className={`${expandArtic3 && 'expandedArtic3'} artic3`}>
+                      <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
                       <div>
                         <BeneficiariesListCcomponent beneficiaries={beneficiaries} />
                       </div>
                     </article>
-                    }
+                    </>
+                  }
                 </>
 
               }
