@@ -121,7 +121,7 @@
     box-shadow: 0 0 5px rgb(238 105 105 / 28%);
     color: black !important;
     font-weight: 500;
-    font-size: 0.9em;
+    /* font-size: 0.9em; */
 }
 
 .uih{
@@ -165,10 +165,12 @@ color: maroon;
     border-radius: 4px;
     background: #dea1a1;
     font-weight: 500;
-    font-size: 0.9em;
+    font-size: 0.8em;
     position: sticky;
     left: 4px;
     cursor: pointer;
+    margin-bottom: 5px;
+    height: 17px;
 }
 
 
