@@ -73,8 +73,8 @@ export default class TableViewCalenderSessionsComponent extends Component {
                                 <div className="uih">Fee Type </div>
                                 <div className="uih">Min Age</div>
                                 <div className="uih">All Slots</div>
-                                <div className="uih">Dose 1</div>
-                                <div className="uih">Dose 2</div>
+                                {/* <div className="uih">Dose 1</div>
+                                <div className="uih">Dose 2</div> */}
                                 <div className="uih">Action</div>
                             </>
                             {centers.map((item, index) => (
@@ -88,8 +88,8 @@ export default class TableViewCalenderSessionsComponent extends Component {
                                             <div className="ui ">{item.fee_type}</div>
                                             <div className="ui ">{item2.min_age_limit}</div>
                                             <div className="ui ">{item2.available_capacity}</div>
-                                            <div className="ui ">{item2.available_capacity_dose1}</div>
-                                            <div className="ui ">{item2.available_capacity_dose2}</div>
+                                            {/* <div className="ui ">{item2.available_capacity_dose1}</div>
+                                            <div className="ui ">{item2.available_capacity_dose2}</div> */}
                                             <div className="ui ">
                                                 <div className="bookn" onClick={() => this.props.bookThisDose(item, item2)}>Book</div>
                                             </div>
