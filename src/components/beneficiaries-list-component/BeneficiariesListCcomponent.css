@@ -74,7 +74,7 @@
 }
 
 .ops{
-padding-bottom: 10px;
+/* padding-bottom: 10px; */
 }
 
 .ops1{
@@ -109,7 +109,30 @@ font-size: 2em;
     color: red;
 }
 
+.voicet{
+    border: 1px solid cornsilk;
+    background: white;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 0 4px #f3bebe;
+    font-size: 0.6em;
+    font-weight: 600;
+}
+
 @media screen and (max-width: 1000px) {
+
+    .voicet{
+        margin: 0;
+        margin-top: 3px;
+        display: inline-block;
+        padding: 5px;
+        margin-left: -4px;
+        margin-right: 10px;
+    }
+
+    .voic{
+        display: none;
+    }
 
     .titlbenf1,
     .titlbenf2 {

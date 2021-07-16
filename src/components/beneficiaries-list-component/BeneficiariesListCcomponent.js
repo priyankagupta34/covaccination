@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { beneficiaries } from '../../services/test'
+// import { beneficiaries } from '../../services/test'
 import './BeneficiariesListCcomponent.css'
 
 export default class BeneficiariesListCcomponent extends Component {
@@ -18,8 +18,8 @@ export default class BeneficiariesListCcomponent extends Component {
         })
     }
     render() {
-        // const {beneficiaries} = this.props;
-        console.log('beneficiaries', beneficiaries);
+        const {beneficiaries} = this.props;
+        // console.log('beneficiaries', beneficiaries);
         const { showFull } = this.state;
 
         return (
@@ -28,7 +28,7 @@ export default class BeneficiariesListCcomponent extends Component {
                 {beneficiaries.map((item, index) => (
                     <div>
                         <div className="titlbenf1">
-                            <div>{item.name}<span className="bonji"><small className="extras"><span className="expbtn"> | REF ID :</span>{item.beneficiary_reference_id}</small>|<small className="extras"> secret: <span className="deng">{item.beneficiary_reference_id.slice(-4)}</span></small></span></div>
+                            <div>{item.name}<span className="bonji"><small className="extras voicet"><b>REF ID :</b>{item.beneficiary_reference_id}</small><small className="extras voicet"><b>Secret:</b> <span className="deng">{item.beneficiary_reference_id.slice(-4)}</span></small></span></div>
                             <div>{item.vaccination_status}
                                 <span className={`${showFull === index ? 'turna' : 'turnb'} vots`} onClick={this.expandDetails.bind(this, index)}>&#5123;</span>
                             </div>
@@ -37,8 +37,8 @@ export default class BeneficiariesListCcomponent extends Component {
                             <div className="titlbenf2">
 
                                 <div className="myinf">
-                                    <div className="ops">Birth Year: {item.birth_year}</div>
-                                    <div className="ops">Gender: {item.gender}</div>
+                                    <div className="ops opk">Birth Year: {item.birth_year}</div>
+                                    <div className="ops opk">Gender: {item.gender}</div>
                                 </div>
 
                                 {item.appointments.length !== 0 ?

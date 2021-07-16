@@ -379,6 +379,15 @@
   cursor: pointer;
 }
 
+.opk{
+  position: relative;
+    top: 7px;
+}
+
+.ops{
+  padding: 10px;
+}
+
 
 @media screen and (max-width: 1000px) {
 
@@ -472,6 +481,9 @@
 
 .expbtn{
   display: none;
+}
+  .extras{
+  margin-left: 0;
     
   }
 }
