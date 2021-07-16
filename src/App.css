@@ -12,9 +12,9 @@
   background-color: white;
   overflow-x: hidden;
   overflow-y: auto;
-  height: 80vh;
-  width: 80vw;
-  margin: 10vh;
+  height: 86vh;
+  width: 86vw;
+  margin: 7vh 7vw;
   border-radius: 16px;
   box-shadow: 0 0 24px #800622;
   text-align: center;
@@ -54,7 +54,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 86vh;
   padding: 5vh;
   box-shadow: -1px 0 13px maroon;
 }
@@ -152,6 +152,12 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   height: 30px;
+  transition: all 0.4s;
+}
+
+.pinclas input:focus{
+  box-shadow: 0 0 6px #fab9b9;
+  transition: all 0.4s;
 }
 
 .pinclagh {}
