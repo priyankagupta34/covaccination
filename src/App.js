@@ -33,7 +33,7 @@ export default class App extends Component {
       districtList: [],
       filteredDistrictList: [],
       availableSession: [],
-      centers: [1],
+      centers: [],
       book: false,
       logged: false,
       showOtpModal: false,
@@ -296,10 +296,10 @@ export default class App extends Component {
   }
 
   render() {
-    console.log('sha256(otp);', sha256('261294'))
+    // console.log('sha256(otp);', sha256('261294'))
     const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
       , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries, showError, errorMessage } = this.state;
-    console.log('stateList', this.state);
+    // console.log('stateList', this.state);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
 
