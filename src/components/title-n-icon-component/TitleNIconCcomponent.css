@@ -3,7 +3,7 @@
     display: grid;
     grid-gap: 3px;
     grid-auto-columns: 1fr;
-    margin: 14px auto;
+    margin: 0 auto;
     font-size: 0.9em;
 }
 .qdvc_in_ic{
