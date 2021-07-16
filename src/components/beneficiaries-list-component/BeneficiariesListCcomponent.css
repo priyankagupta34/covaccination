@@ -121,9 +121,8 @@ font-size: 2em;
 
 .tben1{
     font-size: 0.7em;
-    background: #ddddff;
     padding: 4px;
-    box-shadow: 0 0 2px blue;
+    /* box-shadow: 0 0 2px blue; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,6 +135,20 @@ font-size: 2em;
 
   .flexg{
       display: flex;
+  }
+
+  .vaccinated{
+    background: #ddddff;
+  }
+
+  .partiallyvaccinated{
+    background: #d5f1be;
+    box-shadow: 0 0 2px #e6dbde;
+  }
+
+  .notvaccinated{
+    box-shadow: 0 0 2px #ea9fb7;
+    background: #f99ca0;
   }
 
 @media screen and (max-width: 1000px) {
