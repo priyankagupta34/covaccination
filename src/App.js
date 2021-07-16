@@ -36,7 +36,7 @@ export default class App extends Component {
       availableSession: [],
       centers: [],
       book: false,
-      logged: false,
+      logged: true,
       showOtpModal: false,
       beneficiaries: []
 
@@ -388,7 +388,7 @@ export default class App extends Component {
                   {logged === false ?
                     <article className="artic2">
                       {/* <div className="bngf littleInf">Please login with your registered mobile before booking the slot</div> */}
-                      <TitleNIconCcomponent title="Login" description="Please login with your registered mobile before booking the slot"
+                      <TitleNIconCcomponent title="Cowin Login" description="Please login with your registered mobile before booking the slot"
                         icon="phone" />
 
                       <div className="pinclas relative">
@@ -418,20 +418,17 @@ export default class App extends Component {
 
                       </div> : <></>}
 
-                      {/* {(!logged && beneficiaries.length) ?
-                        <div>
-                          <BeneficiariesListCcomponent beneficiaries={beneficiaries} />
-                        </div> :
-                        <></>
-                      } */}
+               
 
                     </article> :
 
-                    <>
+                    <article className="artic3">
+                      <TitleNIconCcomponent icon="group" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this Number`} />
                       <div>
                         <BeneficiariesListCcomponent beneficiaries={beneficiaries} />
                       </div>
-                    </>}
+                    </article>
+                    }
                 </>
 
               }

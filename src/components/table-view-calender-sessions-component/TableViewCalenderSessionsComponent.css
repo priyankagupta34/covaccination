@@ -121,8 +121,10 @@
     box-shadow: 0 0 5px rgb(238 105 105 / 28%);
     color: black !important;
     font-weight: 500;
+    
     /* font-size: 0.9em; */
 }
+
 
 .uih{
 background-color: #f8ecee;

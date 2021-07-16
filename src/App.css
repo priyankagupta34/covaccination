@@ -24,17 +24,22 @@
   text-align: center;
 }
 
-.artic1, .artic2{
+.artic1, .artic2, .artic3{
   padding: 20px 0;
   text-align: center;
   margin: 0 10px;
 }
 
-.artic2{
+.artic2, .artic3{
   background: #fff3f3;
   height: 44vh;
   border-radius: 20px;
   box-shadow: 0px -3px 4px #e6e3e3;
+}
+
+.artic3{
+  height: 45vh;
+  overflow-y: auto;
 }
 
 .searchSl,
@@ -328,6 +333,7 @@
   cursor: pointer;
 }
 
+
 @media screen and (max-width: 1000px) {
 
   .errops{
@@ -406,7 +412,8 @@
   }
 
   .modalkl {
-    width: 91vw;
+    width: 92vw;
     bottom: -4vh;
+    left: 4vw;
   }
 }
