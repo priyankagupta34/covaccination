@@ -342,7 +342,7 @@
 
   .scndPart {
     background-color: white;
-    height: 111vh;
+    /* height: 111vh; */
     margin-top: 17px;
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
