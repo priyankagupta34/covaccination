@@ -1,0 +1,40 @@
+
+.bv4s{
+    display: grid;
+    grid-gap: 3px;
+    grid-auto-columns: 1fr;
+    margin: 14px auto;
+    font-size: 0.9em;
+}
+.qdvc_in_ic{
+
+}
+
+.icmns{
+    color: #d8a0a0;
+    font-size: 2em;
+}
+
+
+.icmdiv1{
+
+}
+
+.icmdiv2{
+    font-weight: 500;
+}
+
+.icmdiv2::after{
+    margin: 2px auto;
+    display: block;
+    content: '';
+    height: 1px;
+    background-color: maroon;
+    width: 25px;
+}
+
+.icmdiv3{
+    font-size: 0.8em;
+    font-weight: 700;
+    color: #d8a0a0;
+}

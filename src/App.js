@@ -1,12 +1,13 @@
+import { sha256 } from 'js-sha256';
 import React, { Component } from 'react';
 import './App.css';
 import BeneficiariesListCcomponent from './components/beneficiaries-list-component/BeneficiariesListCcomponent';
 import DisplaySlotAndBookComponent from './components/display-slot-and-book-component/DisplaySlotAndBookComponent';
+import FooterCcomponent from './components/footer-component/FooterCcomponent';
 import MotivateComponent from './components/motivate-component/MotivateComponent';
 import TableViewCalenderSessionsComponent from './components/table-view-calender-sessions-component/TableViewCalenderSessionsComponent';
+import TitleNIconCcomponent from './components/title-n-icon-component/TitleNIconCcomponent';
 import { CoServices } from './services/CoServices';
-import { sha256 } from 'js-sha256';
-import FooterCcomponent from './components/footer-component/FooterCcomponent';
 // import { sha256 } from './services/Sha256';
 // import { stateList } from './services/test';
 
@@ -311,7 +312,8 @@ export default class App extends Component {
 
             <div className={`${!centers.length && "whenNoList2"} scndPart`}>
               <div className="searchSl">Let's Vaccinate</div>
-              <div className="searchS2">Search Slots</div>
+              {/* <div className="searchS2"></div> */}
+              <TitleNIconCcomponent icon="search" title="Search Slots" description="Find slots via pincode or district."/>
               <div className="slider">
                 <div className={`${searchByPin && 'selectedSlider goLeft'} oiq1`} onClick={this.changeSearchBy}>Pincode</div>
                 <div className={`${!searchByPin && 'selectedSlider goRight'} oiq2`} onClick={this.changeSearchBy}>District</div>
@@ -368,7 +370,9 @@ export default class App extends Component {
               {!book ?
 
                 <>{centers.length ?
-                  <div><TableViewCalenderSessionsComponent centers={centers} bookThisDose={this.bookThisDose} /></div> :
+                  <div>
+                    {/* <TitleNIconCcomponent title="Slot" description="Please scroll table to view all info" icon="table_view"/> */}
+                    <TableViewCalenderSessionsComponent centers={centers} bookThisDose={this.bookThisDose} /></div> :
                   <></>}</>
                 :
 
@@ -379,7 +383,7 @@ export default class App extends Component {
 
                   {logged === false ?
                     <>
-                      <div className="bngf">Please login with your registered mobile before booking the slot</div>
+                      <div className="bngf littleInf">Please login with your registered mobile before booking the slot</div>
 
                       <div className="pinclas relative">
                         <form className="flex" onSubmit={this.generateOTP}>
