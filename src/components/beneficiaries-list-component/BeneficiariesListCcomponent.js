@@ -40,8 +40,8 @@ export default class BeneficiariesListCcomponent extends Component {
                             <div className="titlbenf2">
 
                                 <div className="myinf">
-                                    <div className="ops opk">Birth Year: {item.birth_year}</div>
-                                    <div className="ops opk">Gender: {item.gender}</div>
+                                    <div className="ops opk"><b>Birth Year</b> {item.birth_year}</div>
+                                    <div className="ops opk"><b>Gender</b> {item.gender}</div>
                                 </div>
 
                                 {item.appointments.length !== 0 ?
@@ -56,9 +56,9 @@ export default class BeneficiariesListCcomponent extends Component {
 
                                                 <div className="opscont">
 
-                                                    <div className="ops"><b>Center:</b> {appo.name}, {appo.block_name}, {appo.block_name}</div>
-                                                    <div className="ops"><b>Date of vaccination:</b> {appo.date}</div>
-                                                    <div className="ops"><b>Slot of Vaccination:</b> {appo.slot}</div>
+                                                    <div className="ops"><b>Center</b>&nbsp;{appo.name}, {appo.block_name}, {appo.block_name}</div>
+                                                    <div className="ops"><b>Date</b>&nbsp;{appo.date}</div>
+                                                    <div className="ops"><b>Slot</b>&nbsp;{appo.slot}</div>
                                                 </div>
                                             </div>
                                         ))}
