@@ -6,6 +6,7 @@ import MotivateComponent from './components/motivate-component/MotivateComponent
 import TableViewCalenderSessionsComponent from './components/table-view-calender-sessions-component/TableViewCalenderSessionsComponent';
 import { CoServices } from './services/CoServices';
 import { sha256 } from 'js-sha256';
+import FooterCcomponent from './components/footer-component/FooterCcomponent';
 // import { sha256 } from './services/Sha256';
 // import { stateList } from './services/test';
 
@@ -32,7 +33,7 @@ export default class App extends Component {
       districtList: [],
       filteredDistrictList: [],
       availableSession: [],
-      centers: [],
+      centers: [1],
       book: false,
       logged: false,
       showOtpModal: false,
@@ -429,6 +430,10 @@ export default class App extends Component {
             </div>
           </div>
         </article>
+
+        <footer>
+          <FooterCcomponent />
+        </footer>
 
         {showError && <div className="errobody">
           <div className="errops">
