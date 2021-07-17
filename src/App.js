@@ -2,7 +2,6 @@ import { sha256 } from 'js-sha256';
 import React, { Component } from 'react';
 import './App.css';
 import BeneficiariesListCcomponent from './components/beneficiaries-list-component/BeneficiariesListCcomponent';
-import DisplaySlotAndBookComponent from './components/display-slot-and-book-component/DisplaySlotAndBookComponent';
 import FooterCcomponent from './components/footer-component/FooterCcomponent';
 import MotivateComponent from './components/motivate-component/MotivateComponent';
 import TableViewCalenderSessionsComponent from './components/table-view-calender-sessions-component/TableViewCalenderSessionsComponent';
