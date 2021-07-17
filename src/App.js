@@ -184,7 +184,7 @@ export default class App extends Component {
           state.book = false;
           state.selectedDistrict = selectedDistrict;
           state.showOtpModal = false;
-          state.loader = false;
+          state.loader = true;
           state.centers = result.data.centers;
           // state.districtList = result.data.districts;
           if (result.data.centers.length === 0) {
