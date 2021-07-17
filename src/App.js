@@ -275,7 +275,7 @@ export default class App extends Component {
         this.setState({
           ...this.state,
           showError: true,
-          errorMessage: 'Exceeded number of wrong OTP entry. Please refresh and try again.',
+          errorMessage: 'Some error! Make sure to use chrome in windows/android only',
           errortype: 'error'
         })
       });
