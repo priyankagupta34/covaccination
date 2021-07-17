@@ -40,7 +40,8 @@ export default class App extends Component {
       showOtpModal: false,
       beneficiaries: [1],
       allIdTypes: [],
-      errortype: ''
+      errortype: '',
+      loader: false
 
     };
     this.onchangeHandler = this.onchangeHandler.bind(this);
@@ -120,12 +121,18 @@ export default class App extends Component {
 
   /* Click in drop down to select state */
   clickToSelecteState(selectedState) {
+    this.setState(state=>{
+      state.loader = true;
+      return state;
+    })
     const state = this.state.stateList.filter(a => a.state_name === selectedState)[0].state_id;
     CoServices.getAllDistricts(state)
       .then((result) => {
 
         this.setState(state => {
+          state.loader = false;
           state.showDistrict = true;
+          state.selectedDistrict = '';
           state.selectedState = selectedState;
           state.districtList = result.data.districts;
           state.filteredDistrictList = result.data.districts.map(a => a.district_name);
@@ -140,6 +147,10 @@ export default class App extends Component {
 
   /* Click in drop down to select district */
   clickToSelecteDistrict(selectedDistrict) {
+    this.setState(state=>{
+      state.loader = true;
+      return state;
+    })
     const district_id = this.state.districtList.filter(a => a.district_name === selectedDistrict)[0].district_id;
     CoServices.calenderByDistrict(district_id)
       .then((result) => {
@@ -149,6 +160,7 @@ export default class App extends Component {
           state.book = false;
           state.selectedDistrict = selectedDistrict;
           state.showOtpModal = false;
+          state.loader = false;
           state.centers = result.data.centers;
           // state.districtList = result.data.districts;
           if (result.data.centers.length === 0) {
@@ -188,12 +200,22 @@ export default class App extends Component {
 
   findCalenderSlotByPin(e) {
     e.preventDefault();
+    this.setState(state=>{
+      state.loader = true;
+      return state;
+    })
     CoServices.calenderByPin(this.state.pincode)
       .then((result) => {
         // console.log('result', result);
         this.setState(state => {
           state.book = false;
+          state.loader =  false;
           state.centers = result.data.centers;
+          if (result.data.centers.length === 0) {
+            state.errortype = 'info';
+            state.errorMessage = 'Could not find any slots. Try again later!';
+            state.showError = true;
+          }
           return state;
         })
       }).catch((err) => {
@@ -233,13 +255,14 @@ export default class App extends Component {
   }
 
   getAllStates() {
-    // this.setState(state => {
-    //   state.loadState = true;
-    //   return state;
-    // })
+    this.setState(state=>{
+      state.loader = true;
+      return state;
+    })
     CoServices.getStatesList()
       .then((result) => {
         this.setState(state => {
+          state.loader = false
           // state.loadState = false;
           state.stateList = result.data.states;
           state.filteredStateList = result.data.states.map(a => a.state_name);
@@ -262,16 +285,17 @@ export default class App extends Component {
       .catch(er => { });
   }
 
+  /* Generate cowin otp */
   generateOTP(e) {
     e.preventDefault();
     this.setState(state => {
-      state.loaderOfOtp = true;
+      state.loader = true;
       return state;
     })
     CoServices.getOTPToRegister(this.state.mobile)
       .then((result) => {
         this.setState(state => {
-          state.loaderOfOtp = false;
+          state.loader = false;
           state.showOtpModal = true;
           state.txnId = result.data.txnId;
           return state;
@@ -280,6 +304,7 @@ export default class App extends Component {
         this.setState({
           ...this.state,
           showError: true,
+          loader: false,
           errorMessage: 'Could not send OTP for some reason',
           errortype: 'error'
         })
@@ -290,20 +315,20 @@ export default class App extends Component {
   confirmOtp(e) {
     e.preventDefault();
     this.setState(state => {
-      state.loaderOfOtp = true;
+      state.loader = true;
       return state;
     })
     const { otp, txnId } = this.state;
     // const result1 = CryptoJS.SHA256(otp).toString(CryptoJS.enc.Hex);
-    console.log('typeofff ', typeof otp)
+    // console.log('typeofff ', typeof otp)
     const result1 = sha256(otp.toString());
-    console.log('result1', result1)
+    // console.log('result1', result1)
     // CoServices.sha256Conversion(otp)
     //   .then((result) => {
     CoServices.confirmOTPToRegister(result1, txnId)
       .then((result) => {
         this.setState(state => {
-          state.loaderOfOtp = false;
+          state.loader = false;
           state.logged = true;
           state.showOtpModal = false;
           state.token = result.data.token;
@@ -322,7 +347,10 @@ export default class App extends Component {
             });
         })
       }).catch((err) => {
-
+        this.setState(state=>{
+          state.loader = false;
+          return state;
+        })
       });
     // }).catch((err) => {
 
@@ -334,7 +362,7 @@ export default class App extends Component {
     // console.log('sha256(otp);', sha256('261294'))
     const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
       , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries, showError, errorMessage,
-      expandArtic3, errortype, allIdTypes } = this.state;
+      expandArtic3, errortype, allIdTypes, loader } = this.state;
     // console.log('stateList', this.state);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
@@ -497,6 +525,12 @@ export default class App extends Component {
             </div>
           </div>
         </div>}
+
+        {loader ? <div className="loader">
+          <span class="material-icons-outlined loaderIcon">
+            hourglass_bottom
+          </span>
+        </div> : <></>}
       </div>
     )
   }

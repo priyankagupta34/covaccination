@@ -8,6 +8,40 @@
   align-items: center;
 }
 
+.loader{
+  height: 100vh;
+  background-color: #0a0a0ac4;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loaderIcon{
+  font-size: 6em;
+  color: white;
+  animation: loaderIcon 5s linear infinite;
+  position: relative;
+  /* text-shadow: 9px 4px 4px #adadad; */
+  transition: all 1s;
+}
+
+@keyframes loaderIcon {
+  0%{
+    transform: rotate(0);
+  }
+  25%{
+    transform: rotate(360deg);
+  }  
+  50%{
+    transform: rotate(-180deg);
+  }
+  100%{
+    transform: rotate(180deg);
+  }
+}
+
 .littleInf{
   font-weight: 500;
 }
@@ -446,6 +480,10 @@
 
 
 @media screen and (max-width: 1000px) {
+
+  .loaderIcon{
+    font-size: 5em;
+  }
 
   .infoer{
     font-size: 0.7em;
