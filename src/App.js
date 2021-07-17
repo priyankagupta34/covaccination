@@ -275,7 +275,8 @@ export default class App extends Component {
         this.setState({
           ...this.state,
           showError: true,
-          errorMessage: 'Exceeded number of wrong OTP entry. Please refresh and try again.'
+          errorMessage: 'Exceeded number of wrong OTP entry. Please refresh and try again.',
+          errortype: 'error'
         })
       });
   }
