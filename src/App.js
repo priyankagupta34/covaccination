@@ -480,7 +480,7 @@ export default class App extends Component {
             <div className="relative">
              
               <div className="move"></div>
-              <div>
+              <div className="moveIcon">
               {errortype==='success'? <i  className="material-icons  material-icons-outlined vimicon" style={{color: 'green'}}>task_alt</i>:<></>}
               {errortype==='error'? <i  className="material-icons  material-icons-outlined vimicon" style={{color: 'red'}}>error_outline</i>:<></>}
               {errortype==='info'? <i  className="material-icons  material-icons-outlined vimicon" style={{color: 'skyblue'}}>priority_high</i>:<></>}

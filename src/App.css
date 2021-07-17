@@ -368,6 +368,10 @@
     position: relative;
 }
 
+.moveIcon{
+  height: 16vh;
+}
+
 .move{
   background: white;
   position: absolute;
@@ -375,9 +379,7 @@
   top: 1%;
   height: 16vh;
   width: 16vh;
-
   animation: move 5s linear infinite;
-
 }
 
 @keyframes move {
@@ -431,7 +433,9 @@
 
 @media screen and (max-width: 1000px) {
 
-  
+  .moveIcon{
+    height: 10vh;
+  }
 
   .move{
     height: 10vh;
