@@ -32,7 +32,7 @@
 
 .artic2, .artic3{
   background: #fff3f3;
-  height: 44vh;
+  /* height: 44vh; */
   border-radius: 20px;
   box-shadow: 0px -3px 4px #e6e3e3;
 }
@@ -43,8 +43,8 @@
 }
 
 .artic3{
-  height: 45vh;
-  overflow-y: auto;
+  /* height: 45vh;
+  overflow-y: auto; */
   /* margin-top: -40px; */
 }
 
@@ -384,7 +384,7 @@
   top: 1%;
   height: 16vh;
   width: 16vh;
-  animation: move 4s linear infinite;
+  animation: move 3s linear infinite;
 }
 
 @keyframes move {
@@ -449,19 +449,21 @@
 
   .infoer{
     font-size: 0.7em;
-    margin-top: 1vh;
+    margin: 3vh 3vw;
+    text-align: center;
   }
 
   .moveIcon{
     height: 10vh;
+    margin-bottom: 3vh;
   }
 
   .move{
-    height: 10vh;
-    width: 10vh;
-    top: 1%;
+    height: 11vh;
+    width: 11vh;
+    margin-bottom: 3vh;
     left: 0%;
-    animation: move 4s linear infinite ;
+    animation: move 3s linear infinite ;
   }
 
   @keyframes move {
@@ -484,7 +486,7 @@
   }
 
   .errops{
-    height: 34vh;
+    height: 38vh;
     width: 80vw;
     /* padding: 5vh; */
   }
@@ -531,6 +533,7 @@
 
   .whenNoList1 {
     height: 72vh !important;
+    overflow: visible;
   }
 
   .whenNoList2 {

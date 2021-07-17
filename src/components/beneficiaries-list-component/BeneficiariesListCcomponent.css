@@ -90,8 +90,13 @@
 }
 
 .opscont{
-    /* width: 74%; */
-    /* text-align: right; */
+    width: 98%;
+    margin-top: 10px;
+    padding: 11px;
+    padding-left: 12px;
+    box-shadow: 0 0 4px 0px #f27e7e;
+    margin-left: 11px;
+    border-radius: 4px;
 }
 
 .ops{
@@ -103,7 +108,10 @@ padding-bottom: 10px;
 }
 
 .ops2{
-font-size: 2em;
+    font-size: 1.5em;
+    background: aliceblue;
+    padding: 3px;
+    color: blue;
 }
 
 .vots{
@@ -120,6 +128,7 @@ font-size: 2em;
     padding: 13px;
     font-weight: 600;
     color: black;
+    grid-gap: 6px;
 }
 
 .extras{
@@ -177,7 +186,39 @@ font-size: 2em;
     background: #ffd9da;
   }
 
+  .min1{
+
+  }
+
+  .min2{
+    box-sizing: content-box;
+    background: white;
+    padding: 6px 0;
+    font-weight: 700;
+    color: darkblue;
+    box-shadow: 0 0 4px #bebeff;
+    margin-top: 5px;
+    padding-left: 2px;
+    border-radius: 2px;
+  }
+
+  .dosery{
+    box-shadow: 0 0 4px 0px #f27e7e;
+    margin-top: 10px;
+    border-radius: 4px;
+    padding: 6px;
+  }
+
 @media screen and (max-width: 1000px) {
+
+    .dosery{
+        padding: 6px;
+    }
+
+    .min2{
+        /* box-shadow: 0 0 4px #bebeff; */
+    }
+
 
     .kwid{
         width: 115px;
@@ -225,15 +266,13 @@ font-size: 2em;
     font-size: 0.9em;
 }
 
-.ops2{
-    font-size: 1.5em;
-}
+
 
 .tben1{
     height: 39%;
     top: 0%;
     position: relative;
-    width: 95px;
+    width: 102px;
 }
 
 .vots{

@@ -57,6 +57,7 @@ export default class App extends Component {
     this.confirmOtp = this.confirmOtp.bind(this);
     this.closeError = this.closeError.bind(this);
     this.expandArtic3Handler = this.expandArtic3Handler.bind(this);
+    this.getIDTypes = this.getIDTypes.bind(this);
   }
 
   expandArtic3Handler() {
@@ -111,7 +112,7 @@ export default class App extends Component {
   hideStateList() {
     setTimeout(() => {
       this.setState(state => {
-        state.showState = false;
+        // state.showState = false;
         return state;
       })
     }, 800);
@@ -220,6 +221,7 @@ export default class App extends Component {
     //   });
 
     this.getAllStates();
+    this.getIDTypes();
 
   }
 
@@ -332,7 +334,7 @@ export default class App extends Component {
     // console.log('sha256(otp);', sha256('261294'))
     const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
       , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries, showError, errorMessage,
-      expandArtic3, errortype } = this.state;
+      expandArtic3, errortype, allIdTypes } = this.state;
     // console.log('stateList', this.state);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
@@ -459,7 +461,7 @@ export default class App extends Component {
                         <article className={`${expandArtic3 && 'expandedArtic3'} artic3`}>
                           <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
                           <div>
-                            <BeneficiariesListCcomponent beneficiaries={beneficiaries} />
+                            <BeneficiariesListCcomponent beneficiaries={beneficiaries} allIdTypes={allIdTypes} />
                           </div>
                         </article>
                       </>

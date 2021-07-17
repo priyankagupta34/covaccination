@@ -51,7 +51,7 @@ function getBeneficiaries(token) {
       });
 }
 
-function getIDTypes(token) {
+function getIDTypes() {
     return axios.get(`${host}registration/beneficiary/idTypes`);
 }
 
