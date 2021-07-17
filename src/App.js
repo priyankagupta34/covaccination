@@ -2,6 +2,7 @@ import { sha256 } from 'js-sha256';
 import React, { Component } from 'react';
 import './App.css';
 import BeneficiariesListCcomponent from './components/beneficiaries-list-component/BeneficiariesListCcomponent';
+import DisplaySlotAndBookComponent from './components/display-slot-and-book-component/DisplaySlotAndBookComponent';
 import FooterCcomponent from './components/footer-component/FooterCcomponent';
 import MotivateComponent from './components/motivate-component/MotivateComponent';
 import TableViewCalenderSessionsComponent from './components/table-view-calender-sessions-component/TableViewCalenderSessionsComponent';
@@ -35,13 +36,15 @@ export default class App extends Component {
       availableSession: [],
       centers: [],
       book: false,
-      logged: false,
+      logged: true,
       expandArtic3: false,
       showOtpModal: false,
       beneficiaries: [],
       allIdTypes: [],
       errortype: '',
-      loader: false
+      loader: false,
+      selectedSession: null,
+      selectedCenter: null
 
     };
     this.onchangeHandler = this.onchangeHandler.bind(this);
@@ -63,8 +66,8 @@ export default class App extends Component {
     this.logout = this.logout.bind(this);
   }
 
-  logout(){
-    this.setState(state=>{
+  logout() {
+    this.setState(state => {
       state.logged = false;
       state.txnId = '';
       state.mobile = '';
@@ -98,12 +101,12 @@ export default class App extends Component {
   }
 
 
-  bookThisDose(main, sessiondata) {
-    console.log('main', main);
-    console.log('sessiondata', sessiondata);
+  bookThisDose(selectedCenter, selectedSession) {
     this.setState({
       ...this.state,
-      book: true
+      book: true,
+      selectedCenter,
+      selectedSession
     })
   }
 
@@ -383,7 +386,7 @@ export default class App extends Component {
     // console.log('sha256(otp);', sha256('261294'))
     const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
       , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries, showError, errorMessage,
-      expandArtic3, errortype, allIdTypes, loader } = this.state;
+      expandArtic3, errortype, allIdTypes, loader, selectedCenter, selectedSession } = this.state;
     // console.log('stateList', this.state);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
@@ -397,7 +400,11 @@ export default class App extends Component {
             <div className={`${!centers.length && "whenNoList2"} scndPart`}>
               <div className="searchSl">
                 <div className={`${logged && "slideLeft"}`}>Let's Vaccinate</div>
-                {logged ?<button className="logoutbtn" onClick={this.logout}>Logout</button>:<></>}
+                {logged ? <button className="logoutbtn" onClick={this.logout}>Logout
+                  <span class="material-icons-outlined log1">
+                    logout
+                  </span>
+                </button> : <></>}
               </div>
 
               <article className="mainArticle">
@@ -512,6 +519,7 @@ export default class App extends Component {
                         <button className="backto" onClick={this.backToList}>Back to Slot List</button>
                         <article className="artic3">
                           <TitleNIconCcomponent icon="book_online" title="Book Slot" description={`Proceed for book vaccination slot online`} />
+                          <DisplaySlotAndBookComponent selectedSession={selectedSession} selectedCenter={selectedCenter} />
                         </article>
                         <article className={`${expandArtic3 && 'expandedArtic3'} artic4`}>
                           <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
