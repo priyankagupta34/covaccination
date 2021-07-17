@@ -11,14 +11,13 @@ export default class BeneficiariesListCcomponent extends Component {
     }
 
     expandDetails(showFull, e) {
-        console.log(e);
         this.setState({
             ...this.state,
             showFull: this.state.showFull === showFull ? -1 : showFull
         })
     }
     render() {
-        const {beneficiaries} = this.props;
+        const { beneficiaries } = this.props;
         const { allIdTypes } = this.props;
         // console.log('beneficiaries', beneficiaries);
         const { showFull } = this.state;
@@ -123,25 +122,25 @@ export default class BeneficiariesListCcomponent extends Component {
                                     </>
                                     :
                                     <>
-                                    <div className="nodosefound">
-                                        <div className="dosery">
-                                            <div className="ops2">Dose 1</div>
-                                            <div className="ops1"><b>Vaccine:</b> <small>N/A</small></div>
+                                        <div className="nodosefound">
+                                            <div className="dosery">
+                                                <div className="ops2">Dose 1</div>
+                                                <div className="ops1"><b>Vaccine:</b> <small>N/A</small></div>
+                                            </div>
+                                            <div className="nodesa">
+                                                No details on appointment can be found!
+                                            </div>
                                         </div>
-                                        <div className="nodesa">
-                                            No details on appointment can be found!
-                                        </div>
-                                    </div>
 
-                                    <div className="nodosefound">
-                                        <div className="dosery">
-                                            <div className="ops2">Dose 2</div>
-                                            <div className="ops1"><b>Vaccine:</b> <small>N/A</small></div>
+                                        <div className="nodosefound">
+                                            <div className="dosery">
+                                                <div className="ops2">Dose 2</div>
+                                                <div className="ops1"><b>Vaccine:</b> <small>N/A</small></div>
+                                            </div>
+                                            <div className="nodesa">
+                                                No details on appointment can be found!
+                                            </div>
                                         </div>
-                                        <div className="nodesa">
-                                            No details on appointment can be found!
-                                        </div>
-                                    </div>
 
                                     </>
                                 }

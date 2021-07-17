@@ -35,7 +35,7 @@ export default class App extends Component {
       availableSession: [],
       centers: [],
       book: false,
-      logged: false,
+      logged: true,
       expandArtic3: false,
       showOtpModal: false,
       beneficiaries: [],
@@ -59,6 +59,27 @@ export default class App extends Component {
     this.closeError = this.closeError.bind(this);
     this.expandArtic3Handler = this.expandArtic3Handler.bind(this);
     this.getIDTypes = this.getIDTypes.bind(this);
+    this.backToList = this.backToList.bind(this);
+    this.logout = this.logout.bind(this);
+  }
+
+  logout(){
+    this.setState(state=>{
+      state.logged = false;
+      state.txnId = '';
+      state.mobile = '';
+      state.txnId = '';
+      state.otp = null;
+      state.beneficiaries = [];
+      return state;
+    })
+  }
+
+  backToList() {
+    this.setState(state => {
+      state.book = false
+      return state;
+    })
   }
 
   expandArtic3Handler() {
@@ -78,8 +99,8 @@ export default class App extends Component {
 
 
   bookThisDose(main, sessiondata) {
-    // console.log('main', main);
-    // console.log('sessiondata', sessiondata);
+    console.log('main', main);
+    console.log('sessiondata', sessiondata);
     this.setState({
       ...this.state,
       book: true
@@ -121,7 +142,7 @@ export default class App extends Component {
 
   /* Click in drop down to select state */
   clickToSelecteState(selectedState) {
-    this.setState(state=>{
+    this.setState(state => {
       state.loader = true;
       return state;
     })
@@ -147,7 +168,7 @@ export default class App extends Component {
 
   /* Click in drop down to select district */
   clickToSelecteDistrict(selectedDistrict) {
-    this.setState(state=>{
+    this.setState(state => {
       state.loader = true;
       return state;
     })
@@ -200,7 +221,7 @@ export default class App extends Component {
 
   findCalenderSlotByPin(e) {
     e.preventDefault();
-    this.setState(state=>{
+    this.setState(state => {
       state.loader = true;
       return state;
     })
@@ -209,7 +230,7 @@ export default class App extends Component {
         // console.log('result', result);
         this.setState(state => {
           state.book = false;
-          state.loader =  false;
+          state.loader = false;
           state.centers = result.data.centers;
           if (result.data.centers.length === 0) {
             state.errortype = 'info';
@@ -255,7 +276,7 @@ export default class App extends Component {
   }
 
   getAllStates() {
-    this.setState(state=>{
+    this.setState(state => {
       state.loader = true;
       return state;
     })
@@ -347,7 +368,7 @@ export default class App extends Component {
             });
         })
       }).catch((err) => {
-        this.setState(state=>{
+        this.setState(state => {
           state.loader = false;
           return state;
         })
@@ -374,7 +395,10 @@ export default class App extends Component {
             </div>
 
             <div className={`${!centers.length && "whenNoList2"} scndPart`}>
-              <div className="searchSl">Let's Vaccinate</div>
+              <div className="searchSl">
+                <div className={`${logged && "slideLeft"}`}>Let's Vaccinate</div>
+                {logged ?<button className="logoutbtn" onClick={this.logout}>Logout</button>:<></>}
+              </div>
 
               <article className="mainArticle">
                 {/* <div className="searchS2"></div> */}
@@ -440,7 +464,6 @@ export default class App extends Component {
 
                   <>{centers.length ?
                     <div>
-                      {/* <TitleNIconCcomponent title="Slot" description="Please scroll table to view all info" icon="table_view"/> */}
                       <TableViewCalenderSessionsComponent centers={centers} bookThisDose={this.bookThisDose} /></div> :
                     <></>}</>
                   :
@@ -486,7 +509,11 @@ export default class App extends Component {
                       </article> :
                       <>
                         {/* <button className={`${expandArtic3 && "expbtnOn"} expbtn`} onClick={this.expandArtic3Handler}><span className="exspan">Expand Panel</span> <i className="material-icons  material-icons-outlined icmns">fullscreen</i></button> */}
-                        <article className={`${expandArtic3 && 'expandedArtic3'} artic3`}>
+                        <button className="backto" onClick={this.backToList}>Back to Slot List</button>
+                        <article className="artic3">
+                          <TitleNIconCcomponent icon="book_online" title="Book Slot" description={`Proceed for book vaccination slot online`} />
+                        </article>
+                        <article className={`${expandArtic3 && 'expandedArtic3'} artic4`}>
                           <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
                           <div>
                             <BeneficiariesListCcomponent beneficiaries={beneficiaries} allIdTypes={allIdTypes} />
