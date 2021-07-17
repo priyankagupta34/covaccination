@@ -275,7 +275,7 @@ export default class App extends Component {
         this.setState({
           ...this.state,
           showError: true,
-          errorMessage: 'Some error! Make sure to use chrome in windows/android only',
+          errorMessage: 'Could not send OTP for some reason',
           errortype: 'error'
         })
       });
@@ -489,6 +489,7 @@ export default class App extends Component {
               <div className="bnahyts">
                 <button className="closgh" onClick={this.closeError}>Close</button>
               </div>
+              <div className="infoer">Make sure to use chrome in windows/android only</div>
             </div>
           </div>
         </div>}
