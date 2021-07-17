@@ -35,7 +35,7 @@ export default class App extends Component {
       availableSession: [],
       centers: [],
       book: false,
-      logged: true,
+      logged: false,
       expandArtic3: false,
       showOtpModal: false,
       beneficiaries: [],
