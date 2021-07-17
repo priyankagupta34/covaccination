@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { beneficiaries } from '../../services/test'
+// import { beneficiaries } from '../../services/test'
 import './BeneficiariesListCcomponent.css'
 
 export default class BeneficiariesListCcomponent extends Component {
@@ -18,9 +18,9 @@ export default class BeneficiariesListCcomponent extends Component {
         })
     }
     render() {
-        // const {beneficiaries} = this.props;
+        const {beneficiaries} = this.props;
         const { allIdTypes } = this.props;
-        console.log('beneficiaries', beneficiaries);
+        // console.log('beneficiaries', beneficiaries);
         const { showFull } = this.state;
 
         return (
