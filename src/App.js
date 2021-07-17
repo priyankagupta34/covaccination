@@ -40,7 +40,8 @@ export default class App extends Component {
       expandArtic3: false,
       showOtpModal: false,
       beneficiaries: [],
-      allIdTypes: []
+      allIdTypes: [],
+      errortype: ''
 
     };
     this.onchangeHandler = this.onchangeHandler.bind(this);
@@ -76,8 +77,8 @@ export default class App extends Component {
 
 
   bookThisDose(main, sessiondata) {
-    console.log('main', main);
-    console.log('sessiondata', sessiondata);
+    // console.log('main', main);
+    // console.log('sessiondata', sessiondata);
     this.setState({
       ...this.state,
       book: true
@@ -117,6 +118,7 @@ export default class App extends Component {
     }, 800);
   }
 
+  /* Click in drop down to select state */
   clickToSelecteState(selectedState) {
     const state = this.state.stateList.filter(a => a.state_name === selectedState)[0].state_id;
     CoServices.getAllDistricts(state)
@@ -136,6 +138,7 @@ export default class App extends Component {
 
   }
 
+  /* Click in drop down to select district */
   clickToSelecteDistrict(selectedDistrict) {
     const district_id = this.state.districtList.filter(a => a.district_name === selectedDistrict)[0].district_id;
     CoServices.calenderByDistrict(district_id)
@@ -148,6 +151,11 @@ export default class App extends Component {
           state.showOtpModal = false;
           state.centers = result.data.centers;
           // state.districtList = result.data.districts;
+          if(result.data.centers.length === 0){
+            state.errortype = 'info';
+            state.errorMessage = 'Could not find any slots. Please visit coWin app to confirm!';
+            state.showError = true;
+          }
           state.showDistrict = false;
           return state;
         })
@@ -320,7 +328,7 @@ export default class App extends Component {
     // console.log('sha256(otp);', sha256('261294'))
     const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
       , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries, showError, errorMessage,
-      expandArtic3 } = this.state;
+      expandArtic3, errortype } = this.state;
     // console.log('stateList', this.state);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
@@ -444,7 +452,7 @@ export default class App extends Component {
 
                     </article> :
                     <>
-                    <button className={`${expandArtic3 && "expbtnOn"} expbtn`} onClick={this.expandArtic3Handler}><span className="exspan">Expand Panel</span> <i class="material-icons  material-icons-outlined icmns">fullscreen</i></button>
+                    <button className={`${expandArtic3 && "expbtnOn"} expbtn`} onClick={this.expandArtic3Handler}><span className="exspan">Expand Panel</span> <i className="material-icons  material-icons-outlined icmns">fullscreen</i></button>
                     <article className={`${expandArtic3 && 'expandedArtic3'} artic3`}>
                       <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
                       <div>
@@ -468,8 +476,15 @@ export default class App extends Component {
 
         {showError && <div className="errobody">
           <div className="errops">
-            <div>
-              <div>{errorMessage}</div>
+            <div className="relative">
+             
+              <div className="move"></div>
+              <div>
+              {errortype==='success'? <i  className="material-icons  material-icons-outlined vimicon" style={{color: 'green'}}>task_alt</i>:<></>}
+              {errortype==='error'? <i  className="material-icons  material-icons-outlined vimicon" style={{color: 'red'}}>error_outline</i>:<></>}
+              {errortype==='info'? <i  className="material-icons  material-icons-outlined vimicon" style={{color: 'skyblue'}}>priority_high</i>:<></>}
+              </div>
+              <div className="errder">{errorMessage}</div>
               <div className="bnahyts">
                 <button className="closgh" onClick={this.closeError}>Close</button>
               </div>

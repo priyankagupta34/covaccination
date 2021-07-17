@@ -364,7 +364,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 16px 2px maroon;
+    box-shadow: 0 0 24px 5px #80000073;
+    position: relative;
+}
+
+.move{
+  background: white;
+  position: absolute;
+  left: 0;
+  top: 1%;
+  height: 16vh;
+  width: 16vh;
+
+  animation: move 5s linear infinite;
+
+}
+
+@keyframes move {
+  0%{
+    left: 20%;
+  }
+  100%{
+    left: 75%;
+  }
 }
 
 .bnahyts{
@@ -385,14 +407,63 @@
     top: 7px;
 }
 
+.vimicon{
+  display: flex;
+    justify-content: center;
+    margin-bottom: 1vh;
+    font-size: 8em;
+    font-weight: 100;
+    color: #da4242;
+}
+
+.errder{
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 3vh auto;
+  box-shadow: 0 0 3px maroon;
+  padding: 3vh;
+  border-radius: 3px;
+  width: 89%;
+}
+
 
 
 @media screen and (max-width: 1000px) {
 
+  
+
+  .move{
+    height: 10vh;
+    width: 10vh;
+    top: 1%;
+    left: 0%;
+    animation: move 5s linear infinite ;
+  }
+
+  @keyframes move {
+    0%{
+      left: 0%;
+    }
+    100%{
+      left: 75%;
+    }
+  }
+
+  .vimicon{
+    font-size: 5em;
+  }
+
+  .errder{
+    margin: 1vh auto;
+    padding: 1vh;
+    font-size: 0.9em;
+  }
+
   .errops{
     height: 34vh;
     width: 80vw;
-    padding: 5vh;
+    /* padding: 5vh; */
   }
 
   .pinclas {
