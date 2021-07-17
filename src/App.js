@@ -42,7 +42,7 @@ export default class App extends Component {
       beneficiaries: [],
       allIdTypes: [],
       errortype: '',
-      loader: false,
+      loader: true,
       selectedSession: null,
       selectedCenter: null
 
