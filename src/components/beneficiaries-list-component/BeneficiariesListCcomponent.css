@@ -209,7 +209,28 @@ padding-bottom: 10px;
     padding: 6px;
   }
 
+  .nodesa{
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 4px maroon;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-weight: 600;
+    
+    width: 86%;
+  }
+
+  .nodosefound{
+      display: flex;
+      justify-content: space-between;
+  }
+
 @media screen and (max-width: 1000px) {
+
+    .nodesa{
+        width: 66%;
+        font-size: 0.9em;
+    }
 
     .dosery{
         padding: 6px;
@@ -221,7 +242,7 @@ padding-bottom: 10px;
 
 
     .kwid{
-        width: 115px;
+        width: 142px;
     }
 
     .voicet{

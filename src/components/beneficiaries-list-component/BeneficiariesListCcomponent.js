@@ -19,7 +19,7 @@ export default class BeneficiariesListCcomponent extends Component {
     }
     render() {
         // const {beneficiaries} = this.props;
-        const {allIdTypes} = this.props;
+        const { allIdTypes } = this.props;
         console.log('beneficiaries', beneficiaries);
         const { showFull } = this.state;
 
@@ -29,7 +29,10 @@ export default class BeneficiariesListCcomponent extends Component {
                 {beneficiaries.map((item, index) => (
                     <div className="relative">
                         <div className="titlbenf1">
-                            <div>{item.name}<span className="bonji"><small className="extras voicet kwid"><b>REF ID :</b>{item.beneficiary_reference_id}</small><small className="extras voicet"><b>Secret:</b> <span className="deng">{item.beneficiary_reference_id.slice(-4)}</span></small></span></div>
+                            <div>{item.name}<span className="bonji">
+                                <small className="extras voicet"><b>Secret:</b> <span className="deng">{item.beneficiary_reference_id.slice(-4)}</span></small>
+                                <small className="extras voicet kwid"><b>REF ID :</b>{item.beneficiary_reference_id}</small>
+                            </span></div>
                             <div className="flexg">
                                 <div className={`tben1 ${item.vaccination_status === 'Vaccinated' && 'vaccinated'}  ${item.vaccination_status === 'Not Vaccinated' && 'notvaccinated'}  ${item.vaccination_status === 'Partially Vaccinated' && 'partiallyvaccinated'} `}>
                                     {item.vaccination_status}
@@ -42,15 +45,15 @@ export default class BeneficiariesListCcomponent extends Component {
 
                                 <div className="myinf">
                                     <div className="ops opk">
-                                        <div className="min1">Birth Year</div> 
+                                        <div className="min1">Birth Year</div>
                                         <div className="min2">{item.birth_year}</div>
                                     </div>
                                     <div className="ops opk">
-                                        <div className="min1">Gender</div> 
+                                        <div className="min1">Gender</div>
                                         <div className="min2">{item.gender}</div>
                                     </div>
                                     <div className="ops opk">
-                                        <div className="min1">{allIdTypes.filter(a=>a.id===item.photo_id_type)[0].type}</div> 
+                                        <div className="min1">{typeof item.photo_id_type === 'number' ? allIdTypes.filter(a => a.id === item.photo_id_type)[0].type : item.photo_id_type}</div>
                                         <div className="min2">{item.photo_id_number}</div>
                                     </div>
                                 </div>
@@ -78,9 +81,9 @@ export default class BeneficiariesListCcomponent extends Component {
                                             }
                                         </>
                                             :
-                                            <div className="nodosefound">
-                                                <div>Dose 1</div>
-                                                <div>
+                                            <div className="flex">
+                                                <div className="ops2">2</div>
+                                                <div className="nodesa">
                                                     No details on appointment can be found!
                                                 </div>
                                             </div>
@@ -108,9 +111,9 @@ export default class BeneficiariesListCcomponent extends Component {
                                             }
 
                                         </> :
-                                            <div className="nodosefound">
-                                                <div>Dose 2</div>
-                                                <div>
+                                            <div className="flex">
+                                                <div className="ops2">2</div>
+                                                <div className="nodesa">
                                                     No details on appointment can be found!
                                                 </div>
                                             </div>
@@ -119,7 +122,28 @@ export default class BeneficiariesListCcomponent extends Component {
 
                                     </>
                                     :
-                                    <></>
+                                    <>
+                                    <div className="nodosefound">
+                                        <div className="dosery">
+                                            <div className="ops2">Dose 1</div>
+                                            <div className="ops1"><b>Vaccine:</b> <small>N/A</small></div>
+                                        </div>
+                                        <div className="nodesa">
+                                            No details on appointment can be found!
+                                        </div>
+                                    </div>
+
+                                    <div className="nodosefound">
+                                        <div className="dosery">
+                                            <div className="ops2">Dose 2</div>
+                                            <div className="ops1"><b>Vaccine:</b> <small>N/A</small></div>
+                                        </div>
+                                        <div className="nodesa">
+                                            No details on appointment can be found!
+                                        </div>
+                                    </div>
+
+                                    </>
                                 }
 
                             </div>
