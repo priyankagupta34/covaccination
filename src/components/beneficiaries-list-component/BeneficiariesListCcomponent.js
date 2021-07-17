@@ -28,7 +28,7 @@ export default class BeneficiariesListCcomponent extends Component {
                 {beneficiaries.map((item, index) => (
                     <div className="relative">
                         <div className="titlbenf1">
-                            <div>{item.name}<span className="bonji"><small className="extras voicet"><b>REF ID :</b>{item.beneficiary_reference_id}</small><small className="extras voicet"><b>Secret:</b> <span className="deng">{item.beneficiary_reference_id.slice(-4)}</span></small></span></div>
+                            <div>{item.name}<span className="bonji"><small className="extras voicet kwid"><b>REF ID :</b>{item.beneficiary_reference_id}</small><small className="extras voicet"><b>Secret:</b> <span className="deng">{item.beneficiary_reference_id.slice(-4)}</span></small></span></div>
                             <div className="flexg">
                             <div className={`tben1 ${item.vaccination_status === 'Vaccinated' && 'vaccinated'}  ${item.vaccination_status === 'Not Vaccinated' && 'notvaccinated'}  ${item.vaccination_status === 'Partially Vaccinated' && 'partiallyvaccinated'} `}>
                                 {item.vaccination_status}
