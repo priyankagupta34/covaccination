@@ -153,7 +153,7 @@ export default class App extends Component {
           // state.districtList = result.data.districts;
           if(result.data.centers.length === 0){
             state.errortype = 'info';
-            state.errorMessage = 'Could not find any slots. Please visit coWin app to confirm!';
+            state.errorMessage = 'Could not find any slots. Try again later!';
             state.showError = true;
           }
           state.showDistrict = false;
