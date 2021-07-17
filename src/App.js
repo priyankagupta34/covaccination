@@ -425,6 +425,7 @@ export default class App extends Component {
                       </div>
 
                       {(!logged && showOtpModal) ? <div className="modalkl">
+                        <TitleNIconCcomponent title="Fill OTP" description="OTP is valid for 3 minutes." icon="api" />
                         <div className="pinclas relative">
                           <form className="flex" onSubmit={this.confirmOtp}>
                             <input value={otp}
