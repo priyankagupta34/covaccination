@@ -379,7 +379,7 @@
   top: 1%;
   height: 16vh;
   width: 16vh;
-  animation: move 5s linear infinite;
+  animation: move 4s linear infinite;
 }
 
 @keyframes move {
@@ -442,7 +442,7 @@
     width: 10vh;
     top: 1%;
     left: 0%;
-    animation: move 5s linear infinite ;
+    animation: move 4s linear infinite ;
   }
 
   @keyframes move {
