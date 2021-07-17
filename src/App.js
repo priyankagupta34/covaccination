@@ -36,10 +36,10 @@ export default class App extends Component {
       availableSession: [],
       centers: [],
       book: false,
-      logged: false,
+      logged: true,
       expandArtic3: false,
       showOtpModal: false,
-      beneficiaries: [],
+      beneficiaries: [1],
       allIdTypes: [],
       errortype: ''
 
@@ -60,10 +60,10 @@ export default class App extends Component {
     this.expandArtic3Handler = this.expandArtic3Handler.bind(this);
   }
 
-  expandArtic3Handler(){
+  expandArtic3Handler() {
     this.setState({
       ...this.state,
-      expandArtic3: this.state.expandArtic3?false:true
+      expandArtic3: this.state.expandArtic3 ? false : true
     })
   }
 
@@ -151,7 +151,7 @@ export default class App extends Component {
           state.showOtpModal = false;
           state.centers = result.data.centers;
           // state.districtList = result.data.districts;
-          if(result.data.centers.length === 0){
+          if (result.data.centers.length === 0) {
             state.errortype = 'info';
             state.errorMessage = 'Could not find any slots. Try again later!';
             state.showError = true;
@@ -160,8 +160,12 @@ export default class App extends Component {
           return state;
         })
       }).catch((err) => {
-
+        // this.somethingWentWrong()
       });
+  }
+
+  somethingWentWrong(err) {
+    console.log(err);
   }
 
 
@@ -342,131 +346,130 @@ export default class App extends Component {
 
             <div className={`${!centers.length && "whenNoList2"} scndPart`}>
               <div className="searchSl">Let's Vaccinate</div>
-              {/* <div className="searchS2"></div> */}
 
-              <article className="artic1">
-                <TitleNIconCcomponent icon="search" title="Search Slots" description="Find slots via pincode or district." />
-                <div className="slider">
-                  <div className={`${searchByPin && 'selectedSlider goLeft'} oiq1`} onClick={this.changeSearchBy}>Pincode</div>
-                  <div className={`${!searchByPin && 'selectedSlider goRight'} oiq2`} onClick={this.changeSearchBy}>District</div>
-                </div>
+              <article className="mainArticle">
+                {/* <div className="searchS2"></div> */}
 
-
-                {/* By pincode and district */}
-
-                {searchByPin ? <div className="pinclas">
-                  {/* <label htmlFor="ji8">Pincode*</label> */}
-                  <form className="flex" onSubmit={this.findCalenderSlotByPin}>
-                    <input id="ji8" value={pincode} onChange={this.onchangeHandler} placeholder="Pincode" className="gh65" name="pincode" />
-                    <button className="go" onClick={this.findCalenderSlotByPin} type="submit" disabled={pincode === ''}>Go</button></form>
-                </div> :
-                  <div className=" drivg">
-                    <div className="pinclas pinclagh relative">
-                      {/* <label htmlFor="ji8">State*</label> */}
-                      <div className="flex">
-                        <input value={selectedState} onFocus={this.showStateList} onBlur={this.hideStateList}
-                          onChange={this.handleStateChangeFilter}
-                          className="gh65"
-                          placeholder="State" />
-                        <span className="go bh"> <span className={`${showState ? 'turna' : 'turnb'}`}>&#5123;</span></span>
-                      </div>
-                      {(showState && stateList.length) ? <div className={`${!centers.length && "optionListWhen4"} option opt1`}>
-                        {filteredStateList.map(item => (
-                          <div key={item} className={`${((selectedState && item) && selectedState.toLowerCase() === item.toLowerCase()) ? 'seletsfd' : ''} keysta`} onClick={this.clickToSelecteState.bind(this, item)}>
-                            {item}
-                          </div>
-                        ))}
-                      </div> : <></>}
-                    </div>
-                    <div className="pinclas pinclagh relative">
-                      <div className="flex">
-                        <input value={selectedDistrict} onFocus={this.showDistrictList} onBlur={this.hideDistrictList}
-                          disabled={districtList.length === 0}
-                          onChange={this.handleDistrictChangeFilter}
-                          className="gh65"
-                          placeholder="District"
-                        />
-                        <span className="go bh"> <span className={`${showDistrict ? 'turna' : 'turnb'}`}>&#5123;</span></span>
-                      </div>
-                      {(showDistrict && districtList.length) ? <div className={`${!centers.length && "optionListWhen4"} option opt2`}>
-                        {filteredDistrictList.map(item => (
-                          <div key={item} className={`${((selectedDistrict && item) && selectedDistrict.toLowerCase() === item.toLowerCase()) ? 'seletsfd' : ''} keysta`} onClick={this.clickToSelecteDistrict.bind(this, item)}>
-                            {item}
-                          </div>
-                        ))}
-                      </div> : <></>}
-                    </div>
-
-                  </div>}
-
-              </article>
-
-              {!book ?
-
-                <>{centers.length ?
-                  <div>
-                    {/* <TitleNIconCcomponent title="Slot" description="Please scroll table to view all info" icon="table_view"/> */}
-                    <TableViewCalenderSessionsComponent centers={centers} bookThisDose={this.bookThisDose} /></div> :
-                  <></>}</>
-                :
-
-                <>
-                  <div>
-                    <DisplaySlotAndBookComponent />
+                <article className="artic1">
+                  <TitleNIconCcomponent icon="search" title="Search Slots" description="Find slots via pincode or district." />
+                  <div className="slider">
+                    <div className={`${searchByPin && 'selectedSlider goLeft'} oiq1`} onClick={this.changeSearchBy}>Pincode</div>
+                    <div className={`${!searchByPin && 'selectedSlider goRight'} oiq2`} onClick={this.changeSearchBy}>District</div>
                   </div>
 
-                  {logged === false ?
-                    <article className="artic2">
-                      {/* <div className="bngf littleInf">Please login with your registered mobile before booking the slot</div> */}
-                      <TitleNIconCcomponent title="Cowin Login" description="Please login with your registered mobile before booking the slot"
-                        icon="phone" />
 
-                      <div className="pinclas relative">
-                        <form className="flex" onSubmit={this.generateOTP}>
-                          <input value={mobile}
-                            name="mobile"
-                            onChange={this.onchangeHandler}
+                  {/* By pincode and district */}
+
+                  {searchByPin ? <div className="pinclas">
+                    {/* <label htmlFor="ji8">Pincode*</label> */}
+                    <form className="flex" onSubmit={this.findCalenderSlotByPin}>
+                      <input id="ji8" value={pincode} onChange={this.onchangeHandler} placeholder="Pincode" className="gh65" name="pincode" />
+                      <button className="go" onClick={this.findCalenderSlotByPin} type="submit" disabled={pincode === ''}>Go</button></form>
+                  </div> :
+                    <div className=" drivg">
+                      <div className="pinclas pinclagh relative">
+                        {/* <label htmlFor="ji8">State*</label> */}
+                        <div className="flex">
+                          <input value={selectedState} onFocus={this.showStateList} onBlur={this.hideStateList}
+                            onChange={this.handleStateChangeFilter}
                             className="gh65"
-                            placeholder="Mobile Number"
+                            placeholder="State" />
+                          <span className="go bh"> <span className={`${showState ? 'turna' : 'turnb'}`}>&#5123;</span></span>
+                        </div>
+                        {(showState && stateList.length) ? <div className={`${!centers.length && "optionListWhen4"} option opt1`}>
+                          {filteredStateList.map(item => (
+                            <div key={item} className={`${((selectedState && item) && selectedState.toLowerCase() === item.toLowerCase()) ? 'seletsfd' : ''} keysta`} onClick={this.clickToSelecteState.bind(this, item)}>
+                              {item}
+                            </div>
+                          ))}
+                        </div> : <></>}
+                      </div>
+                      <div className="pinclas pinclagh relative">
+                        <div className="flex">
+                          <input value={selectedDistrict} onFocus={this.showDistrictList} onBlur={this.hideDistrictList}
+                            disabled={districtList.length === 0}
+                            onChange={this.handleDistrictChangeFilter}
+                            className="gh65"
+                            placeholder="District"
                           />
-                          <button className="go" type="submit">OTP</button>
-                        </form>
+                          <span className="go bh"> <span className={`${showDistrict ? 'turna' : 'turnb'}`}>&#5123;</span></span>
+                        </div>
+                        {(showDistrict && districtList.length) ? <div className={`${!centers.length && "optionListWhen4"} option opt2`}>
+                          {filteredDistrictList.map(item => (
+                            <div key={item} className={`${((selectedDistrict && item) && selectedDistrict.toLowerCase() === item.toLowerCase()) ? 'seletsfd' : ''} keysta`} onClick={this.clickToSelecteDistrict.bind(this, item)}>
+                              {item}
+                            </div>
+                          ))}
+                        </div> : <></>}
                       </div>
 
-                      {(!logged && showOtpModal) ? <div className="modalkl">
-                        <TitleNIconCcomponent title="Fill OTP" description="OTP is valid for 3 minutes." icon="api" />
+                    </div>}
+
+                </article>
+
+                {!book ?
+
+                  <>{centers.length ?
+                    <div>
+                      {/* <TitleNIconCcomponent title="Slot" description="Please scroll table to view all info" icon="table_view"/> */}
+                      <TableViewCalenderSessionsComponent centers={centers} bookThisDose={this.bookThisDose} /></div> :
+                    <></>}</>
+                  :
+
+                  <>
+
+                    {logged === false ?
+                      <article className="artic2">
+                        {/* <div className="bngf littleInf">Please login with your registered mobile before booking the slot</div> */}
+                        <TitleNIconCcomponent title="Cowin Login" description="Please login with your registered mobile before booking the slot"
+                          icon="phone" />
+
                         <div className="pinclas relative">
-                          <form className="flex" onSubmit={this.confirmOtp}>
-                            <input value={otp}
-                              name="otp"
+                          <form className="flex" onSubmit={this.generateOTP}>
+                            <input value={mobile}
+                              name="mobile"
                               onChange={this.onchangeHandler}
                               className="gh65"
-                              placeholder="OTP"
+                              placeholder="Mobile Number"
                             />
-                            <button className="go" type="submit">Ok</button>
+                            <button className="go" type="submit">OTP</button>
                           </form>
                         </div>
 
-                      </div> : <></>}
+                        {(!logged && showOtpModal) ? <div className="modalkl">
+                          <TitleNIconCcomponent title="Fill OTP" description="OTP is valid for 3 minutes." icon="api" />
+                          <div className="pinclas relative">
+                            <form className="flex" onSubmit={this.confirmOtp}>
+                              <input value={otp}
+                                name="otp"
+                                onChange={this.onchangeHandler}
+                                className="gh65"
+                                placeholder="OTP"
+                              />
+                              <button className="go" type="submit">Ok</button>
+                            </form>
+                          </div>
+
+                        </div> : <></>}
 
 
 
-                    </article> :
-                    <>
-                    <button className={`${expandArtic3 && "expbtnOn"} expbtn`} onClick={this.expandArtic3Handler}><span className="exspan">Expand Panel</span> <i className="material-icons  material-icons-outlined icmns">fullscreen</i></button>
-                    <article className={`${expandArtic3 && 'expandedArtic3'} artic3`}>
-                      <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
-                      <div>
-                        <BeneficiariesListCcomponent beneficiaries={beneficiaries} />
-                      </div>
-                    </article>
-                    </>
-                  }
-                </>
+                      </article> :
+                      <>
+                        {/* <button className={`${expandArtic3 && "expbtnOn"} expbtn`} onClick={this.expandArtic3Handler}><span className="exspan">Expand Panel</span> <i className="material-icons  material-icons-outlined icmns">fullscreen</i></button> */}
+                        <article className={`${expandArtic3 && 'expandedArtic3'} artic3`}>
+                          <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
+                          <div>
+                            <BeneficiariesListCcomponent beneficiaries={beneficiaries} />
+                          </div>
+                        </article>
+                      </>
+                    }
+                  </>
 
-              }
+                }
 
-
+              </article>
             </div>
           </div>
         </article>
@@ -478,12 +481,12 @@ export default class App extends Component {
         {showError && <div className="errobody">
           <div className="errops">
             <div className="relative">
-             
+
               <div className="move"></div>
               <div className="moveIcon">
-              {errortype==='success'? <i  className="material-icons  material-icons-outlined vimicon" style={{color: 'green'}}>task_alt</i>:<></>}
-              {errortype==='error'? <i  className="material-icons  material-icons-outlined vimicon" style={{color: 'red'}}>error_outline</i>:<></>}
-              {errortype==='info'? <i  className="material-icons  material-icons-outlined vimicon" style={{color: 'skyblue'}}>priority_high</i>:<></>}
+                {errortype === 'success' ? <i className="material-icons  material-icons-outlined vimicon" style={{ color: 'green' }}>task_alt</i> : <></>}
+                {errortype === 'error' ? <i className="material-icons  material-icons-outlined vimicon" style={{ color: 'red' }}>error_outline</i> : <></>}
+                {errortype === 'info' ? <i className="material-icons  material-icons-outlined vimicon" style={{ color: 'skyblue' }}>priority_high</i> : <></>}
               </div>
               <div className="errder">{errorMessage}</div>
               <div className="bnahyts">

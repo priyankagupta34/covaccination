@@ -37,10 +37,15 @@
   box-shadow: 0px -3px 4px #e6e3e3;
 }
 
+.mainArticle{
+  height: 78vh;
+  overflow-y: auto;
+}
+
 .artic3{
   height: 45vh;
   overflow-y: auto;
-  margin-top: -40px;
+  /* margin-top: -40px; */
 }
 
 

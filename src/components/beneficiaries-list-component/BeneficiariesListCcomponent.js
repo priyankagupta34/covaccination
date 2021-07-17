@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { beneficiaries } from '../../services/test'
+import { beneficiaries } from '../../services/test'
 import './BeneficiariesListCcomponent.css'
 
 export default class BeneficiariesListCcomponent extends Component {
@@ -18,7 +18,7 @@ export default class BeneficiariesListCcomponent extends Component {
         })
     }
     render() {
-        const {beneficiaries} = this.props;
+        // const {beneficiaries} = this.props;
         // console.log('beneficiaries', beneficiaries);
         const { showFull } = this.state;
 
@@ -26,7 +26,7 @@ export default class BeneficiariesListCcomponent extends Component {
             <div>
                 {/* <div className="nmag">Found<b> {beneficiaries.length} </b>beneficiaries linked with this Number</div> */}
                 {beneficiaries.map((item, index) => (
-                    <div>
+                    <div className="relative">
                         <div className="titlbenf1">
                             <div>{item.name}<span className="bonji"><small className="extras voicet"><b>REF ID :</b>{item.beneficiary_reference_id}</small><small className="extras voicet"><b>Secret:</b> <span className="deng">{item.beneficiary_reference_id.slice(-4)}</span></small></span></div>
                             <div className="flexg">

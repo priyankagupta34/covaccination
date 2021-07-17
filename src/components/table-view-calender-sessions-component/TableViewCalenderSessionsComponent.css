@@ -121,6 +121,7 @@
     box-shadow: 0 0 5px rgb(238 105 105 / 28%);
     color: black !important;
     font-weight: 500;
+    border: 1px solid #fdb9b9;
     
     /* font-size: 0.9em; */
 }
