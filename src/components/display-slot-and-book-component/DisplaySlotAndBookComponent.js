@@ -44,7 +44,7 @@ export default class DisplaySlotAndBookComponent extends Component {
                             <div className="beneflist">
                                 {beneficiaries && beneficiaries.map((benef, index) => (
                                     <div className={`${index === selectedBeneficiary && 'selectedbenefnam'} benefnam`} onClick={this.selectdBenefHandler.bind(this, index)}>
-                                        <span className="checkits" style={{background: index === selectedBeneficiary?'blue':'white'}}></span>
+                                        <span className="checkits" style={{background: index === selectedBeneficiary?'blue':'white'}}>?</span>
                                         {benef.name}
                                     </div>
 
@@ -59,12 +59,12 @@ export default class DisplaySlotAndBookComponent extends Component {
 
                                                     {selectedSession.available_capacity_dose2 > 0 ?
                                                         <>
-                                                            <div className="koli">Elible Candidate. Please proceed by clicking on button below</div>
+                                                            <div className="koli">Elible Candidate. Please click to proceed.</div>
                                                             <div className="proceedDiv"><button className="proceed">Proceed Booking...</button></div>
                                                         </>
                                                         :
                                                         <>
-                                                            <div className="koli">Elible Candidate. But unfortunately slots are not available. Try later.</div>
+                                                            <div className="koli">Elible Candidate. Slots unavailable. Try later.</div>
                                                             <div className="proceedDiv"><button className="proceed" disabled={true}>Booking not Possible</button></div>
                                                         </>
                                                     }
@@ -84,12 +84,12 @@ export default class DisplaySlotAndBookComponent extends Component {
                                                         <>
                                                             {selectedSession.available_capacity_dose1 > 0 ?
                                                                 <>
-                                                                    <div className="koli">Elible Candidate. Please proceed by clicking on button below</div>
+                                                                    <div className="koli">Elible Candidate. Please click to proceed.</div>
                                                                     <div className="proceedDiv"><button className="proceed">Proceed Booking...</button></div>
                                                                 </>
                                                                 :
                                                                 <>
-                                                                    <div className="koli">Elible Candidate. But unfortunately slots are not available. Try later.</div>
+                                                                    <div className="koli">Elible Candidate. Slots unavailable. Try later.</div>
                                                                     <div className="proceedDiv"><button className="proceed" disabled={true}>Booking not Possible</button></div>
                                                                 </>}
                                                         </>
