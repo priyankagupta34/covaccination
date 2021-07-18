@@ -17,6 +17,7 @@
 .addname{
     font-weight: 600;
     color: blue;
+    font-size: 0.9em;
 }
 
 .feeknow{
@@ -72,21 +73,46 @@
 }
 
 .paidr{
-    font-weight: 800;
     color: blue;
     font-size: 0.9em;
 }
 
 .ferts, .terts{
     font-size: 0.9em;
+    font-weight: 800;
     background: repeating-linear-gradient(
         45deg
         , #fce4e4, white 7px);
             padding: 7px;
 }
 
+.proceed{
+    margin-top: 10px;
+    background: white;
+    outline: none;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px #d89494;
+    transition: all 0.3s;
+}
+
+.proceed:disabled{
+    box-shadow: 0 0 3px #d89494;
+    transition: all 0.3s;
+    background: #ffebeb;
+    color: gray;
+}
+
 .terts{
     background: none;
+}
+
+.selectBene{
+    padding: 3px;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #c59a9a;
 }
 
 @media screen and (max-width: 1000px) {

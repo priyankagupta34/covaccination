@@ -17,9 +17,22 @@ export default class DisplaySlotAndBookComponent extends Component {
                 </div>
 
                 <div className="feeknow">
-                    <div className="ferts">Fee Type</div>
+                    <div className="ferts">{selectedSession.vaccine}</div>
                     <div className="terts">{selectedCenter.fee_type} </div>
                     <div className="paidr terts">INR {selectedCenter.fee_type === 'Paid' ? selectedCenter.vaccine_fees ? (selectedCenter.vaccine_fees.filter(a => a.vaccine === selectedSession.vaccine).length !== 0) ? selectedCenter.vaccine_fees.filter(a => a.vaccine === selectedSession.vaccine)[0]['fee'] : 'N/A' : 'N/A' : 0}</div>
+                </div>
+
+                <div>
+                    <div className="selectBene">Please select one beneficiary from below to proceed for vaccination slot booking</div>
+                    <div>
+                        <div>
+
+                        </div>
+                        <div>
+                            
+                        </div>
+                    </div>
+                    <button className="proceed">Proceed Booking...</button>
                 </div>
 
 
