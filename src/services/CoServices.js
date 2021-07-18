@@ -67,9 +67,7 @@ function getIDTypes() {
 function getSessionSlots(pincode, date) {
     return axios.get(`${host}appointment/sessions/public/findByPin?pincode=${pincode}&date=${date}`);
 }
-function test() {
-    return axios.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=801503&date=11-07-2021');
-}
+
 
 async function sha256Conversion(message) {
     const msgBuffer = new TextEncoder().encode(message);
@@ -131,4 +129,9 @@ function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay = 85) {
     dateOfSecondVa = getRightDateFromCowinFormat(dateOfSecondVa);
     const diffDays = Math.round(Math.abs((new Date(dateOfSecondVa) - new Date()) / oneDay));
     return diffDays;
+}
+
+function test() {
+    const oneDay = 24 * 60 * 60 * 1000;
+    return Math.round(Math.abs((new Date('09-11-2022') - new Date()) / oneDay));
 }

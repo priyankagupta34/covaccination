@@ -120,26 +120,10 @@ export default class DisplaySlotAndBookComponent extends Component {
                 </div>
 
                 <div className="selectBene1">See complete details on beneficiaries below</div>
+                <div>{CoServices.test()}</div>
 
 
 
-                {/* {selectedCenter.fee_type === 'PaidHide' ? < div className="vaccinfee">
-                    <div className="vaccH">Vaccine</div>
-                    <div className="vaccH">Fee</div>
-                    {selectedCenter.vaccine_fees.map((fee) => (
-                        <>
-                            <div className="vacc vaccH">
-                                {fee.vaccine}
-                            </div>
-                            <div className="vacc">
-                                {fee.fee}
-                            </div>
-                        </>
-
-                    ))}
-                </div> : <></>}
-            
-             */}
 
 
 
