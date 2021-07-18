@@ -133,6 +133,7 @@ function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay = 85) {
 
 function test() {
     let fullDate = "07-19-2021";
+    fullDate += "00:00:00";
     let date = new Date(fullDate);
     
     // In case its IOS, parse the fulldate parts and re-create the date object.
