@@ -32,15 +32,19 @@ const host = 'https://cdn-api.co-vin.in/api/v2/';
 // };
 
 function getOTPToRegister(mobile) {
-    return axios.post(`${host}auth/generateMobileOTP`, { mobile, secret: "U2FsdGVkX1+Qv4iGD8jOlYu6INWkBe3zw0OBN7IRQWo+mMcXKQo96YvfIzJi7XAOGV295AKaBfIaH3NY0XgFYw==" },  {headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
-    }})
+    return axios.post(`${host}auth/generateMobileOTP`, { mobile, secret: "U2FsdGVkX1+Qv4iGD8jOlYu6INWkBe3zw0OBN7IRQWo+mMcXKQo96YvfIzJi7XAOGV295AKaBfIaH3NY0XgFYw==" }, {
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
+        }
+    })
 }
 
 function confirmOTPToRegister(otp, txnId) {
-    return axios.post(`${host}auth/validateMobileOtp`, { otp, txnId },{headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
-    }});
+    return axios.post(`${host}auth/validateMobileOtp`, { otp, txnId }, {
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
+        }
+    });
 }
 
 function getStatesList() {
@@ -48,11 +52,11 @@ function getStatesList() {
 }
 
 function getBeneficiaries(token) {
-    return axios.get(`${host}appointment/beneficiaries`,  {
+    return axios.get(`${host}appointment/beneficiaries`, {
         headers: {
-        'authorization': `Bearer ${token}`
+            'authorization': `Bearer ${token}`
         }
-      });
+    });
 }
 
 function getIDTypes() {
@@ -86,40 +90,45 @@ function calenderByDistrict(district_id) {
     return axios.get(`${host}appointment/sessions/public/calendarByDistrict?district_id=${district_id}&date=${getTodaysDate()}`);
 }
 
-function getTodaysDate(date=new Date(), days=1){
+function getTodaysDate(date = new Date(), days = 1) {
     let tomorrow = new Date(date);
-    tomorrow.setDate(tomorrow.getDate()+days);
-    return `${tomorrow.getDate().toString().padStart(2,'0')}-${(tomorrow.getMonth() + 1).toString().padStart(2,'0')}-${tomorrow.getFullYear()}`;
+    tomorrow.setDate(tomorrow.getDate() + days);
+    return `${tomorrow.getDate().toString().padStart(2, '0')}-${(tomorrow.getMonth() + 1).toString().padStart(2, '0')}-${tomorrow.getFullYear()}`;
 }
 
-function getRightDateFromCowinFormat(date){
+function getRightDateFromCowinFormat(date) {
     date = date.split('-');
     return date[1] + '-' + date[0] + '-' + date[2];
 }
 
-function checkDateDifference(date1, date2){
+function checkDateDifference(date1, date2) {
     return Date.parse(date1) <= Date.parse(date2);
 }
 
-function checkIfAgeIsElibleAsperSlot(applicable_for_all_ages,minAge, max_age=null, birth_year){
+function checkIfAgeIsElibleAsperSlot(applicable_for_all_ages, minAge, max_age, birth_year) {
     const currentYear = new Date().getFullYear();
     birth_year = parseInt(birth_year);
-    const diff = currentYear-birth_year;
-    if(applicable_for_all_ages){
-        if(diff >= minAge) return true;
-        else return false;        
-    }else{
-        if(diff >= minAge && diff <=max_age){
-            return true;
-        }else return false;
+    const diff = currentYear - birth_year;
+    if (applicable_for_all_ages) {
+        if (diff >= minAge) return true;
+        else return false;
+    } else {
+        if (max_age === undefined) {
+            if (diff >= minAge) return true;
+            else return false;
+        } else {
+            if (diff >= minAge && diff <= max_age) {
+                return true;
+            } else return false;
+        }
     }
 }
 
-function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay=85){
+function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay = 85) {
     const oneDay = 24 * 60 * 60 * 1000;
-    dateOf1stVaccin=getRightDateFromCowinFormat(dateOf1stVaccin);
+    dateOf1stVaccin = getRightDateFromCowinFormat(dateOf1stVaccin);
     let dateOfSecondVa = getTodaysDate(dateOf1stVaccin, eligibleDay);
-    dateOfSecondVa=getRightDateFromCowinFormat(dateOfSecondVa);
+    dateOfSecondVa = getRightDateFromCowinFormat(dateOfSecondVa);
     const diffDays = Math.round(Math.abs((new Date(dateOfSecondVa) - new Date()) / oneDay));
     return diffDays;
 }
