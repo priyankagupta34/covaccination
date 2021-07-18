@@ -25,7 +25,7 @@ export default class BeneficiariesListCcomponent extends Component {
         return (
             <div>
                 {/* <div className="nmag">Found<b> {beneficiaries.length} </b>beneficiaries linked with this Number</div> */}
-                {beneficiaries.map((item, index) => (
+                {beneficiaries && beneficiaries.map((item, index) => (
                     <div className="relative">
                         <div className="titlbenf1">
                             <div>{item.name}<span className="bonji">

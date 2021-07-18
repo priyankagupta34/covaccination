@@ -352,16 +352,17 @@ export default class App extends Component {
     CoServices.confirmOTPToRegister(result1, txnId)
       .then((result) => {
         this.setState(state => {
-          state.loader = false;
           state.logged = true;
           state.showOtpModal = false;
           state.token = result.data.token;
+          state.beneficiaries = [];
           return state;
         }, () => {
           CoServices.getBeneficiaries(this.state.token)
             .then((result) => {
-              // console.log('beneficiaries', result.data);
+              console.log('beneficiaries', result.data);
               this.setState(state => {
+                state.loader = false;
                 // state.beneficiaries = beneficiaries;
                 state.beneficiaries = result.data.beneficiaries;
                 return state;
@@ -373,6 +374,9 @@ export default class App extends Component {
       }).catch((err) => {
         this.setState(state => {
           state.loader = false;
+          state.errortype='error';
+          state.showError = true;
+          state.errorMessage = 'Oop! Invalid OTP.';
           return state;
         })
       });
@@ -520,7 +524,7 @@ export default class App extends Component {
                         <button className="backto" onClick={this.backToList}>Back to Slot List</button>
                         <article className="artic3">
                           <TitleNIconCcomponent icon="book_online" title="Book Slot" description={`Proceed for book vaccination slot online`} />
-                          <DisplaySlotAndBookComponent selectedSession={selectedSession} selectedCenter={selectedCenter} />
+                          <DisplaySlotAndBookComponent selectedSession={selectedSession} selectedCenter={selectedCenter} beneficiaries={beneficiaries}  />
                         </article>
                         <article className={`${expandArtic3 && 'expandedArtic3'} artic4`}>
                           <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
