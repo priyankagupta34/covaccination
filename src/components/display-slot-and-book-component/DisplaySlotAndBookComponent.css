@@ -104,18 +104,101 @@
     color: gray;
 }
 
+
+
 .terts{
     background: none;
 }
 
-.selectBene{
+.detailbenef{
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    margin-top: 10px;
+}
+
+.selectBene, .selectBene1{
     padding: 3px;
     font-size: 0.9em;
     font-weight: 500;
     color: #c59a9a;
 }
 
+.selectBene1{
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+
+.datefor{
+    font-size: 0.8em;
+    background: white;
+    width: 208px;
+    margin: 10px auto;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.datefor span{
+    color: gray;
+    font-weight: 400;
+}
+
+.beneflist{
+    font-size: 0.9em;
+    display: grid;
+    grid-template-columns: 1fr;
+    /* border: 1px solid; */
+}
+
+.benefnam{
+    height: 35px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    border: 1px solid gray;
+    border-bottom: none;
+    cursor: pointer;
+}
+
+.benefnam:last-child{
+    border-bottom: 1px solid gray;
+}
+
+.selectedbenefnam{
+    background: white;
+    border-right:  1px solid white;
+    cursor: unset;
+}
+
+.benefdetails{
+    border:  1px solid gray;
+    border-left: none;
+}
+
+.benefdetails{
+    background: white;
+    padding: 10px;
+}
+
+.checkits{
+    display: flex;
+    align-items: center;
+    font-size: 1.6em;
+    margin: 1px;
+    height: 35px;
+    margin-right: 4px;
+    width: 30px;
+    justify-content: center;
+}
 @media screen and (max-width: 1000px) {
+    .detailbenef{
+        grid-template-columns: 0.8fr 1fr;
+        font-size: 0.7em;
+
+    }
+    .checkits{
+        font-size: 1.1em;
+
+    }
 .vaccinfee{
     width: 60%;
     font-size: 0.8em;
