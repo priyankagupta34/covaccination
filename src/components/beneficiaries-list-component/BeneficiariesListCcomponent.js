@@ -24,7 +24,7 @@ export default class BeneficiariesListCcomponent extends Component {
 
         return (
             <div>
-                {!beneficiaries.length ?
+                {beneficiaries.length ?
                     <>
                         {beneficiaries.map((item, index) => (
                             <div className="relative">

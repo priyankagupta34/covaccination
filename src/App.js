@@ -351,12 +351,7 @@ export default class App extends Component {
       return state;
     })
     const { otp, txnId } = this.state;
-    // const result1 = CryptoJS.SHA256(otp).toString(CryptoJS.enc.Hex);
-    // console.log('typeofff ', typeof otp)
     const result1 = sha256(otp.toString());
-    // console.log('result1', result1)
-    // CoServices.sha256Conversion(otp)
-    //   .then((result) => {
     CoServices.confirmOTPToRegister(result1, txnId)
       .then((result) => {
         this.setState(state => {
