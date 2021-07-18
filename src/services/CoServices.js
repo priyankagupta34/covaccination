@@ -120,8 +120,10 @@ function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay=85){
     dateOf1stVaccin=getRightDateFromCowinFormat(dateOf1stVaccin);
     console.log('dateOf1stVaccin', dateOf1stVaccin)
     // return dateOf1stVaccin.toString();
-    let dateOfSecondVa = getTodaysDate(dateOf1stVaccin.toString());
-    return dateOfSecondVa.toString();
+    // let dateOfSecondVa = getTodaysDate(dateOf1stVaccin.toString());
+    // return dateOfSecondVa.toString();
+    // console.log('')
+    return getTodaysDate('27-06-2021', 85);
     // dateOfSecondVa=getRightDateFromCowinFormat(dateOfSecondVa);
     // const diffDays = Math.round(Math.abs((new Date(dateOfSecondVa) - new Date()) / oneDay));
     // return diffDays;
