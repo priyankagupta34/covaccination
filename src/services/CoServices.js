@@ -98,7 +98,7 @@ function getRightDateFromCowinFormat(date){
 }
 
 function checkDateDifference(date1, date2){
-    return Date.parse(date1) < Date.parse(date2);
+    return Date.parse(date1) <= Date.parse(date2);
 }
 
 function checkIfAgeIsElibleAsperSlot(applicable_for_all_ages,minAge, max_age=null, birth_year){
@@ -116,15 +116,10 @@ function checkIfAgeIsElibleAsperSlot(applicable_for_all_ages,minAge, max_age=nul
 }
 
 function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay=85){
-    // const oneDay = 24 * 60 * 60 * 1000;
+    const oneDay = 24 * 60 * 60 * 1000;
     dateOf1stVaccin=getRightDateFromCowinFormat(dateOf1stVaccin);
-    console.log('dateOf1stVaccin', dateOf1stVaccin)
-    // return dateOf1stVaccin.toString();
-    // let dateOfSecondVa = getTodaysDate(dateOf1stVaccin.toString());
-    // return dateOfSecondVa.toString();
-    // console.log('')
-    return getTodaysDate('06-27-2021', 85);
-    // dateOfSecondVa=getRightDateFromCowinFormat(dateOfSecondVa);
-    // const diffDays = Math.round(Math.abs((new Date(dateOfSecondVa) - new Date()) / oneDay));
-    // return diffDays;
+    let dateOfSecondVa = getTodaysDate(dateOf1stVaccin, eligibleDay);
+    dateOfSecondVa=getRightDateFromCowinFormat(dateOfSecondVa);
+    const diffDays = Math.round(Math.abs((new Date(dateOfSecondVa) - new Date()) / oneDay));
+    return diffDays;
 }
