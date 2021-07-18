@@ -82,7 +82,7 @@ function calenderByDistrict(district_id) {
     return axios.get(`${host}appointment/sessions/public/calendarByDistrict?district_id=${district_id}&date=${getTodaysDate()}`);
 }
 
-function getTodaysDate(date=null){
+function getTodaysDate(date=new Date()){
     let tomorrow = new Date(date);
     tomorrow.setDate(tomorrow.getDate()+1);
     return `${tomorrow.getDate().toString().padStart(2,'0')}-${(tomorrow.getMonth() + 1).toString().padStart(2,'0')}-${tomorrow.getFullYear()}`;
