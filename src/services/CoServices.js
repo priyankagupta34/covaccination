@@ -132,7 +132,7 @@ function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay = 85) {
 }
 
 function test() {
-    const oneDay = 24 * 60 * 60 * 1000;
+    // const oneDay = 24 * 60 * 60 * 1000;
     return new Date('09-11-2022').getTime();
     // return Math.round(((new Date('09-11-2022')).getTime() - (new Date().getTime())) / oneDay);
 }
