@@ -64,6 +64,14 @@ export default class App extends Component {
     this.getIDTypes = this.getIDTypes.bind(this);
     this.backToList = this.backToList.bind(this);
     this.logout = this.logout.bind(this);
+    this.closeOtpBox = this.closeOtpBox.bind(this);
+  }
+
+  closeOtpBox(){
+    this.setState({
+      ...this.state,
+      showOtpModal: false
+    })
   }
 
   logout() {
@@ -513,6 +521,7 @@ export default class App extends Component {
                               <button className="go" type="submit">Ok</button>
                             </form>
                           </div>
+                          <button className="closgh" onClick={this.closeOtpBox}>Close</button>
 
                         </div> : <></>}
 
