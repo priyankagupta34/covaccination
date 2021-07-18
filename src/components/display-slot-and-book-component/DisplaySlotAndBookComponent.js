@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './DisplaySlotAndBookComponent.css'
-// import { beneficiaries } from '../../services/test'
+import { beneficiaries } from '../../services/test'
 import { CoServices } from '../../services/CoServices';
 
 export default class DisplaySlotAndBookComponent extends Component {
@@ -18,7 +18,7 @@ export default class DisplaySlotAndBookComponent extends Component {
         })
     }
     render() {
-        const { beneficiaries } = this.props;
+        // const { beneficiaries } = this.props;
         const { selectedCenter, selectedSession } = this.props;
         const { selectedBeneficiary } = this.state;
         console.log('this.props', this.props);
@@ -44,7 +44,7 @@ export default class DisplaySlotAndBookComponent extends Component {
                             <div className="beneflist">
                                 {beneficiaries && beneficiaries.map((benef, index) => (
                                     <div className={`${index === selectedBeneficiary && 'selectedbenefnam'} benefnam`} onClick={this.selectdBenefHandler.bind(this, index)}>
-                                        <span className="checkits">{index === selectedBeneficiary ? <>&#128246;</> : <></>}</span>
+                                        <span className="checkits" style={{background: index === selectedBeneficiary?'blue':'white'}}></span>
                                         {benef.name}
                                     </div>
 

@@ -212,7 +212,7 @@ border-top: none;
     align-items: center;
     font-size: 1.6em;
     margin: 1px;
-    height: 35px;
+    height: 31px;
     margin-right: 4px;
     width: 30px;
     justify-content: center;
@@ -228,6 +228,10 @@ border-top: none;
     padding: 10px;
     letter-spacing: 0.8px;
     word-spacing: 1px;
+}
+
+.sace3{
+
 }
 @media screen and (max-width: 1000px) {
 
