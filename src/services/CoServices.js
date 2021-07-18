@@ -124,19 +124,17 @@ function checkIfAgeIsElibleAsperSlot(applicable_for_all_ages, minAge, max_age, b
     }
 }
 
-function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay = 85) {
-    const oneDay = 24 * 60 * 60 * 1000;
-    dateOf1stVaccin = getRightDateFromCowinFormat(dateOf1stVaccin);
-    let dateOfSecondVa = getTodaysDate(dateOf1stVaccin, eligibleDay);
-    dateOfSecondVa = getRightDateFromCowinFormat(dateOfSecondVa);
-    const diffDays = Math.round(Math.abs((new Date(dateOfSecondVa) - new Date()) / oneDay));
-    return diffDays;
+function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay = 84) {
+    const startDate = moment(dateOf1stVaccin, "DD.MM.YYYY");
+    const endDate = moment(getTodaysDate(), "DD.MM.YYYY");
+    const daysThatRemain = endDate.diff(startDate, 'days');
+    return (eligibleDay + 1)-daysThatRemain;
 }
 
 function test() {
-    var startDate = moment("27-06-2021", "DD.MM.YYYY");
-    var endDate = moment(getTodaysDate(), "DD.MM.YYYY");
-    var daysThatRemain = endDate.diff(startDate, 'days');
+    const startDate = moment("27-06-2021", "DD.MM.YYYY");
+    const endDate = moment(getTodaysDate(), "DD.MM.YYYY");
+    const daysThatRemain = endDate.diff(startDate, 'days');
     return 85-daysThatRemain;
     // date = "27-06-2021";
     // date=date.split('-').map(item=>parseInt(item));
