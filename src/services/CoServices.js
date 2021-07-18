@@ -134,9 +134,15 @@ function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay = 85) {
 }
 
 function test() {
-    var a = moment([2007, 0, 29]);
-    var b = moment([2007, 0, 28]);
-    return a.diff(b, 'days') // 1
+    var startDate = moment("27-06-2021", "DD.MM.YYYY");
+    var endDate = moment(getTodaysDate(), "DD.MM.YYYY");
+    var daysThatRemain = endDate.diff(startDate, 'days');
+    return 85-daysThatRemain;
+    // date = "27-06-2021";
+    // date=date.split('-').map(item=>parseInt(item));
+    // var a = moment([date[2], 0, 29]);
+    // var b = moment([2007, 0, 28]);
+    // return a.diff(b, 'days') // 1
 
     // let fullDate = "07-19-2021";
     // fullDate += "00:00:00";
