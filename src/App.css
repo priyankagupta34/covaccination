@@ -189,6 +189,7 @@ background: white;
   background: #fce7e7;
   box-shadow: 0 0 8px maroon;
   border-bottom-right-radius: 0;
+  z-index: 8;
 }
 
 .log1{

@@ -172,17 +172,18 @@ padding-bottom: 10px;
       display: flex;
   }
 
-  .vaccinated{
+  .partiallyvaccinated{
     background: #ddddff;
+    box-shadow: 0 0 2px blue, 0 0 3px #0000ff36;
   }
 
-  .partiallyvaccinated{
+  .vaccinated{
     background: #d5f1be;
-    box-shadow: 0 0 2px #e6dbde;
+    box-shadow: 0 0 2px #0c4805, 0 0 3px #0c480573;
   }
 
   .notvaccinated{
-    box-shadow: 0 0 2px #ea9fb7;
+    box-shadow: 0 0 2px #7c052b, 0 0 3px #7c052b61;
     background: #ffd9da;
   }
 

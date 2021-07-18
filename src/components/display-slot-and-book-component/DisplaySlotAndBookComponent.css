@@ -1,0 +1,109 @@
+.feelist{
+
+}
+
+.slotdisp{
+    margin: 20px 10px;
+}
+
+.addrese{
+    background: white;
+    width: 90%;
+    margin: 10px auto;
+    padding: 11px;
+    font-size: 0.9em;
+}
+
+.addname{
+    font-weight: 600;
+    color: blue;
+}
+
+.feeknow{
+    
+    width: 90%;
+    margin: 10px auto;
+    font-size: 0.8em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 10px;
+    background: white;
+    font-weight: 500;
+    border-radius: 4px;
+    box-shadow: 0 0 4px #80000075;
+}
+
+.addname::after{
+    content: '';
+    margin: 4px auto;
+    margin-bottom: 10px;
+    width: 100px;
+    display: block;
+    height: 1px;
+    background-color: blue;
+}
+
+.blockname{
+    color: gray;
+    font-size: 0.9em;
+}
+
+.vaccinfee{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+    font-size: 0.8em;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.vaccH, .vacc{
+    text-transform: uppercase;
+    font-size: 0.9em;
+    background: white;
+    padding: 6px;
+    border-radius: 1px;
+    box-shadow: 0 0 1px maroon;
+}
+
+.vaccH{
+    font-weight: 700;
+    background-color: #ffe2e2;
+}
+
+.paidr{
+    font-weight: 800;
+    color: blue;
+    font-size: 0.9em;
+}
+
+.ferts, .terts{
+    font-size: 0.9em;
+    background: repeating-linear-gradient(
+        45deg
+        , #fce4e4, transparent 7px);
+            padding: 7px;
+}
+
+.terts{
+    background: none;
+}
+
+@media screen and (max-width: 1000px) {
+.vaccinfee{
+    width: 60%;
+    font-size: 0.8em;
+
+}
+
+.feeknow{
+    width: 89%;
+}
+
+
+
+    .feelist{
+
+    }
+
+}
