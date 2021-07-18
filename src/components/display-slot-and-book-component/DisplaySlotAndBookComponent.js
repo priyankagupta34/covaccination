@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './DisplaySlotAndBookComponent.css'
 import { beneficiaries } from '../../services/test'
+import { CoServices } from '../../services/CoServices';
 
 export default class DisplaySlotAndBookComponent extends Component {
     constructor(props) {
@@ -49,12 +50,71 @@ export default class DisplaySlotAndBookComponent extends Component {
                             ))}
                         </div>
                         <div className="benefdetails">
-                            {beneficiaries[selectedBeneficiary].name}
+                            {beneficiaries[selectedBeneficiary].vaccination_status === 'Partially Vaccinated' ?
+                                <>
+                                    {CoServices.checkDateDifference(new Date(), CoServices.getTodaysDate(CoServices.getRightDateFromCowinFormat(beneficiaries[selectedBeneficiary]['dose1_date']), 84)) ?
+                                        <>
+
+                                            {selectedSession.available_capacity_dose2 > 0 ?
+                                                <>
+                                                    <div className="koli">Elible Candidate. Please proceed by clicking on button below</div>
+                                                    <button className="proceed">Proceed Booking...</button>
+                                                </>
+                                                :
+                                                <>
+                                                    <div className="koli">Elible Candidate. But unfortunately slots are not available. Try later.</div>
+                                                    <button className="proceed" disabled={true}>Proceed Booking...</button>
+                                                </>
+                                            }
+                                        </> :
+                                        <>
+                                            <div className="koli">Not Eligible Yet!! You still have {CoServices.checkNumberOfDaysLeftforDose2(beneficiaries[selectedBeneficiary]['dose1_date'])} Left for second dose</div>
+                                            <button className="proceed" disabled={true}>Proceed Booking...</button>
+                                        </>
+                                    }
+                                </>
+                                :
+                                <>
+                                    {beneficiaries[selectedBeneficiary].vaccination_status === 'Not Vaccinated' ?
+
+                                        <>
+                                            {CoServices.checkIfAgeIsElibleAsperSlot(selectedSession['allow_all_age'], selectedSession['min_age_limit'], selectedSession['max_age_limit'], beneficiaries[selectedBeneficiary]['birth_year']) ?
+                                                <>
+                                                    {selectedSession.available_capacity_dose1 > 0 ?
+                                                        <>
+                                                            <div className="koli">Elible Candidate. Please proceed by clicking on button below</div>
+                                                            <button className="proceed">Proceed Booking...</button>
+                                                        </>
+                                                        :
+                                                        <>
+                                                            <div className="koli">Elible Candidate. But unfortunately slots are not available. Try later.</div>
+                                                            <button className="proceed" disabled={true}>Proceed Booking...</button>
+                                                        </>}
+                                                </>
+                                                :
+                                                <></>
+                                            }
+                                        </>
+                                        :
+                                        <>
+                                            {beneficiaries[selectedBeneficiary].vaccination_status === 'Vaccinated' ?
+
+                                                <>
+                                                    <div className="koli">Glad to know you are vaccinated citizen. :) </div>
+                                                    <button className="proceed" disabled={true}>Proceed Booking...</button>
+                                                </>
+                                                :
+                                                <></>
+                                            }
+                                        </>
+                                    }
+                                </>
+                            }
                         </div>
                     </div>
 
                 </div>
-                <button className="proceed">Proceed Booking...</button>
+
                 <div className="selectBene1">See complete details on beneficiaries below</div>
 
 

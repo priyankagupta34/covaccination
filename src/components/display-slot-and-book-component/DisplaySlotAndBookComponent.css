@@ -10,7 +10,7 @@
     background: white;
     width: 90%;
     margin: 10px auto;
-    padding: 11px;
+    padding: 23px;
     font-size: 0.9em;
 }
 
@@ -32,6 +32,7 @@
     font-weight: 500;
     border-radius: 4px;
     box-shadow: 0 0 4px #80000075;
+    margin-top: 0;
 }
 
 .addname::after{
@@ -46,7 +47,7 @@
 
 .blockname{
     color: gray;
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 .vaccinfee{
@@ -95,6 +96,13 @@
     border-radius: 4px;
     box-shadow: 0 0 8px #d89494;
     transition: all 0.3s;
+    position: absolute;
+    bottom: -49px;
+    left: 42%;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: blue;
+    /* width: ; */
 }
 
 .proceed:disabled{
@@ -114,6 +122,8 @@
     display: grid;
     grid-template-columns: 0.5fr 1fr;
     margin-top: 10px;
+    border: 1px solid;
+    position: relative;
 }
 
 .selectBene, .selectBene1{
@@ -124,17 +134,19 @@
 }
 
 .selectBene1{
-    margin-top: 10px;
+    margin-top: 59px;
     font-size: 0.8em;
+    
 }
 
 .datefor{
     font-size: 0.8em;
     background: white;
-    width: 208px;
+    width: 90%;
     margin: 10px auto;
     font-weight: 700;
     padding: 10px;
+    margin-bottom: 0;
 }
 
 .datefor span{
@@ -160,23 +172,26 @@
 }
 
 .benefnam:last-child{
-    border-bottom: 1px solid gray;
+    border-bottom: none;
+}
+
+.benefnam:first-child{
+border-top: none;
 }
 
 .selectedbenefnam{
     background: white;
-    border-right:  1px solid white;
+    border-right:  1px solid transparent;
     cursor: unset;
 }
 
 .benefdetails{
-    border:  1px solid gray;
+    /* border:  1px solid gray; */
+    box-shadow: 4px 0px 4px #996e6e;
     border-left: none;
-}
-
-.benefdetails{
     background: white;
     padding: 10px;
+
 }
 
 .checkits{
@@ -189,7 +204,23 @@
     width: 30px;
     justify-content: center;
 }
+
+.koli{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-weight: 200;
+    line-height: 23px;
+    padding: 10px;
+    letter-spacing: 0.8px;
+    word-spacing: 1px;
+}
 @media screen and (max-width: 1000px) {
+
+    .proceed{
+        left: 33%;
+    }
     .detailbenef{
         grid-template-columns: 0.8fr 1fr;
         font-size: 0.7em;
