@@ -25,7 +25,7 @@ export default class DisplaySlotAndBookComponent extends Component {
         console.log(beneficiaries, selectedSession);
         return (
             <div className="slotdisp">
-                {/* klkll */}
+                klkll
                 <div className="addrese">
                     <div className="addname">{selectedCenter.name}</div>
                     <div className="blockname">{selectedCenter.address}</div>
@@ -64,13 +64,13 @@ export default class DisplaySlotAndBookComponent extends Component {
                                                 :
                                                 <>
                                                     <div className="koli">Elible Candidate. But unfortunately slots are not available. Try later.</div>
-                                                    <button className="proceed" disabled={true}>Proceed Booking...</button>
+                                                    <button className="proceed" disabled={true}>Booking not Possible</button>
                                                 </>
                                             }
                                         </> :
                                         <>
                                             <div className="koli">Not Eligible Yet!! You still have {CoServices.checkNumberOfDaysLeftforDose2(beneficiaries[selectedBeneficiary]['dose1_date'])} Left for second dose</div>
-                                            <button className="proceed" disabled={true}>Proceed Booking...</button>
+                                            <button className="proceed" disabled={true}>Booking not Possible</button>
                                         </>
                                     }
                                 </>
@@ -89,11 +89,15 @@ export default class DisplaySlotAndBookComponent extends Component {
                                                         :
                                                         <>
                                                             <div className="koli">Elible Candidate. But unfortunately slots are not available. Try later.</div>
-                                                            <button className="proceed" disabled={true}>Proceed Booking...</button>
+                                                            <button className="proceed" disabled={true}>Booking not Possible</button>
                                                         </>}
                                                 </>
                                                 :
-                                                <></>
+                                                <>
+                                                            <div className="koli">Candidate's age is not eligible for this slot</div>
+                                                            <button className="proceed" disabled={true}>Booking not Possible.</button>
+                                                    
+                                                </>
                                             }
                                         </>
                                         :
@@ -102,7 +106,7 @@ export default class DisplaySlotAndBookComponent extends Component {
 
                                                 <>
                                                     <div className="koli">Glad to know you are vaccinated citizen. :) </div>
-                                                    <button className="proceed" disabled={true}>Proceed Booking...</button>
+                                                    <button className="proceed" disabled={true}>Booking not Possible</button>
                                                 </>
                                                 :
                                                 <></>
