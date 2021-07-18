@@ -94,7 +94,7 @@ function getTodaysDate(date=new Date(), days=1){
 
 function getRightDateFromCowinFormat(date){
     date = date.split('-');
-    return `${date[1]}-${date[0]}-${date[2]}`;
+    return date[1] + '-' + date[0] + '-' + date[2];
 }
 
 function checkDateDifference(date1, date2){
