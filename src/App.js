@@ -36,7 +36,7 @@ export default class App extends Component {
       availableSession: [],
       centers: [],
       book: false,
-      logged: true,
+      logged: false,
       expandArtic3: false,
       showOtpModal: false,
       beneficiaries: [],
@@ -360,7 +360,7 @@ export default class App extends Component {
         }, () => {
           CoServices.getBeneficiaries(this.state.token)
             .then((result) => {
-              console.log('beneficiaries', result.data);
+              // console.log('beneficiaries', result.data);
               this.setState(state => {
                 // state.beneficiaries = beneficiaries;
                 state.beneficiaries = result.data.beneficiaries;
