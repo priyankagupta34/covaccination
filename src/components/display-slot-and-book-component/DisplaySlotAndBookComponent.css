@@ -96,9 +96,9 @@
     border-radius: 4px;
     box-shadow: 0 0 8px #d89494;
     transition: all 0.3s;
-    position: absolute;
-    bottom: -49px;
-    left: 42%;
+    /* position: absolute; */
+    /* bottom: -49px;
+    left: 42%; */
     cursor: pointer;
     font-size: 0.9em;
     color: blue;
@@ -112,6 +112,14 @@
     color: gray;
 }
 
+.proceedDiv{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    bottom: -49px;
+    left: 0%;
+}
 
 
 .terts{
@@ -164,7 +172,7 @@
 }
 
 .benefnam{
-    height: 35px;
+    min-height: 35px;
     display: flex;
     /* justify-content: center; */
     align-items: center;
@@ -221,7 +229,7 @@ border-top: none;
 @media screen and (max-width: 1000px) {
 
     .proceed{
-        left: 33%;
+        left: 37%;
     }
     .detailbenef{
         grid-template-columns: 0.8fr 1fr;
