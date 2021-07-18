@@ -44,7 +44,7 @@ export default class DisplaySlotAndBookComponent extends Component {
                             <div className="beneflist">
                                 {beneficiaries && beneficiaries.map((benef, index) => (
                                     <div className={`${index === selectedBeneficiary && 'selectedbenefnam'} benefnam`} onClick={this.selectdBenefHandler.bind(this, index)}>
-                                        <span className="checkits">{index === selectedBeneficiary ? <>&#9989;</> : <></>}</span>
+                                        <span className="checkits">{index === selectedBeneficiary ? <>&#128246;</> : <></>}</span>
                                         {benef.name}
                                     </div>
 
@@ -106,8 +106,8 @@ export default class DisplaySlotAndBookComponent extends Component {
                                                     {beneficiaries[selectedBeneficiary].vaccination_status === 'Vaccinated' ?
 
                                                         <>
-                                                            <div className="koli">Glad to know you are vaccinated citizen. :) </div>
-                                                            <div className="proceedDiv"><button className="proceed" disabled={true}>Booking not Possible</button></div>
+                                                            <div className="koli">Glad to know you are vaccinated citizen. <span>&#128512;</span> </div>
+                                                            <div className="proceedDiv"><button className="proceed" disabled={true}>Booking not Needed</button></div>
                                                         </>
                                                         :
                                                         <></>
