@@ -169,6 +169,8 @@
     display: grid;
     grid-template-columns: 1fr;
     /* border: 1px solid; */
+    left: 1px;
+    position: relative;
 }
 
 .benefnam{
@@ -198,7 +200,7 @@ border-top: none;
 
 .benefdetails{
     /* border:  1px solid gray; */
-    box-shadow: 4px 0px 4px #996e6e;
+    box-shadow: 4px 0px 10px #996e6e;
     border-left: none;
     background: white;
     padding: 10px;
