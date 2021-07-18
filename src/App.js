@@ -418,7 +418,7 @@ export default class App extends Component {
                   </div>
 
 
-                  {CoServices.test()}
+                  {/* {CoServices.test()} */}
                   {/* By pincode and district */}
 
                   {searchByPin ? <div className="pinclas">
