@@ -25,6 +25,7 @@ export default class DisplaySlotAndBookComponent extends Component {
         console.log(beneficiaries, selectedSession);
         return (
             <div className="slotdisp">
+                klkll
                 <div className="addrese">
                     <div className="addname">{selectedCenter.name}</div>
                     <div className="blockname">{selectedCenter.address}</div>
