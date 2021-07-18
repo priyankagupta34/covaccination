@@ -132,7 +132,14 @@ function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay = 85) {
 }
 
 function test() {
-    // const oneDay = 24 * 60 * 60 * 1000;
-    return new Date('09-11-2022').getTime();
+    let fullDate = "07-19-2021";
+    let date = new Date(fullDate);
+    
+    // In case its IOS, parse the fulldate parts and re-create the date object.
+    if(Number.isNaN(date.getMonth())) {
+      let arr = fullDate.split(/[- :]/);
+      date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
+    }
+    return date.toString();
     // return Math.round(((new Date('09-11-2022')).getTime() - (new Date().getTime())) / oneDay);
 }
