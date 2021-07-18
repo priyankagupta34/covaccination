@@ -118,7 +118,7 @@ function checkIfAgeIsElibleAsperSlot(applicable_for_all_ages,minAge, max_age=nul
 function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay=85){
     const oneDay = 24 * 60 * 60 * 1000;
     dateOf1stVaccin=getRightDateFromCowinFormat(dateOf1stVaccin);
-    return dateOf1stVaccin;
+    return dateOf1stVaccin.toString();
     let dateOfSecondVa = getTodaysDate(dateOf1stVaccin, eligibleDay);
     dateOfSecondVa=getRightDateFromCowinFormat(dateOfSecondVa);
     const diffDays = Math.round(Math.abs((new Date(dateOfSecondVa) - new Date()) / oneDay));
