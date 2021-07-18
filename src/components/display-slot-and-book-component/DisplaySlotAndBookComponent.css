@@ -179,6 +179,7 @@
     border: 1px solid gray;
     border-bottom: none;
     cursor: pointer;
+    border-left: none;
 }
 
 .benefnam:last-child{

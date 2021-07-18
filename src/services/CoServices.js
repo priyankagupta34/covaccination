@@ -21,6 +21,8 @@ export const CoServices = {
 //     'Content-Type': 'text/plain'
 // };
 
+const moment = require('moment');
+
 const axios = require('axios');
 // axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
 // axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://apps.healthifyme.com';
@@ -132,15 +134,19 @@ function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay = 85) {
 }
 
 function test() {
-    let fullDate = "07-19-2021";
-    fullDate += "00:00:00";
-    let date = new Date(fullDate);
-    
-    // In case its IOS, parse the fulldate parts and re-create the date object.
-    if(Number.isNaN(date.getMonth())) {
-      let arr = fullDate.split(/[- :]/);
-      date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
-    }
-    return date.toString();
+    var a = moment([2007, 0, 29]);
+    var b = moment([2007, 0, 28]);
+    return a.diff(b, 'days') // 1
+
+    // let fullDate = "07-19-2021";
+    // fullDate += "00:00:00";
+    // let date = new Date(fullDate);
+
+    // // In case its IOS, parse the fulldate parts and re-create the date object.
+    // if(Number.isNaN(date.getMonth())) {
+    //   let arr = fullDate.split(/[- :]/);
+    //   date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
+    // }
+    // return date.toString();
     // return Math.round(((new Date('09-11-2022')).getTime() - (new Date().getTime())) / oneDay);
 }

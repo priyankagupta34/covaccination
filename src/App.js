@@ -409,7 +409,7 @@ export default class App extends Component {
 
               <article className="mainArticle">
                 {/* <div className="searchS2"></div> */}
-
+          
                 <article className="artic1">
                   <TitleNIconCcomponent icon="search" title="Search Slots" description="Find slots via pincode or district." />
                   <div className="slider">
@@ -418,6 +418,7 @@ export default class App extends Component {
                   </div>
 
 
+                  {CoServices.test()}
                   {/* By pincode and district */}
 
                   {searchByPin ? <div className="pinclas">
