@@ -200,6 +200,7 @@ border-top: none;
     background: white;
     border-right:  1px solid transparent;
     cursor: unset;
+    color: blue;
     font-weight: 600;
 }
 
@@ -215,17 +216,17 @@ border-top: none;
 .checkits, .unselectedCheck{
     display: flex;
     align-items: center;
-    font-size: 1.6em;
+    /* font-size: 1.6em; */
     margin-right: 4px;
     justify-content: center;
     color: white;
-    font-size: 1.5em;
+    /* font-size: 1.5em; */
     font-weight: 900;
-    border-radius: 1%;
+    border-radius: 10%;
     padding: 0% 4%;
-    border: 2px solid black;
-    background-color: #7882f8;
-    color: black;
+    border: 1px solid blue;
+    background-color: #bbe0fb;
+    color: blue;
     height: 100%;
     width: 20px;
 }
