@@ -7,11 +7,6 @@
     grid-gap: 10px;
 }
 
-.fresd {
-    font-weight: 700;
-    font-size: 0.8em;
-    padding: 3px;
-}
 
 /* .fresd::after{
     content: '';
@@ -23,34 +18,9 @@
     margin-bottom: 0;
 } */
 
-.kla {
-    display: grid;
-    grid-template-columns: 1fr;
-    padding: 10px;
-    /* width: 91%; */
-    margin: 0 auto;
-    position: absolute;
-    background: white;
-    z-index: 11;
-    box-shadow: 0 6px 12px #caa8a8;
-    border-radius: 3px;
-    animation: kla 0.5s linear;
-    overflow: hidden;
-    top: 27px;
-    left: 16px;
-}
 
-@keyframes kla {
-    0% {
-        height: 9vh;
-        opacity: 0.5;
-    }
 
-    100% {
-        height: 20vh;
-        opacity: 1;
-    }
-}
+
 
 
 .retractKle {
@@ -188,35 +158,7 @@ color: maroon;
     color: maroon;
 }
 
-.chbc {
-    display: flex;
-    height: 42px;
-    border-bottom: 0.5px solid #fde7f3;
-    padding-top: 10px;
-}
 
-.nmjh {
-    text-align: left;
-    font-size: 0.9em;
-    font-weight: 500;
-}
-
-.nmjh::after {
-    content: '';
-    background-color: #caa8a8;
-    height: 1px;
-    width: 239px;
-    display: block;
-    margin: 2px 0;
-}
-
-.mnhg7 {
-    text-align: right;
-    position: relative;
-    left: 63px;
-    font-weight: 900;
-    cursor: pointer;
-}
 
 .uih {
     font-weight: 700 !important;
@@ -231,9 +173,27 @@ color: maroon;
     color: maroon !important;
 }
 
-.nmb{
+.filterload{
+    height: 100vh;
+    background-color: #0a0a0ac4;
+    width: 100vw;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999999999;
+    top: 0;
+    left: 0;
+  }
+  
 
-}
+  .newmti{
+    font-size: 0.7em;
+    font-weight: 800;
+    margin: 20px;
+    display: block;
+    text-align: center;
+  }
 
 @media screen and (max-width: 1000px) {
 
@@ -262,20 +222,7 @@ color: maroon;
         font-size: 0.75em;
     }
 
-    .fresd {
-        margin: 4px 0;
-        font-size: 0.7em;
-    }
 
-    .kla {
-        width: 91%;
-        left: 9px;
-        top: 30px;
-    }
-
-    .mnhg7 {
-        left: 31px;
-    }
 
     .hjab {
         /* position: sticky;

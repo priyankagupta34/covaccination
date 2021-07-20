@@ -35,6 +35,7 @@ export default class App extends Component {
       filteredDistrictList: [],
       availableSession: [],
       centers: [],
+      centersToDisplay: [],
       book: false,
       logged: true,
       expandArtic3: false,
@@ -67,7 +68,7 @@ export default class App extends Component {
     this.closeOtpBox = this.closeOtpBox.bind(this);
   }
 
-  closeOtpBox(){
+  closeOtpBox() {
     this.setState({
       ...this.state,
       showOtpModal: false
@@ -115,7 +116,7 @@ export default class App extends Component {
       book: true,
       selectedCenter,
       selectedSession
-    }, ()=>{
+    }, () => {
       setTimeout(() => {
         const id = document.getElementById('bookslot');
         id.scrollIntoView();
@@ -199,6 +200,7 @@ export default class App extends Component {
           state.showOtpModal = false;
           state.loader = false;
           state.centers = result.data.centers;
+          state.centersToDisplay = result.data.centers;
           // state.districtList = result.data.districts;
           if (result.data.centers.length === 0) {
             state.errortype = 'info';
@@ -248,6 +250,7 @@ export default class App extends Component {
           state.book = false;
           state.loader = false;
           state.centers = result.data.centers;
+          state.centersToDisplay = result.data.centers;
           if (result.data.centers.length === 0) {
             state.errortype = 'info';
             state.errorMessage = 'Could not find any slots. Try again later!';
@@ -382,7 +385,7 @@ export default class App extends Component {
       }).catch((err) => {
         this.setState(state => {
           state.loader = false;
-          state.errortype='error';
+          state.errortype = 'error';
           state.showError = true;
           state.errorMessage = 'Oop! Invalid OTP.';
           return state;
@@ -396,7 +399,7 @@ export default class App extends Component {
 
   render() {
     // console.log('sha256(otp);', sha256('261294'))
-    const { pincode, searchByPin, selectedState, centers, book, showState, districtList, showDistrict, selectedDistrict, stateList
+    const { pincode, searchByPin, selectedState,  centers, centersToDisplay, book, showState, districtList, showDistrict, selectedDistrict, stateList
       , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries, showError, errorMessage,
       expandArtic3, errortype, allIdTypes, loader, selectedCenter, selectedSession } = this.state;
     // console.log('stateList', this.state);
@@ -421,7 +424,7 @@ export default class App extends Component {
 
               <article className="mainArticle">
                 {/* <div className="searchS2"></div> */}
-          
+
                 <article className="artic1">
                   <TitleNIconCcomponent icon="search" title="Search Slots" description="Find slots via pincode or district." />
                   <div className="slider">
@@ -484,7 +487,7 @@ export default class App extends Component {
 
                   <>{centers.length ?
                     <div>
-                      <TableViewCalenderSessionsComponent centers={centers} bookThisDose={this.bookThisDose} /></div> :
+                      <TableViewCalenderSessionsComponent centers={centersToDisplay} bookThisDose={this.bookThisDose} /></div> :
                     <></>}</>
                   :
 
@@ -530,10 +533,10 @@ export default class App extends Component {
                       </article> :
                       <>
                         {/* <button className={`${expandArtic3 && "expbtnOn"} expbtn`} onClick={this.expandArtic3Handler}><span className="exspan">Expand Panel</span> <i className="material-icons  material-icons-outlined icmns">fullscreen</i></button> */}
-                        <button className="backto"  id="bookslot" onClick={this.backToList}>Back to Slot List</button>
+                        <button className="backto" id="bookslot" onClick={this.backToList}>Back to Slot List</button>
                         <article className="artic3">
                           <TitleNIconCcomponent icon="book_online" title="Book Slot" description={`Proceed for book vaccination slot online`} />
-                          <DisplaySlotAndBookComponent selectedSession={selectedSession} selectedCenter={selectedCenter} beneficiaries={beneficiaries}  />
+                          <DisplaySlotAndBookComponent selectedSession={selectedSession} selectedCenter={selectedCenter} beneficiaries={beneficiaries} />
                         </article>
                         <article className={`${expandArtic3 && 'expandedArtic3'} artic4`}>
                           <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />

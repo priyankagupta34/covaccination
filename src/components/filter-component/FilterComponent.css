@@ -1,0 +1,151 @@
+.kla {
+    /* display: grid;
+    grid-template-columns: 1fr;
+    padding: 10px;
+    width: 91%;
+    margin: 0 auto;
+    position: absolute;
+    background: white;
+    z-index: 11;
+    box-shadow: 0 6px 12px #caa8a8;
+    border-radius: 3px;
+    animation: kla 0.5s linear;
+    overflow: hidden;
+    top: 27px;
+    left: 16px;
+    
+    height: 41vh; */
+}
+
+@keyframes kla {
+    0% {
+        height: 9vh;
+        opacity: 0.5;
+    }
+
+    100% {
+        height: 20vh;
+        opacity: 1;
+    }
+}
+
+
+.chbc {
+    /* display: flex; */
+    /* height: 42px;
+    border-bottom: 0.5px solid #fde7f3;
+    padding-top: 10px; */
+}
+
+
+.fresd {
+    font-weight: 700;
+    font-size: 0.8em;
+    padding: 3px;
+}
+
+.filterlst{
+    display: grid;
+    grid-auto-flow: column;
+    background: white;
+    font-size: 0.75em;
+    border-radius: 6px;
+    font-weight: 500;
+    box-shadow: 0 0 7px #a98585;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.filter, .selectedFilter{
+    border-right: 1px solid #dacece;
+    padding: 12px 0;
+    cursor: pointer;
+    line-height: 15px;
+    position: relative;
+    border-bottom: 1px solid #dacece;
+    /* padding-bottom: 4px; */
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.selectedFilter{
+    background: aliceblue;
+    color: blue;
+}
+
+.slotick{
+    position: absolute;
+    top: 0px;
+}
+
+.nmjh {
+    text-align: left;
+    font-size: 0.7em;
+    font-weight: 500;
+}
+
+.nmjh::after {
+    content: '';
+    background-color: #caa8a8;
+    height: 1px;
+    width: 239px;
+    display: block;
+    margin: 2px 0;
+}
+
+.flexbet{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.mnhg7 {
+    text-align: right;
+    position: relative;
+    left: 63px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.tieup{
+    background: white;
+    height: 63vh;
+    width: 80vw;
+    border-radius: 10px;
+    box-shadow: 0 0 15px white;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+    .kla {
+        /* width: 91%;
+        left: 9px;
+        top: 30px; */
+    }
+
+    .fresd {
+        margin: 4px 0;
+        font-size: 0.7em;
+    }
+
+    /* .filterlst{
+        grid-template-columns: 1fr 1fr;
+        grid-auto-flow: unset;
+    } */
+
+
+    .filter, .selectedFilter{
+        font-size: 0.9em;
+
+    }
+     
+
+    .mnhg7 {
+        left: 31px;
+    }
+
+
+}
