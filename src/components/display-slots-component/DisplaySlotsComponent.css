@@ -1,0 +1,24 @@
+.slotlst{
+    display: grid;
+    grid-auto-flow: column;
+    background: white;
+    /* padding: 10px; */
+    font-size: 0.75em;
+    border-radius: 3px;
+    font-weight: 500;
+    box-shadow: 0 0 6px #a98585;
+    width: 90%;
+    margin: 20px auto;
+    margin-bottom: 0;
+}
+
+.slot, .selectedSlot{
+    border-right: 1px solid #dacece;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.selectedSlot{
+    background: aliceblue;
+    color: blue;
+}

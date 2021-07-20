@@ -2,13 +2,22 @@ import React, { Component } from 'react'
 import './DisplaySlotAndBookComponent.css'
 import { beneficiaries } from '../../services/test'
 import { CoServices } from '../../services/CoServices';
+import DisplaySlotsComponent from '../display-slots-component/DisplaySlotsComponent';
 
 export default class DisplaySlotAndBookComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedBeneficiary: 0
+            selectedBeneficiary: 0,
+            selectedSlot: 0
         }
+    }
+
+    selectSlotHandler(selectedSlot) {
+        this.setState({
+            ...this.state,
+            selectedSlot
+        })
     }
 
     selectdBenefHandler(selectedBeneficiary, e) {
@@ -20,7 +29,7 @@ export default class DisplaySlotAndBookComponent extends Component {
     render() {
         // const { beneficiaries } = this.props;
         const { selectedCenter, selectedSession } = this.props;
-        const { selectedBeneficiary } = this.state;
+        const { selectedBeneficiary, selectedSlot } = this.state;
         console.log('this.props', this.props);
         console.log(selectedBeneficiary);
         return (
@@ -44,7 +53,7 @@ export default class DisplaySlotAndBookComponent extends Component {
                             <div className="beneflist">
                                 {beneficiaries && beneficiaries.map((benef, index) => (
                                     <div className={`${index === selectedBeneficiary && 'selectedbenefnam'} benefnam`} onClick={this.selectdBenefHandler.bind(this, index)}>
-                                        <span className={index === selectedBeneficiary? "checkits": "unselectedCheck"}>?</span>
+                                        <span className={index === selectedBeneficiary ? "checkits" : "unselectedCheck"}>?</span>
                                         {benef.name}
                                     </div>
 
@@ -107,6 +116,7 @@ export default class DisplaySlotAndBookComponent extends Component {
 
                                                         <>
                                                             <div className="koli">Glad to know you are vaccinated citizen. <span>&#128512;</span> </div>
+
                                                             <div className="proceedDiv"><button className="proceed" disabled={true}>Booking not Needed</button></div>
                                                         </>
                                                         :
@@ -126,8 +136,11 @@ export default class DisplaySlotAndBookComponent extends Component {
                     <></>
                 }
 
+                <div className="slotSelect">
+                    <DisplaySlotsComponent selectedSlot={selectedSlot} selectSlotHandler={this.selectSlotHandler.bind(this)} slotList={selectedSession.slots} />
+                </div>
+
                 <div className="selectBene1">See complete details on beneficiaries below</div>
-                here {Date.parse(new Date())}
 
 
 

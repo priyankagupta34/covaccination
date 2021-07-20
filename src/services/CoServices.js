@@ -128,7 +128,7 @@ function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay = 84) {
     const startDate = moment(dateOf1stVaccin, "DD.MM.YYYY");
     const endDate = moment(getTodaysDate(), "DD.MM.YYYY");
     const daysThatRemain = endDate.diff(startDate, 'days');
-    return (eligibleDay + 1)-daysThatRemain;
+    return (eligibleDay + 1) - daysThatRemain;
 }
 
 function test() {

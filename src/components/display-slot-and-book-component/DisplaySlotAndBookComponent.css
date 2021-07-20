@@ -117,7 +117,7 @@
     justify-content: center;
     width: 100%;
     position: absolute;
-    bottom: -49px;
+    bottom: -105px;
     left: 0%;
 }
 
@@ -242,12 +242,12 @@ border-top: none;
     height: 100%;
     font-weight: 200;
     line-height: 23px;
-    padding: 10px;
+    /* padding: 10px; */
     letter-spacing: 0.8px;
     word-spacing: 1px;
 }
 
-.sace3{
+.slotSelect{
 
 }
 @media screen and (max-width: 1000px) {
