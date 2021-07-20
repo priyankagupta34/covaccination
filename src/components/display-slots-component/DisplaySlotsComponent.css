@@ -4,9 +4,9 @@
     background: white;
     /* padding: 10px; */
     font-size: 0.75em;
-    border-radius: 3px;
+    border-radius: 6px;
     font-weight: 500;
-    box-shadow: 0 0 6px #a98585;
+    box-shadow: 0 0 7px #a98585;
     width: 90%;
     margin: 20px auto;
     margin-bottom: 0;
@@ -29,7 +29,7 @@
 
 .slotick{
     position: absolute;
-    top: 2px;
+    top: 0px;
 }
 
 
