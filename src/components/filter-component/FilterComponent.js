@@ -92,7 +92,7 @@ export default class FilterComponent extends Component {
                         ))}
                     </div>
                 </div>
-                <button className="closgh" onClick={closeFilterHandler} style={{marginTop: 0}}>Close</button>
+                <button className="closgh" onClick={closeFilterHandler} style={{ marginTop: 0, fontSize: '0.7em' }}>Close</button>
             </div>
         )
     }
