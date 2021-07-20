@@ -72,7 +72,8 @@ export default class TableViewCalenderSessionsComponent extends Component {
                                 <div className="uih">Pincode</div>
                                 <div className="uih">Fee Type </div>
                                 <div className="uih">Min Age</div>
-                                <div className="uih">All Slots</div>
+                                <div className="uih">Dose1 Slots</div>
+                                <div className="uih">Dose2 Slots</div>
                                 {/* <div className="uih">Dose 1</div>
                                 <div className="uih">Dose 2</div> */}
                                 <div className="uih">Action</div>
@@ -87,9 +88,9 @@ export default class TableViewCalenderSessionsComponent extends Component {
                                             <div className="ui ">{item.pincode}</div>
                                             <div className="ui ">{item.fee_type}</div>
                                             <div className="ui ">{item2.min_age_limit}</div>
-                                            <div className="ui ">{item2.available_capacity}</div>
-                                            {/* <div className="ui ">{item2.available_capacity_dose1}</div>
-                                            <div className="ui ">{item2.available_capacity_dose2}</div> */}
+                                            {/* <div className="ui ">{item2.available_capacity}</div> */}
+                                            <div className="ui ">{item2.available_capacity_dose1}</div>
+                                            <div className="ui ">{item2.available_capacity_dose2}</div>
                                             <div className="ui ">
                                                 <div className="bookn" onClick={() => this.props.bookThisDose(item, item2)}>Book</div>
                                             </div>

@@ -1,6 +1,6 @@
 .grfsd {
     display: grid;
-    grid-template-columns: 3.5fr 1.4fr 1.4fr 1.4fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 3.5fr 1.4fr 1.4fr 1.4fr 1fr 1fr 1fr 1fr 1fr;
     font-size: 0.9em;
   
     position: relative;
@@ -112,16 +112,16 @@
     min-height: 5vh;
     border-bottom: 1px solid #f7e9e9;
     border-right: 1px solid #f7e9e9;
-    padding: 5px;
+    padding: 1px;
     display: flex;
     justify-content: center;
     align-items: center;
     word-break: break-word;
     border-radius: 4px;
-    box-shadow: 0 0 5px rgb(238 105 105 / 28%);
+    box-shadow: 0 0 3px rgb(245 218 218);
     color: black !important;
     font-weight: 500;
-    border: 1px solid #fdb9b9;
+    /* border: 1px solid #fdb9b9; */
     
     /* font-size: 0.9em; */
 }
@@ -238,12 +238,12 @@ color: maroon;
 @media screen and (max-width: 1000px) {
 
     .grfsd {
-        grid-template-columns: 2fr 1.8fr 1.6fr 1.5fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 2fr 1.8fr 1.6fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
         grid-gap: 7px;
     }
 
-    .ui, uih{
-        box-shadow: 0 0 3px rgb(238 105 105 / 28%);
+    .ui, .uih{
+        /* box-shadow: 0 0 3px rgb(238 105 105 / 28%); */
     }
 
     .tabs {
