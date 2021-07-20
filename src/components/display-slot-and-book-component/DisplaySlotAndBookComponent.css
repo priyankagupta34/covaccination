@@ -222,8 +222,8 @@ border-top: none;
     border-radius: 1%;
     
     padding: 0 2%;
-    border: 3px solid black;
-    background-color: #3737ff;
+    border: 2px solid black;
+    background-color: blue;
 }
 
 .unselectedCheck{
