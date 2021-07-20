@@ -127,7 +127,7 @@ export default class DisplaySlotAndBookComponent extends Component {
                 }
 
                 <div className="selectBene1">See complete details on beneficiaries below</div>
-
+                {CoServices.test()}
 
 
 
