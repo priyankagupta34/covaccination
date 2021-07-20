@@ -14,9 +14,12 @@
 
 .slot, .selectedSlot{
     border-right: 1px solid #dacece;
-    padding: 10px 0;
+    padding: 17px 0;
     cursor: pointer;
-    line-height: 18px;
+    line-height: 15px;
+    position: relative;
+    
+    /* padding-bottom: 4px; */
 }
 
 .selectedSlot{
@@ -24,8 +27,18 @@
     color: blue;
 }
 
+.slotick{
+    position: absolute;
+    top: 2px;
+}
+
 
 @media screen and (max-width: 1000px) {
+
+    .slotlst{
+        width: 100%;
+    }
+
 
     .slot, .selectedSlot{
         font-size: 0.9em;

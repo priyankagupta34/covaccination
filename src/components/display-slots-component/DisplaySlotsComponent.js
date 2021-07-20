@@ -9,6 +9,7 @@ export default class DisplaySlotsComponent extends Component {
                 {slotList.map((item, index) => (
                     <div key={index} onClick={() => selectSlotHandler(index)} className={selectedSlot === index ? 'selectedSlot' : 'slot'}>
                         {item}
+                        {selectedSlot === index ?<div className="slotick">&#9989;</div>:<div className="slotick">&#11036;</div>}
                     </div>
                 ))}
             </div>
