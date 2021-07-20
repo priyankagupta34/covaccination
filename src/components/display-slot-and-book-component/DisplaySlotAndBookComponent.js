@@ -44,7 +44,7 @@ export default class DisplaySlotAndBookComponent extends Component {
                             <div className="beneflist">
                                 {beneficiaries && beneficiaries.map((benef, index) => (
                                     <div className={`${index === selectedBeneficiary && 'selectedbenefnam'} benefnam`} onClick={this.selectdBenefHandler.bind(this, index)}>
-                                        <span className="checkits" style={{background: index === selectedBeneficiary?'blue':'white'}}>?</span>
+                                        <span className={index === selectedBeneficiary? "checkits": "unselectedCheck"}>?</span>
                                         {benef.name}
                                     </div>
 
