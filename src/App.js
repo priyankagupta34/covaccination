@@ -115,6 +115,11 @@ export default class App extends Component {
       book: true,
       selectedCenter,
       selectedSession
+    }, ()=>{
+      setTimeout(() => {
+        const id = document.getElementById('bookslot');
+        id.scrollIntoView();
+      }, 0);
     })
   }
 
@@ -525,7 +530,7 @@ export default class App extends Component {
                       </article> :
                       <>
                         {/* <button className={`${expandArtic3 && "expbtnOn"} expbtn`} onClick={this.expandArtic3Handler}><span className="exspan">Expand Panel</span> <i className="material-icons  material-icons-outlined icmns">fullscreen</i></button> */}
-                        <button className="backto" onClick={this.backToList}>Back to Slot List</button>
+                        <button className="backto"  id="bookslot" onClick={this.backToList}>Back to Slot List</button>
                         <article className="artic3">
                           <TitleNIconCcomponent icon="book_online" title="Book Slot" description={`Proceed for book vaccination slot online`} />
                           <DisplaySlotAndBookComponent selectedSession={selectedSession} selectedCenter={selectedCenter} beneficiaries={beneficiaries}  />
