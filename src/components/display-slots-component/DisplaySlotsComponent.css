@@ -16,9 +16,20 @@
     border-right: 1px solid #dacece;
     padding: 10px 0;
     cursor: pointer;
+    line-height: 18px;
 }
 
 .selectedSlot{
     background: aliceblue;
     color: blue;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+    .slot, .selectedSlot{
+        font-size: 0.9em;
+
+    }
+
 }
