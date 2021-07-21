@@ -30,8 +30,8 @@ export default class DisplaySlotAndBookComponent extends Component {
         // const { beneficiaries } = this.props;
         const { selectedCenter, selectedSession } = this.props;
         const { selectedBeneficiary, selectedSlot } = this.state;
-        console.log('this.props', this.props);
-        console.log(selectedBeneficiary);
+        // console.log('this.props', this.props);
+        // console.log(selectedBeneficiary);
         return (
             <div className="slotdisp">
                 <div className="addrese">

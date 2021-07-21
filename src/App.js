@@ -8,8 +8,10 @@ import MotivateComponent from './components/motivate-component/MotivateComponent
 import TableViewCalenderSessionsComponent from './components/table-view-calender-sessions-component/TableViewCalenderSessionsComponent';
 import TitleNIconCcomponent from './components/title-n-icon-component/TitleNIconCcomponent';
 import { CoServices } from './services/CoServices';
-// import { sha256 } from './services/Sha256';
-// import { stateList } from './services/test';
+// import { FilterService } from './services/FilterService';
+
+
+// const { TypesOfVaccination, FeeType, AgeLimit, DoseType } = FilterService;
 
 
 export default class App extends Component {
@@ -35,7 +37,7 @@ export default class App extends Component {
       filteredDistrictList: [],
       availableSession: [],
       centers: [],
-      centersToDisplay: [],
+      centersToShow: [],
       book: false,
       logged: true,
       expandArtic3: false,
@@ -45,7 +47,11 @@ export default class App extends Component {
       errortype: '',
       loader: false,
       selectedSession: null,
-      selectedCenter: null
+      selectedCenter: null,
+      typesOfVaccination: [],
+      feeTypeList: [],
+      ageLimit: [],
+      doseType: []
 
     };
     this.onchangeHandler = this.onchangeHandler.bind(this);
@@ -66,6 +72,61 @@ export default class App extends Component {
     this.backToList = this.backToList.bind(this);
     this.logout = this.logout.bind(this);
     this.closeOtpBox = this.closeOtpBox.bind(this);
+    this.updateTableAfterNewFilter = this.updateTableAfterNewFilter.bind(this);
+    this.clearAllFilters = this.clearAllFilters.bind(this);
+  }
+
+  clearAllFilters(){
+    this.setState({
+      ...this.state,
+      centersToShow: this.state.centers
+    })
+  }
+
+
+  updateTableAfterNewFilter() {
+    const { typesOfVaccination, feeTypeList, ageLimit, doseType, centers } = this.state;
+    const filtered = centers.filter(item => {
+      if (!feeTypeList.includes(item.fee_type)) return false;
+      if(typesOfVaccination.filter(a=>a.toLowerCase() === item['selectedSession']['vaccine'].toLowerCase()).length === 0) return false;
+      if (doseType.includes('Dose 1') && item['selectedSession']['available_capacity_dose1'] === 0) return false;
+      if (doseType.includes('Dose 2') && item['selectedSession']['available_capacity_dose2'] === 0) return false;
+      if (item['selectedSession']['allow_all_age']) return true;
+      if (ageLimit.includes('18') && item['selectedSession']['min_age_limit'] !== 18) return false;
+      if (ageLimit.includes('45') && item['selectedSession']['min_age_limit'] !== 45) return false;
+      return true;
+    });
+    this.setState({
+      ...this.state,
+      centersToShow: filtered
+    })
+  }
+
+
+  selectFilterTypeHandler(type, item_, e) {
+    const item = item_;
+    // console.log(type, item_);
+    let listHere = [...this.state[type]];
+    const index = listHere.indexOf(item);
+    if (index === -1) listHere.push(item);
+    else listHere.splice(index, 1);
+    this.setState({
+      ...this.state,
+      [type]: listHere
+    }, () => {
+      this.updateTableAfterNewFilter();
+    })
+  }
+
+  changingDataWitTableView(value) {
+    let updatedValue = [];
+    for (let i = 0; i < value.length; i++) {
+      for (let j = 0; j < value[i]['sessions'].length; j++) {
+        value[i]['selectedSession'] = value[i]['sessions'][j];
+        updatedValue.push(value[i]);
+      }
+    }
+    return updatedValue;
   }
 
   closeOtpBox() {
@@ -187,6 +248,7 @@ export default class App extends Component {
   clickToSelecteDistrict(selectedDistrict) {
     this.setState(state => {
       state.loader = true;
+      state.showState = false;
       return state;
     })
     const district_id = this.state.districtList.filter(a => a.district_name === selectedDistrict)[0].district_id;
@@ -199,9 +261,8 @@ export default class App extends Component {
           state.selectedDistrict = selectedDistrict;
           state.showOtpModal = false;
           state.loader = false;
-          state.centers = result.data.centers;
-          state.centersToDisplay = result.data.centers;
-          // state.districtList = result.data.districts;
+          state.centers = this.changingDataWitTableView([...result.data.centers]);
+          state.centersToShow = this.changingDataWitTableView([...result.data.centers]); 
           if (result.data.centers.length === 0) {
             state.errortype = 'info';
             state.errorMessage = 'Could not find any slots. Try again later!';
@@ -249,8 +310,8 @@ export default class App extends Component {
         this.setState(state => {
           state.book = false;
           state.loader = false;
-          state.centers = result.data.centers;
-          state.centersToDisplay = result.data.centers;
+          state.centers = this.changingDataWitTableView([...result.data.centers]);
+          state.centersToShow =  this.changingDataWitTableView([...result.data.centers]);
           if (result.data.centers.length === 0) {
             state.errortype = 'info';
             state.errorMessage = 'Could not find any slots. Try again later!';
@@ -399,9 +460,10 @@ export default class App extends Component {
 
   render() {
     // console.log('sha256(otp);', sha256('261294'))
-    const { pincode, searchByPin, selectedState,  centers, centersToDisplay, book, showState, districtList, showDistrict, selectedDistrict, stateList
+    const { pincode, searchByPin, selectedState, centers, centersToShow, book, showState, districtList, showDistrict, selectedDistrict, stateList
       , filteredDistrictList, filteredStateList, logged, mobile, otp, showOtpModal, beneficiaries, showError, errorMessage,
-      expandArtic3, errortype, allIdTypes, loader, selectedCenter, selectedSession } = this.state;
+      expandArtic3, errortype, allIdTypes, loader, selectedCenter, selectedSession,
+      typesOfVaccination, feeTypeList, ageLimit, doseType } = this.state;
     // console.log('stateList', this.state);
     return (
       <div className={`${!centers.length && "whenNoList3"} App`}>
@@ -487,7 +549,10 @@ export default class App extends Component {
 
                   <>{centers.length ?
                     <div>
-                      <TableViewCalenderSessionsComponent centers={centersToDisplay} bookThisDose={this.bookThisDose} /></div> :
+                      <TableViewCalenderSessionsComponent centers={centersToShow} bookThisDose={this.bookThisDose} selectFilterTypeHandler={this.selectFilterTypeHandler.bind(this)}
+                        typesOfVaccination={typesOfVaccination} feeTypeList={feeTypeList} ageLimit={ageLimit} doseType={doseType} 
+                        clearAllFilters={this.clearAllFilters}
+                      /></div> :
                     <></>}</>
                   :
 

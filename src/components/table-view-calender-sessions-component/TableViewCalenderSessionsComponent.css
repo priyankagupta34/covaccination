@@ -132,20 +132,40 @@ color: maroon;
 } */
 
 .filt6 {
-    width: 61px;
-    border: 1px solid;
-    margin: 3px;
-    border-radius: 4px;
-    background: #dea1a1;
-    font-weight: 500;
+    width: 192px;
+    background: white;
     font-size: 0.8em;
-    position: sticky;
-    left: 4px;
-    cursor: pointer;
-    margin-bottom: 5px;
-    height: 17px;
+    border-radius: 2px;
+    box-shadow: 0 0 2px #6060f1;
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
+.afilt6, .bfilt6{
+
+    cursor: pointer;
+    border-right: 1px solid gray;
+    padding: 4px;
+    color: blue;
+    
+    display: flex;
+    justify-content: center;
+
+}
+
+.filticon{
+    color: blue;
+    font-size: 1.1em;
+    margin-left: 4px;
+    margin-top: 1px;
+}
+
+
+.bfilt6{
+    padding: 4px;
+    border-right: none;
+}
 
 .bookn {
     background-color: #ffe7e7;
