@@ -25,76 +25,9 @@ export default class FilterComponent extends Component {
             ...this.state,
             [type]: listHere
         })
-
-
-        // this.setState(state => {
-        //     let listHere = [...state.feeTypeList];
-        //     const index = listHere.indexOf(item);
-        //     console.log('this lets ', index)
-        //     if(index === -1) listHere.push(item);
-        //     else listHere.splice(index, 1);
-        //     console.log('listHere ', listHere);
-        //     state.feeTypeList = listHere;
-        //     return state;
-        //   })
-
-        // this.setState(state=>{
-        //     const index = state.feeTypeList.indexOf(item);
-        //     console.log('index', index, state.feeTypeList);
-        //     if(index===-1){
-        //         console.log('pusing');
-        //         state.feeTypeList.push(item);
-        //         return state;
-        //     }
-        //     else{
-        //         console.log('splicing');    
-        //      state.feeTypeList.splice(index, 1);
-        //      console.log(state.feeTypeList);
-        //      return state;
-        //     }
-        //     // console.log(this.state);
-        //     // return state;
-        // })
-    }
-
-    selectDoseTypeHandler(item) {
-        this.setState(state => {
-            const i = state.doseType.indexOf(item);
-            if (i === -1) state.doseType.push(item);
-            else state.doseType.splice(i, 1);
-            return state;
-        })
-    }
-
-    selectAgelimitHandler(item) {
-        this.setState(state => {
-            const i = state.ageLimit.indexOf(item);
-            if (i === -1) state.ageLimit.push(item);
-            else state.ageLimit.splice(i, 1);
-            return state;
-        })
-    }
-
-    selectVaccinationType(item) {
-        this.setState(state => {
-            const i = state.typesOfVaccination.indexOf(item);
-            if (i === -1) state.typesOfVaccination.push(item);
-            else state.typesOfVaccination.splice(i, 1);
-            return state;
-        })
     }
 
 
-    componentDidMount() {
-        // const { TypesOfVaccination, FeeType, AgeLimit, DoseType } = FilterService;
-        // this.setState({
-        //     ...this.state, 
-        //     typesOfVaccination: this.state.typesOfVaccination.concat(TypesOfVaccination),
-        //     feeTypeList:  this.state.feeTypeList.concat(FeeType),
-        //     ageLimit:this.state.ageLimit.concat(AgeLimit),
-        //     doseType: this.state.doseType.concat(DoseType),
-        // })
-    }
 
     render() {
         // const { TypesOfVaccination, FeeType, AgeLimit, DoseType } = FilterService;
