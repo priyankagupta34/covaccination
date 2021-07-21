@@ -416,7 +416,7 @@ export default class App extends Component {
               <div className="searchSl">
                 <div className={`${logged && "slideLeft"}`}>Let's Vaccinate</div>
                 {logged ? <button className="logoutbtn" onClick={this.logout}>Logout
-                  <span class="material-icons-outlined log1">
+                  <span className="material-icons-outlined log1">
                     logout
                   </span>
                 </button> : <></>}
@@ -579,7 +579,7 @@ export default class App extends Component {
         </div>}
 
         {loader ? <div className="loader">
-          <span class="material-icons-outlined loaderIcon">
+          <span className="material-icons-outlined loaderIcon">
             hourglass_bottom
           </span>
         </div> : <></>}

@@ -31,10 +31,7 @@
 
 
 .chbc {
-    /* display: flex; */
-    /* height: 42px;
-    border-bottom: 0.5px solid #fde7f3;
-    padding-top: 10px; */
+    height: 11vh;
 }
 
 
@@ -111,14 +108,39 @@
 
 .tieup{
     background: white;
-    height: 63vh;
-    width: 80vw;
+    height: 66vh;
+    width: 40vw;
     border-radius: 10px;
     box-shadow: 0 0 15px white;
 }
 
+.checkVout{
+    margin: 0 4px;
+}
+
+.btnu{
+    margin-top: 0px;
+    font-size: 0.7em;
+    position: relative;
+    bottom: -2vh;
+}
+
+
+.newmti{
+    font-size: 0.8em;
+    font-weight: 800;
+    margin: 5vh;
+    display: block;
+    text-align: center;
+    margin-bottom: 2vh;
+  }
+
 
 @media screen and (max-width: 1000px) {
+
+    .tieup{
+        width: 80vw;
+    }
 
     .kla {
         /* width: 91%;

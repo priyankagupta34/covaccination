@@ -2,49 +2,105 @@ import React, { Component } from 'react'
 import { FilterService } from '../../services/FilterService'
 import './FilterComponent.css'
 
+const { TypesOfVaccination, FeeType, AgeLimit, DoseType } = FilterService;
+
 export default class FilterComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            typesOfVaccination: [],
-            feeType: [],
-            ageLimit: [],
-            doseType: [],
+            typesOfVaccination: TypesOfVaccination,
+            feeTypeList: FeeType,
+            ageLimit: AgeLimit,
+            doseType: DoseType
         }
     }
 
-    selectFeeTypeHandler() {
+    selectFilterTypeHandler(type, item_, e) {
+        const item = item_;
+        let listHere = [...this.state[type]];
+        const index = listHere.indexOf(item);
+        if (index === -1) listHere.push(item);
+        else listHere.splice(index, 1);
+        this.setState({
+            ...this.state,
+            [type]: listHere
+        })
 
+
+        // this.setState(state => {
+        //     let listHere = [...state.feeTypeList];
+        //     const index = listHere.indexOf(item);
+        //     console.log('this lets ', index)
+        //     if(index === -1) listHere.push(item);
+        //     else listHere.splice(index, 1);
+        //     console.log('listHere ', listHere);
+        //     state.feeTypeList = listHere;
+        //     return state;
+        //   })
+
+        // this.setState(state=>{
+        //     const index = state.feeTypeList.indexOf(item);
+        //     console.log('index', index, state.feeTypeList);
+        //     if(index===-1){
+        //         console.log('pusing');
+        //         state.feeTypeList.push(item);
+        //         return state;
+        //     }
+        //     else{
+        //         console.log('splicing');    
+        //      state.feeTypeList.splice(index, 1);
+        //      console.log(state.feeTypeList);
+        //      return state;
+        //     }
+        //     // console.log(this.state);
+        //     // return state;
+        // })
     }
 
-    selectDoseTypeHandler() {
-
+    selectDoseTypeHandler(item) {
+        this.setState(state => {
+            const i = state.doseType.indexOf(item);
+            if (i === -1) state.doseType.push(item);
+            else state.doseType.splice(i, 1);
+            return state;
+        })
     }
 
-    selectAgelimitHandler() {
-
+    selectAgelimitHandler(item) {
+        this.setState(state => {
+            const i = state.ageLimit.indexOf(item);
+            if (i === -1) state.ageLimit.push(item);
+            else state.ageLimit.splice(i, 1);
+            return state;
+        })
     }
 
-    selectVaccinationType() {
-
+    selectVaccinationType(item) {
+        this.setState(state => {
+            const i = state.typesOfVaccination.indexOf(item);
+            if (i === -1) state.typesOfVaccination.push(item);
+            else state.typesOfVaccination.splice(i, 1);
+            return state;
+        })
     }
 
 
     componentDidMount() {
-        const { TypesOfVaccination, FeeType, AgeLimit, DoseType } = FilterService;
-        this.setState({
-            ...this.state,
-            typesOfVaccination: TypesOfVaccination,
-            feeType: FeeType,
-            ageLimit: AgeLimit,
-            doseType: DoseType
-        })
+        // const { TypesOfVaccination, FeeType, AgeLimit, DoseType } = FilterService;
+        // this.setState({
+        //     ...this.state, 
+        //     typesOfVaccination: this.state.typesOfVaccination.concat(TypesOfVaccination),
+        //     feeTypeList:  this.state.feeTypeList.concat(FeeType),
+        //     ageLimit:this.state.ageLimit.concat(AgeLimit),
+        //     doseType: this.state.doseType.concat(DoseType),
+        // })
     }
 
     render() {
-        const { TypesOfVaccination, FeeType, AgeLimit, DoseType } = FilterService;
-        const { typesOfVaccination, feeType, ageLimit, doseType } = this.state;
+        // const { TypesOfVaccination, FeeType, AgeLimit, DoseType } = FilterService;
+        const { typesOfVaccination, feeTypeList, ageLimit, doseType } = this.state;
         const { closeFilterHandler } = this.props;
+        console.log(this.state);
         return (
             <div className="tieup">
                 <span className="newmti">Please select the required checkboxes</span>
@@ -52,8 +108,9 @@ export default class FilterComponent extends Component {
                     <div className="fresd">Fee Type</div>
                     <div className="filterlst">
                         {FeeType.map((item, index) => (
-                            <div key={index} onClick={this.selectFeeTypeHandler.bind(this, index)} className={feeType.includes(item) ? 'selectedFilter' : 'filter'}>
-                                <span style={{ marginRight: 3 }}>{feeType.includes(item) ? <>&#9989;</> : <>&#11036;</>}</span>
+                            <div key={index} onClick={this.selectFilterTypeHandler.bind(this, 'feeTypeList', item)}
+                                className={feeTypeList.includes(item) ? 'selectedFilter' : 'filter'}>
+                                <span className="checkVout">{feeTypeList.includes(item) ? <>&#9989;</> : <>&#11036;</>}</span>
                                 {item}
                             </div>
                         ))}
@@ -63,19 +120,8 @@ export default class FilterComponent extends Component {
                     <div className="fresd">Age Limit</div>
                     <div className="filterlst">
                         {AgeLimit.map((item, index) => (
-                            <div key={index} onClick={this.selectAgelimitHandler.bind(this, item)} className={ageLimit.includes(item) ? 'selectedFilter' : 'filter'}>
-                                <span style={{ marginRight: 3 }}>{ageLimit.includes(item) ? <>&#9989;</> : <>&#11036;</>}</span>
-                                {item}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="chbc">
-                    <div className="fresd">Vaccine</div>
-                    <div className="filterlst">
-                        {TypesOfVaccination.map((item, index) => (
-                            <div key={index} onClick={this.selectVaccinationType.bind(this, item)} className={typesOfVaccination.includes(item) ? 'selectedFilter' : 'filter'}>
-                                <span style={{ marginRight: 3 }}>{typesOfVaccination.includes(item) ? <>&#9989;</> : <>&#11036;</>}</span>
+                            <div key={index} onClick={this.selectFilterTypeHandler.bind(this, 'ageLimit', item)} className={ageLimit.includes(item) ? 'selectedFilter' : 'filter'}>
+                                <span className="checkVout">{ageLimit.includes(item) ? <>&#9989;</> : <>&#11036;</>}</span>
                                 {item}
                             </div>
                         ))}
@@ -85,14 +131,25 @@ export default class FilterComponent extends Component {
                     <div className="fresd">Dose</div>
                     <div className="filterlst">
                         {DoseType.map((item, index) => (
-                            <div key={index} onClick={this.selectDoseTypeHandler.bind(this, item)} className={doseType.includes(item) ? 'selectedFilter' : 'filter'}>
-                                <span style={{ marginRight: 3 }}>{doseType.includes(item) ? <>&#9989;</> : <>&#11036;</>}</span>
+                            <div key={index} onClick={this.selectFilterTypeHandler.bind(this, 'doseType', item)} className={doseType.includes(item) ? 'selectedFilter' : 'filter'}>
+                                <span className="checkVout">{doseType.includes(item) ? <>&#9989;</> : <>&#11036;</>}</span>
                                 {item}
                             </div>
                         ))}
                     </div>
                 </div>
-                <button className="closgh" onClick={closeFilterHandler} style={{ marginTop: 0, fontSize: '0.7em' }}>Close</button>
+                <div className="chbc">
+                    <div className="fresd">Vaccine</div>
+                    <div className="filterlst">
+                        {TypesOfVaccination.map((item, index) => (
+                            <div key={index} onClick={this.selectFilterTypeHandler.bind(this, 'typesOfVaccination', item)} className={typesOfVaccination.includes(item) ? 'selectedFilter' : 'filter'}>
+                                <span className="checkVout">{typesOfVaccination.includes(item) ? <>&#9989;</> : <>&#11036;</>}</span>
+                                {item}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <button className="closgh btnu" onClick={closeFilterHandler} style={{ marginTop: 0, fontSize: '0.7em' }}>Close</button>
             </div>
         )
     }

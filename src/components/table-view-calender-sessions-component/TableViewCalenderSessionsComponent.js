@@ -43,7 +43,7 @@ export default class TableViewCalenderSessionsComponent extends Component {
         const { openFilter } = this.state;
         return (
             <div className="relative">
-                    {openFilter && <div className="filterload">
+                    {!openFilter && <div className="filterload">
                         <FilterComponent closeFilterHandler={this.closeFilterHandler} />
                     </div>}
 

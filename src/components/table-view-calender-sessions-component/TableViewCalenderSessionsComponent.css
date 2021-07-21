@@ -187,13 +187,6 @@ color: maroon;
   }
   
 
-  .newmti{
-    font-size: 0.7em;
-    font-weight: 800;
-    margin: 20px;
-    display: block;
-    text-align: center;
-  }
 
 @media screen and (max-width: 1000px) {
 
