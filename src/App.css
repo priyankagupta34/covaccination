@@ -599,9 +599,31 @@ background: white;
   justify-content: center;
 }
 
+.fixbluffer{
+  position: fixed;
+  right: 9vw;
+  z-index: 8;
+  bottom: 46vh;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 0 18px 3px #9a4b7a;
+  background: #800000c2;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7em;
+  border: none;
+}
+
 
 
 @media screen and (max-width: 1000px) {
+
+  .fixbluffer{
+    bottom: 29vh;
+  }
 
   .searchSl{
     border-top-left-radius: 10px;

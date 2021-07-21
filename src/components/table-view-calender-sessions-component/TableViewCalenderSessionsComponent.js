@@ -88,8 +88,16 @@ export default class TableViewCalenderSessionsComponent extends Component {
                 </div>}
 
                 <div className="tabs">
+
+                <div className="filt7">
+                        <span className="fixbluffer fixfilter1" onClick={this.openFilterHandler}>Filter 
+                        </span>
+                        <span className="fixbluffer fixfilter2" onClick={clearAllFilters}>Clear
+                        </span>
+                    </div>
+
                     <div className="filt6">
-                        <span className="afilt6" onClick={this.openFilterHandler}>Filter Table <span class="material-icons-outlined filticon">
+                        <span className="afilt6" onClick={this.openFilterHandler}>Filter <span class="material-icons-outlined filticon">
                             filter_list
                         </span></span>
                         <span className="bfilt6" onClick={clearAllFilters}>Clear Filter
@@ -98,6 +106,8 @@ export default class TableViewCalenderSessionsComponent extends Component {
                             </span>
                         </span>
                     </div>
+
+                 
                     <div className="viab" >
                         <div className="hjab" >
                             <div className="grfsd">

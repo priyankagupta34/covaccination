@@ -158,6 +158,8 @@ color: maroon;
 
 }
 
+.filt7{display: none;}
+
 .filticon{
     color: blue;
     font-size: 1.1em;
@@ -210,6 +212,8 @@ color: maroon;
     bottom: 0;
     right: 0;
   }
+
+ 
   
 
 
@@ -217,7 +221,23 @@ color: maroon;
 
     .filt6{
         bottom: 12px;
+        display: none;
     }
+    .filt7{
+        display: block;
+    }
+
+    .fixfilter1{
+        /* left: 33vw;
+        top: 39vh; */
+        
+    bottom: 12vh;
+
+      }
+    
+      .fixfilter2{
+       bottom: 3vh;
+      }
 
     .grfsd {
         grid-template-columns: 2fr 1.8fr 1.6fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
