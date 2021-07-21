@@ -76,7 +76,7 @@ export default class App extends Component {
     this.clearAllFilters = this.clearAllFilters.bind(this);
   }
 
-  clearAllFilters(){
+  clearAllFilters() {
     this.setState({
       ...this.state,
       centersToShow: this.state.centers
@@ -86,16 +86,19 @@ export default class App extends Component {
 
   updateTableAfterNewFilter() {
     const { typesOfVaccination, feeTypeList, ageLimit, doseType, centers } = this.state;
+    console.log(doseType);
     const filtered = centers.filter(item => {
       if (!feeTypeList.includes(item.fee_type)) return false;
-      if(typesOfVaccination.filter(a=>a.toLowerCase() === item['selectedSession']['vaccine'].toLowerCase()).length === 0) return false;
-      if (doseType.includes('Dose 1') && item['selectedSession']['available_capacity_dose1'] === 0) return false;
-      if (doseType.includes('Dose 2') && item['selectedSession']['available_capacity_dose2'] === 0) return false;
+      if (typesOfVaccination.filter(a => a.toLowerCase() === item['selectedSession']['vaccine'].toLowerCase()).length === 0) return false;
+      if (doseType.includes('Dose 1')) if (item['selectedSession']['available_capacity_dose1'] === 0) return false;
+      if (doseType.includes('Dose 2')) if (item['selectedSession']['available_capacity_dose2'] === 0) return false;
       if (item['selectedSession']['allow_all_age']) return true;
-      if (ageLimit.includes('18') && item['selectedSession']['min_age_limit'] !== 18) return false;
-      if (ageLimit.includes('45') && item['selectedSession']['min_age_limit'] !== 45) return false;
+      // console.log(item['selectedSession'])
+      if (ageLimit.includes('18')) if (item['selectedSession']['min_age_limit'] !== 18) return false;
+      if (ageLimit.includes('45')) if (item['selectedSession']['min_age_limit'] !== 45) return false;
       return true;
     });
+    // console.log(filtered );
     this.setState({
       ...this.state,
       centersToShow: filtered
@@ -262,7 +265,7 @@ export default class App extends Component {
           state.showOtpModal = false;
           state.loader = false;
           state.centers = this.changingDataWitTableView([...result.data.centers]);
-          state.centersToShow = this.changingDataWitTableView([...result.data.centers]); 
+          state.centersToShow = this.changingDataWitTableView([...result.data.centers]);
           if (result.data.centers.length === 0) {
             state.errortype = 'info';
             state.errorMessage = 'Could not find any slots. Try again later!';
@@ -311,7 +314,7 @@ export default class App extends Component {
           state.book = false;
           state.loader = false;
           state.centers = this.changingDataWitTableView([...result.data.centers]);
-          state.centersToShow =  this.changingDataWitTableView([...result.data.centers]);
+          state.centersToShow = this.changingDataWitTableView([...result.data.centers]);
           if (result.data.centers.length === 0) {
             state.errortype = 'info';
             state.errorMessage = 'Could not find any slots. Try again later!';
@@ -550,7 +553,7 @@ export default class App extends Component {
                   <>{centers.length ?
                     <div>
                       <TableViewCalenderSessionsComponent centers={centersToShow} bookThisDose={this.bookThisDose} selectFilterTypeHandler={this.selectFilterTypeHandler.bind(this)}
-                        typesOfVaccination={typesOfVaccination} feeTypeList={feeTypeList} ageLimit={ageLimit} doseType={doseType} 
+                        typesOfVaccination={typesOfVaccination} feeTypeList={feeTypeList} ageLimit={ageLimit} doseType={doseType}
                         clearAllFilters={this.clearAllFilters}
                       /></div> :
                     <></>}</>

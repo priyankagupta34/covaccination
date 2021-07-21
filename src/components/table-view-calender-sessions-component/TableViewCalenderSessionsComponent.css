@@ -132,25 +132,29 @@ color: maroon;
 } */
 
 .filt6 {
-    width: 192px;
+    width: 200px;
     background: white;
     font-size: 0.8em;
-    border-radius: 2px;
+    border-radius: 8px;
     box-shadow: 0 0 2px #6060f1;
-    margin: 10px;
+    margin: 13px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    position: fixed;
+    z-index: 2;
+    bottom: 67px;
 }
 
 .afilt6, .bfilt6{
 
     cursor: pointer;
     border-right: 1px solid gray;
-    padding: 4px;
+    padding: 11px 3px;
     color: blue;
-    
     display: flex;
     justify-content: center;
+    font-weight: 800;
+    font-size: 0.9em;
 
 }
 
@@ -163,7 +167,6 @@ color: maroon;
 
 
 .bfilt6{
-    padding: 4px;
     border-right: none;
 }
 
@@ -211,6 +214,10 @@ color: maroon;
 
 
 @media screen and (max-width: 1000px) {
+
+    .filt6{
+        bottom: 12px;
+    }
 
     .grfsd {
         grid-template-columns: 2fr 1.8fr 1.6fr 1.5fr 1fr 1fr 1fr 1fr 1fr;

@@ -89,7 +89,7 @@ export default class TableViewCalenderSessionsComponent extends Component {
 
                 <div className="tabs">
                     <div className="filt6">
-                        <span className="afilt6" onClick={this.openFilterHandler}>Filter <span class="material-icons-outlined filticon">
+                        <span className="afilt6" onClick={this.openFilterHandler}>Filter Table <span class="material-icons-outlined filticon">
                             filter_list
                         </span></span>
                         <span className="bfilt6" onClick={clearAllFilters}>Clear Filter

@@ -117,7 +117,7 @@
     justify-content: center;
     width: 100%;
     position: absolute;
-    bottom: -150px;
+    bottom: -124px;
     left: 0%;
 }
 
@@ -253,6 +253,10 @@ border-top: none;
 
 }
 @media screen and (max-width: 1000px) {
+
+    .proceedDiv{
+        bottom: -150px;
+    }
 
     .proceed{
         left: 37%;
