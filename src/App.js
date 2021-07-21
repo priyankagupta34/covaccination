@@ -212,7 +212,7 @@ export default class App extends Component {
   hideStateList() {
     setTimeout(() => {
       this.setState(state => {
-        // state.showState = false;
+        state.showState = false;
         return state;
       })
     }, 800);
