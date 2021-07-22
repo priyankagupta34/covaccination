@@ -24,3 +24,9 @@ code {
 .relative{
   position: relative;
 }
+
+.flexBetween{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -610,6 +610,9 @@ export default class App extends Component {
 
         <article className={`${!centers.length && "whenNoList1"} articleBody`}>
           <div className="part">
+            <div className="createdf"><div className="flexBetween"> <span className="about">By Priyanka </span> <span class="material-icons-outlined spn">
+            facebook
+            </span></div></div>
             <div className="firstPart">
               <MotivateComponent />
             </div>

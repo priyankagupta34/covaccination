@@ -561,6 +561,34 @@ padding-bottom: 11vh;
   margin-bottom: 2vh;
 }
 
+.about{
+  color: beige;
+  font-weight: 100;
+}
+
+.createdf{
+  background: #00000061;
+  border-radius: 10px 0px 0px 10px;
+    padding: 0 1vh;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    height: 5vh;
+    position: absolute;
+    top: 2vh;
+    right: 0;
+    /* margin-right: 2vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spn{
+  color: #f5deb359;
+  margin-left: 2px;
+  /* position: relative;
+  top: 4px; */
+}
 
 
 @media screen and (max-width: 1000px) {
