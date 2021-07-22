@@ -81,12 +81,7 @@ export default class App extends Component {
     this.confirmBooking = this.confirmBooking.bind(this);
   }
 
-  generateOTPTest(){
-    this.setState({
-      ...this.state,
-      showOtpModal: true
-    })
-  }
+
 
   confirmBooking() {
     this.setState({
@@ -470,6 +465,22 @@ export default class App extends Component {
         //   this.somethingWentWrong({...err});
         // })
       });
+  }
+
+  generateOTPTest(e){
+    e.preventDefault();
+    this.setState(state => {
+      state.loader = true;
+      return state;
+    }, ()=>{
+      setTimeout(() => {
+        this.setState(state => {  
+          state.showOtpModal= true;
+          return state;
+
+        })
+      }, 500);
+    })
   }
 
   test(e){
