@@ -494,6 +494,7 @@ export default class App extends Component {
         this.setState(state => {
           state.loader = false;
           state.logged = true;
+          state.showOtpModal = false;
           return state;
 
         })
