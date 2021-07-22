@@ -79,7 +79,7 @@ export default class DisplaySlotAndBookComponent extends Component {
                                                     }
                                                 </> :
                                                 <>
-                                                    <div className="koli">Not Eligible Yet!! You still have {CoServices.checkNumberOfDaysLeftforDose2(beneficiaries[selectedBeneficiary]['dose1_date'])} Left for second dose</div>
+                                                    <div className="koli">Not Eligible Yet!! You still have {CoServices.checkNumberOfDaysLeftforDose2(beneficiaries[selectedBeneficiary]['dose1_date'])} days Left for second dose</div> 
                                                     <div className="proceedDiv"><button className="proceed" disabled={true}>Booking not Possible</button></div>
                                                 </>
                                             }

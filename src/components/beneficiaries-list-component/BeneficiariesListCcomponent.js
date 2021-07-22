@@ -61,7 +61,7 @@ export default class BeneficiariesListCcomponent extends Component {
                                         {item.appointments.length !== 0 ?
                                             <>
 
-                                                {item.appointments.filter(a => a.dose === 2).length === 0 ? <>
+                                                {item.appointments.filter(a => a.dose === 1).length !== 0 ? <>
                                                     {item.appointments.filter(a => a.dose === 1).map(appo =>
                                                         <div className="kopi">
                                                             <div className="dosery">
@@ -82,7 +82,7 @@ export default class BeneficiariesListCcomponent extends Component {
                                                 </>
                                                     :
                                                     <div className="flex">
-                                                        <div className="ops2">2</div>
+                                                        <div className="ops2">1</div>
                                                         <div className="nodesa">
                                                             No details on appointment can be found!
                                                         </div>
@@ -90,7 +90,7 @@ export default class BeneficiariesListCcomponent extends Component {
                                                 }
 
 
-                                                {item.appointments.filter(a => a.dose === 2).length === 0 ? <>
+                                                {item.appointments.filter(a => a.dose === 2).length !== 0 ? <>
 
                                                     {item.appointments.filter(a => a.dose === 2).map(appo =>
                                                         <div className="kopi">
