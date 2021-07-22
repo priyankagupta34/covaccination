@@ -356,6 +356,7 @@ export default class App extends Component {
         state.errorMessage = 'Internet or server down. Please reload or Try later';
       } else {
         if (err.response.status === 504) state.errorMessage = err.response.data.message;
+        else if(err.response.status === 500) state.errorMessage = 'Internal Server Error';
         else if (err.response.status === 401) {
           state.errorMessage = err.response.data;
           state.logged = false;
