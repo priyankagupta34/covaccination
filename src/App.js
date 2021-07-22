@@ -612,9 +612,9 @@ export default class App extends Component {
         <article className={`${!centers.length && "whenNoList1"} articleBody`}>
           <div className="part">
             <div className="createdf"><div className="flexBetween"> <span className="about">By Priyanka </span> 
-            <a href="https://www.facebook.com/Priyannca" target="_blank" rel="noreferrer">
-            <span class="material-icons-outlined spn">
-            facebook
+            <a href="https://www.linkedin.com/in/priancaa/" target="_blank" rel="noreferrer">
+            <span class="spn">
+            in
             </span>
             </a></div></div>
             <div className="firstPart">
