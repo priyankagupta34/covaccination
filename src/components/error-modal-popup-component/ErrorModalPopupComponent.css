@@ -22,6 +22,7 @@
       align-items: center;
       box-shadow: 0 0 24px 5px #80000073;
       position: relative;
+      overflow: hidden;
   }
 
   
@@ -58,13 +59,25 @@
       color: #da4242;
   }
   
+  
+
+.errder{
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 3vh auto;
+    box-shadow: 0 0 3px maroon;
+    padding: 3vh;
+    border-radius: 3px;
+    width: 89%;
+  }
 
   
 @media screen and (max-width: 1000px) {
 
 
     .errops{
-        height: 38vh;
+        height: 42vh;
         width: 80vw;
       }
 
@@ -79,7 +92,7 @@
     width: 11vh;
     margin-bottom: 3vh;
     left: 0%;
-    animation: move 2s linear infinite ;
+    /* animation: move 2s linear infinite ; */
   }
 
   @keyframes move {
@@ -93,6 +106,13 @@
 
   .vimicon{
     font-size: 5em;
+  }
+
+  
+  .errder{
+    margin: 1vh auto;
+    padding: 1vh;
+    font-size: 0.74em;
   }
 
 }

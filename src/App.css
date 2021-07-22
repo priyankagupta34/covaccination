@@ -528,17 +528,6 @@ padding-bottom: 11vh;
 
 
 
-.errder{
-  text-align: center;
-  font-size: 1.1em;
-  font-weight: 600;
-  margin: 3vh auto;
-  box-shadow: 0 0 3px maroon;
-  padding: 3vh;
-  border-radius: 3px;
-  width: 89%;
-}
-
 .infoer{
   font-size: 0.8em;
   font-weight: 800;
@@ -601,11 +590,6 @@ padding-bottom: 11vh;
 
   
 
-  .errder{
-    margin: 1vh auto;
-    padding: 1vh;
-    font-size: 0.9em;
-  }
 
 
   .pinclas {
