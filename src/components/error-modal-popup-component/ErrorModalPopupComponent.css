@@ -1,0 +1,98 @@
+
+.errobody{
+    position: fixed;
+    background: #00000070;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+
+  
+.errops{
+    height: 63vh;
+      background: white;
+      width: 50vw;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 24px 5px #80000073;
+      position: relative;
+  }
+
+  
+.moveIcon{
+    height: 16vh;
+  }
+  
+  .move{
+    background: white;
+    position: absolute;
+    left: 0;
+    top: 1%;
+    height: 16vh;
+    width: 16vh;
+    animation: move 2s linear infinite;
+  }
+  
+  @keyframes move {
+    0%{
+      left: 20%;
+    }
+    100%{
+      left: 75%;
+    }
+  }
+
+
+  .vimicon{
+    display: flex;
+      justify-content: center;
+      margin-bottom: 1vh;
+      font-size: 8em;
+      font-weight: 100;
+      color: #da4242;
+  }
+  
+
+  
+@media screen and (max-width: 1000px) {
+
+
+    .errops{
+        height: 38vh;
+        width: 80vw;
+      }
+
+      
+  .moveIcon{
+    height: 10vh;
+    margin-bottom: 3vh;
+  }
+
+  .move{
+    height: 11vh;
+    width: 11vh;
+    margin-bottom: 3vh;
+    left: 0%;
+    animation: move 2s linear infinite ;
+  }
+
+  @keyframes move {
+    0%{
+      left: 0%;
+    }
+    100%{
+      left: 75%;
+    }
+  }
+
+  .vimicon{
+    font-size: 5em;
+  }
+
+}

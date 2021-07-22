@@ -515,9 +515,9 @@ export const stateList = [
 
 export const beneficiaries = [{
     "beneficiary_reference_id": "19536408964140",
-    "name": "Priyanka Gupta",
-    "birth_year": "1993",
-    "gender": "Female",
+    "name": "Nirmal Anjan",
+    "birth_year": "1983",
+    "gender": "Male",
     "mobile_number": "5508",
     "photo_id_type": 1,
     "photo_id_number": "XXXXXXXX2726",
@@ -530,10 +530,10 @@ export const beneficiaries = [{
         {
             "appointment_id": "e7b0a5db-c151-4496-b88e-60f9935f467b",
             "center_id": 562088,
-            "name": "IGIMS Patna",
-            "state_name": "Bihar",
-            "district_name": "Patna",
-            "block_name": "Patna Sadar",
+            "name": "IGIMS Nevada",
+            "state_name": "Madhya Pradesh",
+            "district_name": "Nevada",
+            "block_name": "Nevada Sadar",
             "from": "09:00",
             "to": "15:30",
             "dose": 1,
@@ -542,4 +542,4 @@ export const beneficiaries = [{
             "slot": "10:00AM-11:00AM"
         }
     ]
-}, { "beneficiary_reference_id": "596876146341", "name": "Ashok Kumar", "birth_year": "1969", "gender": "Male", "mobile_number": "7970", "photo_id_type": 1, "photo_id_number": "XXXXXXXX0779", "comorbidity_ind": "", "vaccination_status": "Vaccinated", "vaccine": "COVISHIELD", "dose1_date": "", "dose2_date": "05-05-2021", "appointments": [] }, { "beneficiary_reference_id": "8020863490051", "name": "Manju Gupta", "birth_year": "1967", "gender": "Female", "mobile_number": "7970", "photo_id_type": "Aadhaar Card", "photo_id_number": "XXXXXXXX9717", "comorbidity_ind": "N", "vaccination_status": "Not Vaccinated", "vaccine": "", "dose1_date": "", "dose2_date": "", "appointments": [] }]
+}, { "beneficiary_reference_id": "596876146341", "name": "Satish Kumar", "birth_year": "1969", "gender": "Male", "mobile_number": "7970", "photo_id_type": 1, "photo_id_number": "XXXXXXXX0779", "comorbidity_ind": "", "vaccination_status": "Vaccinated", "vaccine": "COVISHIELD", "dose1_date": "", "dose2_date": "05-05-2021", "appointments": [] }, { "beneficiary_reference_id": "8020863490051", "name": "Reshma Shila", "birth_year": "1967", "gender": "Female", "mobile_number": "7970", "photo_id_type": "Aadhaar Card", "photo_id_number": "XXXXXXXX9717", "comorbidity_ind": "N", "vaccination_status": "Not Vaccinated", "vaccine": "", "dose1_date": "", "dose2_date": "", "appointments": [] }]

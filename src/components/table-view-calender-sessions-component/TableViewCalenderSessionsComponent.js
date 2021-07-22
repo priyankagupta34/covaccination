@@ -132,8 +132,9 @@ export default class TableViewCalenderSessionsComponent extends Component {
                                         <div className="ui ">{item.selectedSession.min_age_limit}</div>
                                         <div className="ui ">{item.selectedSession.available_capacity_dose1}</div>
                                         <div className="ui ">{item.selectedSession.available_capacity_dose2}</div>
-                                        <div className="ui ">
-                                            <div className="bookn" onClick={() => this.props.bookThisDose(item, item.selectedSession)}>Book</div>
+                                        <div className={`ui ${item.selectedSession.available_capacity? 'clickiyenable': 'clickiydisable'}`}
+                                        onClick={() => this.props.bookThisDose(item, item.selectedSession)}> Book
+                                            {/* <div className="bookn" onClick={() => this.props.bookThisDose(item, item.selectedSession)}>Book</div> */}
                                         </div>
 
                                     </>

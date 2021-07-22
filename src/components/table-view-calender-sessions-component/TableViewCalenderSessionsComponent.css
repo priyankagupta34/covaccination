@@ -140,9 +140,6 @@ color: maroon;
     margin: 13px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    position: fixed;
-    z-index: 2;
-    bottom: 67px;
 }
 
 .afilt6, .bfilt6{
@@ -173,15 +170,16 @@ color: maroon;
 }
 
 .bookn {
-    background-color: #ffe7e7;
     font-size: 0.9em;
     font-weight: 500;
     padding: 3px;
     border-radius: 2px;
     cursor: pointer;
-    border: 0.4px solid #f1c1c1;
     color: maroon;
+    outline: none;
+    text-shadow: 0 0 0px #d68181;
 }
+
 
 
 
@@ -213,8 +211,18 @@ color: maroon;
     right: 0;
   }
 
+  .clickiyenable{
+    cursor: pointer;
+    background-color: aliceblue;
+    color: blue !important;
+  }
  
-  
+  .clickiydisable{
+    background: #ebebef;
+    color: gray !important;
+    cursor: unset;
+    pointer-events: none;
+  }
 
 
 @media screen and (max-width: 1000px) {
@@ -276,7 +284,7 @@ color: maroon;
         background-color: white;
         z-index: 2;
         font-size: 0.9em;
-        margin-bottom: 7px;
+        margin-bottom: 21vh;
     }
 
     .viab{

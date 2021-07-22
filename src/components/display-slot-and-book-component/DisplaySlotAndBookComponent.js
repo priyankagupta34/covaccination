@@ -28,7 +28,7 @@ export default class DisplaySlotAndBookComponent extends Component {
     }
     render() {
         // const { beneficiaries } = this.props;
-        const { selectedCenter, selectedSession } = this.props;
+        const { selectedCenter, selectedSession, confirmBooking } = this.props;
         const { selectedBeneficiary, selectedSlot } = this.state;
         // console.log('this.props', this.props);
         // console.log(selectedBeneficiary);
@@ -69,7 +69,7 @@ export default class DisplaySlotAndBookComponent extends Component {
                                                     {selectedSession.available_capacity_dose2 > 0 ?
                                                         <>
                                                             <div className="koli">Elible Candidate. Please click to proceed.</div>
-                                                            <div className="proceedDiv"><button className="proceed">Proceed Booking...</button></div>
+                                                            <div className="proceedDiv"><button className="proceed"  onClick={confirmBooking}>Proceed Booking...</button></div>
                                                         </>
                                                         :
                                                         <>
@@ -94,7 +94,7 @@ export default class DisplaySlotAndBookComponent extends Component {
                                                             {selectedSession.available_capacity_dose1 > 0 ?
                                                                 <>
                                                                     <div className="koli">Elible Candidate. Please click to proceed.</div>
-                                                                    <div className="proceedDiv"><button className="proceed">Proceed Booking...</button></div>
+                                                                    <div className="proceedDiv"><button className="proceed"  onClick={confirmBooking}>Proceed Booking...</button></div>
                                                                 </>
                                                                 :
                                                                 <>

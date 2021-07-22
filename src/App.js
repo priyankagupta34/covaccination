@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import BeneficiariesListCcomponent from './components/beneficiaries-list-component/BeneficiariesListCcomponent';
 import DisplaySlotAndBookComponent from './components/display-slot-and-book-component/DisplaySlotAndBookComponent';
+import ErrorModalPopupComponent from './components/error-modal-popup-component/ErrorModalPopupComponent';
 import FooterCcomponent from './components/footer-component/FooterCcomponent';
 import MotivateComponent from './components/motivate-component/MotivateComponent';
 import TableViewCalenderSessionsComponent from './components/table-view-calender-sessions-component/TableViewCalenderSessionsComponent';
@@ -39,7 +40,7 @@ export default class App extends Component {
       centers: [],
       centersToShow: [],
       book: false,
-      logged: true,
+      logged: false,
       expandArtic3: false,
       showOtpModal: false,
       beneficiaries: [],
@@ -74,6 +75,17 @@ export default class App extends Component {
     this.closeOtpBox = this.closeOtpBox.bind(this);
     this.updateTableAfterNewFilter = this.updateTableAfterNewFilter.bind(this);
     this.clearAllFilters = this.clearAllFilters.bind(this);
+    this.somethingWentWrong = this.somethingWentWrong.bind(this);
+    this.confirmBooking = this.confirmBooking.bind(this);
+  }
+
+  confirmBooking() {
+    this.setState({
+      ...this.state,
+      showError: true,
+      errorMessage: 'I will enable this feature after I am able to find enough support documents!',
+      errortype: 'info'
+    })
   }
 
   clearAllFilters() {
@@ -89,14 +101,14 @@ export default class App extends Component {
 
 
   updateTableAfterNewFilter() {
-    const { typesOfVaccination, feeTypeList,centers, doseType } = this.state;
+    const { typesOfVaccination, feeTypeList, centers, doseType } = this.state;
     const filtered = centers.filter(item => {
       if (!feeTypeList.includes(item.fee_type)) return false;
       if (typesOfVaccination.filter(a => a.toLowerCase() === item['selectedSession']['vaccine'].toLowerCase()).length === 0) return false;
-      if(doseType.includes('Any')) return true;
+      if (doseType.includes('Any')) return true;
       if (doseType.includes('Dose 1')) if (item['selectedSession']['available_capacity_dose1'] === 0) return false;
       if (doseType.includes('Dose 2')) if (item['selectedSession']['available_capacity_dose2'] === 0) return false;
-      
+
       // if (item['selectedSession']['allow_all_age']) return true;
       // // console.log(item['selectedSession'])
       // if (ageLimit.includes('18')) if (item['selectedSession']['min_age_limit'] !== 18) return false;
@@ -145,6 +157,7 @@ export default class App extends Component {
   }
 
   logout() {
+    localStorage.removeItem('demtake');
     this.setState(state => {
       state.logged = false;
       state.txnId = '';
@@ -188,7 +201,7 @@ export default class App extends Component {
     }, () => {
       setTimeout(() => {
         const id = document.getElementById('bookslot');
-        id.scrollIntoView();
+        id && id.scrollIntoView();
       }, 0);
     })
   }
@@ -248,6 +261,7 @@ export default class App extends Component {
         })
       }).catch((err) => {
 
+        this.somethingWentWrong({ ...err });
       });
 
   }
@@ -280,15 +294,29 @@ export default class App extends Component {
           return state;
         })
       }).catch((err) => {
-        // this.somethingWentWrong()
+
+        this.somethingWentWrong({ ...err });
       });
   }
 
   somethingWentWrong(err) {
-   this.setState(state=>{
-     state.loader = false;
-     return state;
-   })
+    // console.log(err);
+    this.setState(state => {
+      state.loader = false;
+      state.showError = true;
+      state.errortype = 'error';
+      if (err.response === undefined) {
+        state.errorMessage = 'Internet or server down. Please reload or Try later';
+      } else {
+        if (err.response.status === 401) {
+          state.errorMessage = err.response.data;
+          state.logged = false;
+          localStorage.removeItem('demtake');
+        } else
+          state.errorMessage = err.response.data.error;
+      }
+      return state;
+    })
   }
 
 
@@ -317,7 +345,6 @@ export default class App extends Component {
     })
     CoServices.calenderByPin(this.state.pincode)
       .then((result) => {
-        // console.log('result', result);
         this.setState(state => {
           state.book = false;
           state.loader = false;
@@ -332,6 +359,7 @@ export default class App extends Component {
         })
       }).catch((err) => {
 
+        this.somethingWentWrong({ ...err });
       });
   }
 
@@ -356,6 +384,8 @@ export default class App extends Component {
 
     this.getAllStates();
     this.getIDTypes();
+    const token = localStorage.getItem('demtake');
+    if (token !== null) this.setState(state => { state.token = token; state.logged = true; return state });
 
   }
 
@@ -382,6 +412,7 @@ export default class App extends Component {
         })
       }).catch((err) => {
 
+        this.somethingWentWrong({ ...err });
       });
   }
 
@@ -394,7 +425,10 @@ export default class App extends Component {
           return state;
         })
       })
-      .catch(er => { });
+      .catch(err => {
+
+        this.somethingWentWrong({ ...err });
+      });
   }
 
   /* Generate cowin otp */
@@ -413,13 +447,18 @@ export default class App extends Component {
           return state;
         })
       }).catch((err) => {
-        this.setState({
-          ...this.state,
-          showError: true,
-          loader: false,
-          errorMessage: 'Could not send OTP for some reason',
-          errortype: 'error'
-        })
+
+        this.somethingWentWrong({ ...err });
+        // this.setState({
+        //   ...this.state,
+        //   showError: true,
+        //   loader: false,
+        //   errorMessage: 'Could not send OTP for some reason',
+        //   errortype: 'error'
+        // }, ()=>{
+        //   
+        //   this.somethingWentWrong({...err});
+        // })
       });
   }
 
@@ -434,6 +473,7 @@ export default class App extends Component {
     const result1 = sha256(otp.toString());
     CoServices.confirmOTPToRegister(result1, txnId)
       .then((result) => {
+        localStorage.setItem('demtake', result.data.token);
         this.setState(state => {
           state.logged = true;
           state.showOtpModal = false;
@@ -443,7 +483,6 @@ export default class App extends Component {
         }, () => {
           CoServices.getBeneficiaries(this.state.token)
             .then((result) => {
-              console.log('beneficiaries', result.data);
               this.setState(state => {
                 state.loader = false;
                 // state.beneficiaries = beneficiaries;
@@ -452,16 +491,19 @@ export default class App extends Component {
               })
             }).catch((err) => {
 
+              this.somethingWentWrong({ ...err });
             });
         })
       }).catch((err) => {
-        this.setState(state => {
-          state.loader = false;
-          state.errortype = 'error';
-          state.showError = true;
-          state.errorMessage = 'Oop! Invalid OTP.';
-          return state;
-        })
+
+        this.somethingWentWrong({ ...err });
+        // this.setState(state => {
+        //   state.loader = false;
+        //   state.errortype = 'error';
+        //   state.showError = true;
+        //   state.errorMessage = 'Oop! Invalid OTP.';
+        //   return state;
+        // })
       });
     // }).catch((err) => {
 
@@ -610,9 +652,9 @@ export default class App extends Component {
                       <div className="relative">
                         {/* <button className={`${expandArtic3 && "expbtnOn"} expbtn`} onClick={this.expandArtic3Handler}><span className="exspan">Expand Panel</span> <i className="material-icons  material-icons-outlined icmns">fullscreen</i></button> */}
                         <button className="fixbluffer" onClick={this.backToList}>Back</button>
-                        <article className="artic3"  id="bookslot" >
+                        <article className="artic3" id="bookslot" >
                           <TitleNIconCcomponent icon="book_online" title="Book Slot" description={`Proceed for book vaccination slot online`} />
-                          <DisplaySlotAndBookComponent selectedSession={selectedSession} selectedCenter={selectedCenter} beneficiaries={beneficiaries} />
+                          <DisplaySlotAndBookComponent confirmBooking={this.confirmBooking} selectedSession={selectedSession} selectedCenter={selectedCenter} beneficiaries={beneficiaries} />
                         </article>
                         <article className={`${expandArtic3 && 'expandedArtic3'} artic4`}>
                           <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
@@ -635,24 +677,10 @@ export default class App extends Component {
           <FooterCcomponent />
         </footer>
 
-        {showError && <div className="errobody">
-          <div className="errops">
-            <div className="relative">
-
-              <div className="move"></div>
-              <div className="moveIcon">
-                {errortype === 'success' ? <i className="material-icons  material-icons-outlined vimicon" style={{ color: 'green' }}>task_alt</i> : <></>}
-                {errortype === 'error' ? <i className="material-icons  material-icons-outlined vimicon" style={{ color: 'red' }}>error_outline</i> : <></>}
-                {errortype === 'info' ? <i className="material-icons  material-icons-outlined vimicon" style={{ color: 'skyblue' }}>priority_high</i> : <></>}
-              </div>
-              <div className="errder">{errorMessage}</div>
-              <div className="bnahyts">
-                <button className="closgh" onClick={this.closeError}>Close</button>
-              </div>
-              <div className="infoer">Make sure to use chrome in windows/android only</div>
-            </div>
-          </div>
-        </div>}
+        {showError && 
+        <>
+          <ErrorModalPopupComponent errortype={errortype} closeError={this.closeError} errorMessage={errorMessage}/>
+        </>}
 
         {loader ? <div className="loader">
           <span className="material-icons-outlined loaderIcon">

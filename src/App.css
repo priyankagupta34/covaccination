@@ -505,52 +505,7 @@ background: white;
   }
 }
 
-.errobody{
-  position: fixed;
-  background: #00000070;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
 
-
-.errops{
-  height: 63vh;
-    background: white;
-    width: 50vw;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 24px 5px #80000073;
-    position: relative;
-}
-
-.moveIcon{
-  height: 16vh;
-}
-
-.move{
-  background: white;
-  position: absolute;
-  left: 0;
-  top: 1%;
-  height: 16vh;
-  width: 16vh;
-  animation: move 3s linear infinite;
-}
-
-@keyframes move {
-  0%{
-    left: 20%;
-  }
-  100%{
-    left: 75%;
-  }
-}
 
 .bnahyts{
   text-align: center;
@@ -570,14 +525,7 @@ background: white;
     top: 7px;
 }
 
-.vimicon{
-  display: flex;
-    justify-content: center;
-    margin-bottom: 1vh;
-    font-size: 8em;
-    font-weight: 100;
-    color: #da4242;
-}
+
 
 .errder{
   text-align: center;
@@ -615,6 +563,7 @@ background: white;
   align-items: center;
   font-size: 0.7em;
   /* border: 1px solid ghostwhite; */
+  border: none;
 }
 
 
@@ -622,7 +571,7 @@ background: white;
 @media screen and (max-width: 1000px) {
 
   .fixbluffer{
-    bottom: 29vh;
+    bottom: 11vh;
   }
 
   .searchSl{
@@ -644,31 +593,7 @@ background: white;
     text-align: center;
   }
 
-  .moveIcon{
-    height: 10vh;
-    margin-bottom: 3vh;
-  }
-
-  .move{
-    height: 11vh;
-    width: 11vh;
-    margin-bottom: 3vh;
-    left: 0%;
-    animation: move 3s linear infinite ;
-  }
-
-  @keyframes move {
-    0%{
-      left: 0%;
-    }
-    100%{
-      left: 75%;
-    }
-  }
-
-  .vimicon{
-    font-size: 5em;
-  }
+  
 
   .errder{
     margin: 1vh auto;
@@ -676,11 +601,6 @@ background: white;
     font-size: 0.9em;
   }
 
-  .errops{
-    height: 38vh;
-    width: 80vw;
-    /* padding: 5vh; */
-  }
 
   .pinclas {
     width: 40vw;
