@@ -684,7 +684,7 @@ export default class App extends Component {
                         <button className="fixbluffer" onClick={this.backToList}>Back</button>
                         <article className={`${expandArtic3 && 'expandedArtic3'} artic3`}>
                           <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
-                            <BeneficiariesListCcomponent beneficiaries={beneficiaries} allIdTypes={allIdTypes} />
+                            <BeneficiariesListCcomponent beneficiaries={beneficiaries} allIdTypes={allIdTypes}/>
                         </article>
                         <article className="artic4"  >
                           <TitleNIconCcomponent icon="book_online" title="Book Slot" description={`Proceed for book vaccination slot online`} />

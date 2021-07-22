@@ -11,6 +11,7 @@ export default class BeneficiariesListCcomponent extends Component {
     }
 
     expandDetails(showFull, e) {
+        e.stopPropagation();
         this.setState({
             ...this.state,
             showFull: this.state.showFull === showFull ? -1 : showFull
@@ -28,8 +29,8 @@ export default class BeneficiariesListCcomponent extends Component {
                     <>
                         {beneficiaries.map((item, index) => (
                             <div className="relative" key={item.beneficiary_reference_id}>
-                                <div className="titlbenf1">
-                                    <div onClick={this.expandDetails.bind(this, index)}>{item.name}<span className="bonji" style={{cursor: 'pointer'}}>
+                                <div className="titlbenf1" onClick={this.expandDetails.bind(this, index)}>
+                                    <div >{item.name}<span className="bonji" style={{cursor: 'pointer'}}>
                                         <small className="extras voicet"><b>Secret:</b> <span className="deng">{item.beneficiary_reference_id.slice(-4)}</span></small>
                                         <small className="extras voicet kwid"><b>REF ID :</b>{item.beneficiary_reference_id}</small>
                                     </span></div>
@@ -81,12 +82,15 @@ export default class BeneficiariesListCcomponent extends Component {
                                                     }
                                                 </>
                                                     :
-                                                    <div className="flex">
-                                                        <div className="ops2">1</div>
-                                                        <div className="nodesa">
-                                                            No details on appointment can be found!
-                                                        </div>
+                                                    <div className="nodosefound">
+                                                    <div className="dosery">
+                                                        <div className="ops2">Dose 1</div>
+                                                        <div className="ops1"><b>Vaccine:</b> <small>N/A</small></div>
                                                     </div>
+                                                    <div className="nodesa opscont">
+                                                        No details on appointment can be found!
+                                                    </div>
+                                                </div>
                                                 }
 
 
@@ -111,12 +115,15 @@ export default class BeneficiariesListCcomponent extends Component {
                                                     }
 
                                                 </> :
-                                                    <div className="flex">
-                                                        <div className="ops2">2</div>
-                                                        <div className="nodesa">
-                                                            No details on appointment can be found!
-                                                        </div>
-                                                    </div>
+                                                   <div className="nodosefound">
+                                                   <div className="dosery">
+                                                       <div className="ops2">Dose 2</div>
+                                                       <div className="ops1"><b>Vaccine:</b> <small>N/A</small></div>
+                                                   </div>
+                                                   <div className="nodesa opscont">
+                                                       No details on appointment can be found!
+                                                   </div>
+                                               </div>
                                                 }
 
 
@@ -128,7 +135,7 @@ export default class BeneficiariesListCcomponent extends Component {
                                                         <div className="ops2">Dose 1</div>
                                                         <div className="ops1"><b>Vaccine:</b> <small>N/A</small></div>
                                                     </div>
-                                                    <div className="nodesa">
+                                                    <div className="nodesa opscont">
                                                         No details on appointment can be found!
                                                     </div>
                                                 </div>
@@ -138,7 +145,7 @@ export default class BeneficiariesListCcomponent extends Component {
                                                         <div className="ops2">Dose 2</div>
                                                         <div className="ops1"><b>Vaccine:</b> <small>N/A</small></div>
                                                     </div>
-                                                    <div className="nodesa">
+                                                    <div className="nodesa opscont">
                                                         No details on appointment can be found!
                                                     </div>
                                                 </div>
