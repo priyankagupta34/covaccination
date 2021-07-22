@@ -67,6 +67,7 @@ export default class App extends Component {
     this.bookThisDose = this.bookThisDose.bind(this);
     this.generateOTP = this.generateOTP.bind(this);
     this.confirmOtp = this.confirmOtp.bind(this);
+    this.test = this.test.bind(this);
     this.closeError = this.closeError.bind(this);
     this.expandArtic3Handler = this.expandArtic3Handler.bind(this);
     this.getIDTypes = this.getIDTypes.bind(this);
@@ -312,6 +313,7 @@ export default class App extends Component {
           state.errorMessage = err.response.data;
           state.logged = false;
           localStorage.removeItem('demtake');
+          this.logout();
         } else
           state.errorMessage = err.response.data.error;
       }
@@ -462,6 +464,22 @@ export default class App extends Component {
       });
   }
 
+  test(e){
+    e.preventDefault();
+    this.setState(state => {
+      state.loader = true;
+      return state;
+    }, ()=>{
+      setTimeout(() => {
+        this.setState(state => {
+          state.loader = false;
+          state.logged = true;
+          return state;
+
+        })
+      }, 500);
+    })
+  }
   /* Confirm otp by converting it into sh256 */
   confirmOtp(e) {
     e.preventDefault();
@@ -632,7 +650,7 @@ export default class App extends Component {
                         {(!logged && showOtpModal) ? <div className="modalkl">
                           <TitleNIconCcomponent title="Fill OTP" description="OTP is valid for 3 minutes." icon="api" />
                           <div className="pinclas relative">
-                            <form className="flex" onSubmit={this.confirmOtp}>
+                            <form className="flex" onSubmit={this.test}>
                               <input value={otp}
                                 name="otp"
                                 onChange={this.onchangeHandler}
