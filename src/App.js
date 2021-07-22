@@ -66,6 +66,7 @@ export default class App extends Component {
     this.handleDistrictChangeFilter = this.handleDistrictChangeFilter.bind(this);
     this.bookThisDose = this.bookThisDose.bind(this);
     this.generateOTP = this.generateOTP.bind(this);
+    this.generateOTPTest = this.generateOTPTest.bind(this);
     this.confirmOtp = this.confirmOtp.bind(this);
     this.test = this.test.bind(this);
     this.closeError = this.closeError.bind(this);
@@ -78,6 +79,13 @@ export default class App extends Component {
     this.clearAllFilters = this.clearAllFilters.bind(this);
     this.somethingWentWrong = this.somethingWentWrong.bind(this);
     this.confirmBooking = this.confirmBooking.bind(this);
+  }
+
+  generateOTPTest(){
+    this.setState({
+      ...this.state,
+      showOtpModal: true
+    })
   }
 
   confirmBooking() {
@@ -636,7 +644,7 @@ export default class App extends Component {
                           icon="phone" />
 
                         <div className="pinclas relative">
-                          <form className="flex" onSubmit={this.generateOTP}>
+                          <form className="flex" onSubmit={this.generateOTPTest}>
                             <input value={mobile}
                               name="mobile"
                               onChange={this.onchangeHandler}
