@@ -612,7 +612,7 @@ export default class App extends Component {
         <article className={`${!centers.length && "whenNoList1"} articleBody`}>
           <div className="part">
             <div className="createdf"><div className="flexBetween"> <span className="about">By Priyanka </span> 
-            <a href="https://www.linkedin.com/in/priancaa/" target="_blank" rel="noreferrer">
+            <a href="https://www.linkedin.com/in/priancaa/" target="_blank" rel="noreferrer" className="ac">
             <span class="spn">
             in
             </span>

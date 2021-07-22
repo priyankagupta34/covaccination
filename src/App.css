@@ -585,12 +585,17 @@ padding-bottom: 11vh;
 }
 
 .spn{
-  color: #f5deb359;
+  color: white;
   margin-left: 2px;
-  /* position: relative;
-  top: 4px; */
+  background: blue;
+  padding: 2px;
+  border-radius: 2px;
 }
 
+.ac{
+  
+  text-decoration: none;
+}
 
 @media screen and (max-width: 1000px) {
 
