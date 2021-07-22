@@ -679,13 +679,13 @@ export default class App extends Component {
 
                         </div> : <></>}
                       </article> :
-                      <div className="relative bonki">
+                      <div className="relative bonki" id="bookslot">
                         <button className="fixbluffer" onClick={this.backToList}>Back</button>
                         <article className={`${expandArtic3 && 'expandedArtic3'} artic3`}>
                           <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
                             <BeneficiariesListCcomponent beneficiaries={beneficiaries} allIdTypes={allIdTypes} />
                         </article>
-                        <article className="artic4" id="bookslot" >
+                        <article className="artic4"  >
                           <TitleNIconCcomponent icon="book_online" title="Book Slot" description={`Proceed for book vaccination slot online`} />
                           <DisplaySlotAndBookComponent confirmBooking={this.confirmBooking} selectedSession={selectedSession} selectedCenter={selectedCenter} beneficiaries={beneficiaries} />
                         </article>
