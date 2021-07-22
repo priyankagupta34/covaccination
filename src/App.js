@@ -476,6 +476,7 @@ export default class App extends Component {
       setTimeout(() => {
         this.setState(state => {  
           state.showOtpModal= true;
+          state.loader=false;
           return state;
 
         })
@@ -499,6 +500,8 @@ export default class App extends Component {
       }, 500);
     })
   }
+
+
   /* Confirm otp by converting it into sh256 */
   confirmOtp(e) {
     e.preventDefault();
@@ -534,13 +537,6 @@ export default class App extends Component {
       }).catch((err) => {
 
         this.somethingWentWrong({ ...err });
-        // this.setState(state => {
-        //   state.loader = false;
-        //   state.errortype = 'error';
-        //   state.showError = true;
-        //   state.errorMessage = 'Oop! Invalid OTP.';
-        //   return state;
-        // })
       });
     // }).catch((err) => {
 
@@ -714,10 +710,10 @@ export default class App extends Component {
           <FooterCcomponent />
         </footer>
 
-        {showError && 
-        <>
-          <ErrorModalPopupComponent errortype={errortype} closeError={this.closeError} errorMessage={errorMessage}/>
-        </>}
+        {showError &&
+          <>
+            <ErrorModalPopupComponent errortype={errortype} closeError={this.closeError} errorMessage={errorMessage} />
+          </>}
 
         {loader ? <div className="loader">
           <span className="material-icons-outlined loaderIcon">
