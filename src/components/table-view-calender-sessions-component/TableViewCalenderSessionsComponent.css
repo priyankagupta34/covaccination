@@ -213,12 +213,12 @@ color: maroon;
 
   .clickiyenable{
     cursor: pointer;
-    background-color: aliceblue;
+    background-color: aliceblue !important;
     color: blue !important;
   }
  
   .clickiydisable{
-    background: #ebebef;
+    background: #ebebef !important;
     color: gray !important;
     cursor: unset;
     pointer-events: none;
