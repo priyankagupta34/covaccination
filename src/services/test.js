@@ -514,7 +514,7 @@ export const stateList = [
 ]
 
 export const beneficiaries = [{
-    "beneficiary_reference_id": "19536408964140",
+    "beneficiary_reference_id": "10006408964140",
     "name": "Nirmal Anjan",
     "birth_year": "1983",
     "gender": "Male",
@@ -542,4 +542,4 @@ export const beneficiaries = [{
             "slot": "10:00AM-11:00AM"
         }
     ]
-}, { "beneficiary_reference_id": "596876146341", "name": "Satish Kumar", "birth_year": "1969", "gender": "Male", "mobile_number": "7970", "photo_id_type": 1, "photo_id_number": "XXXXXXXX0779", "comorbidity_ind": "", "vaccination_status": "Vaccinated", "vaccine": "COVISHIELD", "dose1_date": "", "dose2_date": "05-05-2021", "appointments": [] }, { "beneficiary_reference_id": "8020863490051", "name": "Reshma Shila", "birth_year": "1967", "gender": "Female", "mobile_number": "7970", "photo_id_type": "Aadhaar Card", "photo_id_number": "XXXXXXXX9717", "comorbidity_ind": "N", "vaccination_status": "Not Vaccinated", "vaccine": "", "dose1_date": "", "dose2_date": "", "appointments": [] }]
+}, { "beneficiary_reference_id": "5000876146341", "name": "Satish Kumar", "birth_year": "1969", "gender": "Male", "mobile_number": "7970", "photo_id_type": 1, "photo_id_number": "XXXXXXXX0779", "comorbidity_ind": "", "vaccination_status": "Vaccinated", "vaccine": "COVISHIELD", "dose1_date": "", "dose2_date": "05-05-2021", "appointments": [] }, { "beneficiary_reference_id": "9999863490051", "name": "Reshma Shila", "birth_year": "1967", "gender": "Female", "mobile_number": "7970", "photo_id_type": "Aadhaar Card", "photo_id_number": "XXXXXXXX9717", "comorbidity_ind": "N", "vaccination_status": "Not Vaccinated", "vaccine": "", "dose1_date": "", "dose2_date": "", "appointments": [] }]
