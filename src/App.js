@@ -8,10 +8,10 @@ import MotivateComponent from './components/motivate-component/MotivateComponent
 import TableViewCalenderSessionsComponent from './components/table-view-calender-sessions-component/TableViewCalenderSessionsComponent';
 import TitleNIconCcomponent from './components/title-n-icon-component/TitleNIconCcomponent';
 import { CoServices } from './services/CoServices';
-// import { FilterService } from './services/FilterService';
+import { FilterService } from './services/FilterService';
 
 
-// const { TypesOfVaccination, FeeType, AgeLimit, DoseType } = FilterService;
+const { TypesOfVaccination, FeeType, AgeLimit, DoseType } = FilterService;
 
 
 export default class App extends Component {
@@ -48,10 +48,10 @@ export default class App extends Component {
       loader: false,
       selectedSession: null,
       selectedCenter: null,
-      typesOfVaccination: [],
-      feeTypeList: [],
-      ageLimit: [],
-      doseType: []
+      typesOfVaccination: TypesOfVaccination,
+      feeTypeList: FeeType,
+      ageLimit: AgeLimit,
+      doseType: DoseType
 
     };
     this.onchangeHandler = this.onchangeHandler.bind(this);
@@ -79,23 +79,28 @@ export default class App extends Component {
   clearAllFilters() {
     this.setState({
       ...this.state,
-      centersToShow: this.state.centers
+      centersToShow: this.state.centers,
+      typesOfVaccination: TypesOfVaccination,
+      feeTypeList: FeeType,
+      ageLimit: AgeLimit,
+      doseType: DoseType
     })
   }
 
 
   updateTableAfterNewFilter() {
-    const { typesOfVaccination, feeTypeList, ageLimit, doseType, centers } = this.state;
-    console.log(doseType);
+    const { typesOfVaccination, feeTypeList,centers, doseType } = this.state;
     const filtered = centers.filter(item => {
       if (!feeTypeList.includes(item.fee_type)) return false;
       if (typesOfVaccination.filter(a => a.toLowerCase() === item['selectedSession']['vaccine'].toLowerCase()).length === 0) return false;
+      if(doseType.includes('Any')) return true;
       if (doseType.includes('Dose 1')) if (item['selectedSession']['available_capacity_dose1'] === 0) return false;
       if (doseType.includes('Dose 2')) if (item['selectedSession']['available_capacity_dose2'] === 0) return false;
-      if (item['selectedSession']['allow_all_age']) return true;
-      // console.log(item['selectedSession'])
-      if (ageLimit.includes('18')) if (item['selectedSession']['min_age_limit'] !== 18) return false;
-      if (ageLimit.includes('45')) if (item['selectedSession']['min_age_limit'] !== 45) return false;
+      
+      // if (item['selectedSession']['allow_all_age']) return true;
+      // // console.log(item['selectedSession'])
+      // if (ageLimit.includes('18')) if (item['selectedSession']['min_age_limit'] !== 18) return false;
+      // if (ageLimit.includes('45')) if (item['selectedSession']['min_age_limit'] !== 45) return false;
       return true;
     });
     // console.log(filtered );
@@ -280,7 +285,10 @@ export default class App extends Component {
   }
 
   somethingWentWrong(err) {
-    console.log(err);
+   this.setState(state=>{
+     state.loader = false;
+     return state;
+   })
   }
 
 
@@ -601,8 +609,8 @@ export default class App extends Component {
                       </article> :
                       <div className="relative">
                         {/* <button className={`${expandArtic3 && "expbtnOn"} expbtn`} onClick={this.expandArtic3Handler}><span className="exspan">Expand Panel</span> <i className="material-icons  material-icons-outlined icmns">fullscreen</i></button> */}
-                        <button className="fixbluffer" id="bookslot" onClick={this.backToList}>Back</button>
-                        <article className="artic3">
+                        <button className="fixbluffer" onClick={this.backToList}>Back</button>
+                        <article className="artic3"  id="bookslot" >
                           <TitleNIconCcomponent icon="book_online" title="Book Slot" description={`Proceed for book vaccination slot online`} />
                           <DisplaySlotAndBookComponent selectedSession={selectedSession} selectedCenter={selectedCenter} beneficiaries={beneficiaries} />
                         </article>

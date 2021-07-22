@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FilterService } from '../../services/FilterService'
 import './FilterComponent.css'
 
-const { TypesOfVaccination, FeeType, AgeLimit, DoseType } = FilterService;
+const { TypesOfVaccination, FeeType, DoseType } = FilterService;
 
 export default class FilterComponent extends Component {
     // constructor(props) {
@@ -34,7 +34,7 @@ export default class FilterComponent extends Component {
 
     render() {
         // const { typesOfVaccination, feeTypeList, ageLimit, doseType } = this.state;
-        const { closeFilterHandler, selectFilterTypeHandler,  typesOfVaccination, feeTypeList, ageLimit, doseType } = this.props;
+        const { closeFilterHandler, selectFilterTypeHandler,  typesOfVaccination, feeTypeList, doseType } = this.props;
         // console.log(this.props);
         return (
             <div className="tieup">
@@ -52,16 +52,17 @@ export default class FilterComponent extends Component {
                     </div>
                 </div>
                 <div className="chbc">
-                    <div className="fresd">Slot availability for Age</div>
+                    <div className="fresd">Vaccine</div>
                     <div className="filterlst">
-                        {AgeLimit.map((item, index) => (
-                            <div key={index} onClick={() => selectFilterTypeHandler('ageLimit', item)} className={ageLimit.includes(item) ? 'selectedFilter' : 'filter'}>
-                                <span className="checkVout">{ageLimit.includes(item) ? <>&#9989;</> : <>&#11036;</>}</span>
+                        {TypesOfVaccination.map((item, index) => (
+                            <div key={index} onClick={() => selectFilterTypeHandler('typesOfVaccination', item)} className={typesOfVaccination.includes(item) ? 'selectedFilter' : 'filter'}>
+                                <span className="checkVout">{typesOfVaccination.includes(item) ? <>&#9989;</> : <>&#11036;</>}</span>
                                 {item}
                             </div>
                         ))}
                     </div>
                 </div>
+        
                 <div className="chbc">
                     <div className="fresd">Dose Availability</div>
                     <div className="filterlst">
@@ -73,17 +74,19 @@ export default class FilterComponent extends Component {
                         ))}
                     </div>
                 </div>
-                <div className="chbc">
-                    <div className="fresd">Vaccine</div>
+
+                {/* <div className="chbc">
+                    <div className="fresd">Slot availability for Age</div>
                     <div className="filterlst">
-                        {TypesOfVaccination.map((item, index) => (
-                            <div key={index} onClick={() => selectFilterTypeHandler('typesOfVaccination', item)} className={typesOfVaccination.includes(item) ? 'selectedFilter' : 'filter'}>
-                                <span className="checkVout">{typesOfVaccination.includes(item) ? <>&#9989;</> : <>&#11036;</>}</span>
+                        {AgeLimit.map((item, index) => (
+                            <div key={index} onClick={() => selectFilterTypeHandler('ageLimit', item)} className={ageLimit.includes(item) ? 'selectedFilter' : 'filter'}>
+                                <span className="checkVout">{ageLimit.includes(item) ? <>&#9989;</> : <>&#11036;</>}</span>
                                 {item}
                             </div>
                         ))}
                     </div>
-                </div>
+                </div> */}
+             
                 <button className="closgh btnu" onClick={closeFilterHandler} style={{ marginTop: 0, fontSize: '0.7em' }}>Close</button>
             </div>
         )
