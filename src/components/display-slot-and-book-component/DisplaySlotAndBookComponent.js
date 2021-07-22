@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './DisplaySlotAndBookComponent.css'
-import { beneficiaries } from '../../services/test'
+// import { beneficiaries } from '../../services/test'
 import { CoServices } from '../../services/CoServices';
 import DisplaySlotsComponent from '../display-slots-component/DisplaySlotsComponent';
 
@@ -27,7 +27,7 @@ export default class DisplaySlotAndBookComponent extends Component {
         })
     }
     render() {
-        // const { beneficiaries } = this.props;
+        const { beneficiaries } = this.props;
         const { selectedCenter, selectedSession, confirmBooking } = this.props;
         const { selectedBeneficiary, selectedSlot } = this.state;
         // console.log('this.props', this.props);

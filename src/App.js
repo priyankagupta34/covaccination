@@ -66,9 +66,9 @@ export default class App extends Component {
     this.handleDistrictChangeFilter = this.handleDistrictChangeFilter.bind(this);
     this.bookThisDose = this.bookThisDose.bind(this);
     this.generateOTP = this.generateOTP.bind(this);
-    this.generateOTPTest = this.generateOTPTest.bind(this);
+    // this.generateOTPTest = this.generateOTPTest.bind(this);
     this.confirmOtp = this.confirmOtp.bind(this);
-    this.test = this.test.bind(this);
+    // this.test = this.test.bind(this);
     this.closeError = this.closeError.bind(this);
     this.expandArtic3Handler = this.expandArtic3Handler.bind(this);
     this.getIDTypes = this.getIDTypes.bind(this);
@@ -652,7 +652,7 @@ export default class App extends Component {
                           icon="phone" />
 
                         <div className="pinclas relative">
-                          <form className="flex" onSubmit={this.generateOTPTest}>
+                          <form className="flex" onSubmit={this.generateOTP}>
                             <input value={mobile}
                               name="mobile"
                               onChange={this.onchangeHandler}
@@ -666,7 +666,7 @@ export default class App extends Component {
                         {(!logged && showOtpModal) ? <div className="modalkl">
                           <TitleNIconCcomponent title="Fill OTP" description="OTP is valid for 3 minutes." icon="api" />
                           <div className="pinclas relative">
-                            <form className="flex" onSubmit={this.test}>
+                            <form className="flex" onSubmit={this.confirmOtp}>
                               <input value={otp}
                                 name="otp"
                                 onChange={this.onchangeHandler}
