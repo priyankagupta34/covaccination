@@ -567,6 +567,10 @@ background: white;
   cursor: pointer;
 }
 
+.bonki{
+  margin-bottom: 2vh;
+}
+
 
 
 @media screen and (max-width: 1000px) {

@@ -678,23 +678,18 @@ export default class App extends Component {
                           <button className="closgh" onClick={this.closeOtpBox}>Close</button>
 
                         </div> : <></>}
-
-
-
                       </article> :
-                      <div className="relative">
-                        {/* <button className={`${expandArtic3 && "expbtnOn"} expbtn`} onClick={this.expandArtic3Handler}><span className="exspan">Expand Panel</span> <i className="material-icons  material-icons-outlined icmns">fullscreen</i></button> */}
+                      <div className="relative bonki">
                         <button className="fixbluffer" onClick={this.backToList}>Back</button>
-                        <article className="artic3" id="bookslot" >
+                        <article className={`${expandArtic3 && 'expandedArtic3'} artic3`}>
+                          <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
+                            <BeneficiariesListCcomponent beneficiaries={beneficiaries} allIdTypes={allIdTypes} />
+                        </article>
+                        <article className="artic4" id="bookslot" >
                           <TitleNIconCcomponent icon="book_online" title="Book Slot" description={`Proceed for book vaccination slot online`} />
                           <DisplaySlotAndBookComponent confirmBooking={this.confirmBooking} selectedSession={selectedSession} selectedCenter={selectedCenter} beneficiaries={beneficiaries} />
                         </article>
-                        <article className={`${expandArtic3 && 'expandedArtic3'} artic4`}>
-                          <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
-                          <div>
-                            <BeneficiariesListCcomponent beneficiaries={beneficiaries} allIdTypes={allIdTypes} />
-                          </div>
-                        </article>
+                        
                       </div>
                     }
                   </>

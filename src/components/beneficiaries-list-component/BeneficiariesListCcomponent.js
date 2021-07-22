@@ -29,7 +29,7 @@ export default class BeneficiariesListCcomponent extends Component {
                         {beneficiaries.map((item, index) => (
                             <div className="relative" key={item.beneficiary_reference_id}>
                                 <div className="titlbenf1">
-                                    <div>{item.name}<span className="bonji">
+                                    <div onClick={this.expandDetails.bind(this, index)}>{item.name}<span className="bonji" style={{cursor: 'pointer'}}>
                                         <small className="extras voicet"><b>Secret:</b> <span className="deng">{item.beneficiary_reference_id.slice(-4)}</span></small>
                                         <small className="extras voicet kwid"><b>REF ID :</b>{item.beneficiary_reference_id}</small>
                                     </span></div>
