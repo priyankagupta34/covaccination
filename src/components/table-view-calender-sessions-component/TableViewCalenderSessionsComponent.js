@@ -124,7 +124,7 @@ export default class TableViewCalenderSessionsComponent extends Component {
                                 </>
                                 {centerToShow.map((item, index) => (
                                     <>
-                                        <div className="ui stickToIt">{item.name}</div>
+                                        <div className="ui stickToIt" key={item.name}>{item.name}</div>
                                         <div className="ui ">{item.selectedSession.vaccine}</div>
                                         <div className="ui ">{item.selectedSession.date}</div>
                                         <div className="ui ">{item.pincode}</div>
