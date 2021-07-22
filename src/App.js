@@ -83,7 +83,7 @@ export default class App extends Component {
     this.setState({
       ...this.state,
       showError: true,
-      errorMessage: 'I will enable this feature after I am able to find enough support documents!',
+      errorMessage: 'I will soon enable this feature after finding enough response documents to support !',
       errortype: 'info'
     })
   }

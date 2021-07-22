@@ -564,6 +564,7 @@ background: white;
   font-size: 0.7em;
   /* border: 1px solid ghostwhite; */
   border: none;
+  cursor: pointer;
 }
 
 
