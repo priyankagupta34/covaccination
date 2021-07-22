@@ -58,7 +58,9 @@ export default class BeneficiariesListCcomponent extends Component {
                                                 <div className="min2">{item.photo_id_number}</div>
                                             </div>
                                         </div>
-
+                                        {/* {item.vaccination_status!=='Not Vaccinated' ?<div>
+                                        <button className="" onClick={()=>downloadCertificate(item.name, item.beneficiary_reference_id)}>Download Certificate</button>
+                                        </div>:<></>} */}
                                         {item.appointments.length !== 0 ?
                                             <>
 

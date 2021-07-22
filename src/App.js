@@ -79,6 +79,49 @@ export default class App extends Component {
     this.clearAllFilters = this.clearAllFilters.bind(this);
     this.somethingWentWrong = this.somethingWentWrong.bind(this);
     this.confirmBooking = this.confirmBooking.bind(this);
+    this.getBeneficiaries = this.getBeneficiaries.bind(this);
+    this.downloadCertificate = this.downloadCertificate.bind(this);
+  }
+
+  downloadCertificate(name, beneficiary_reference_id) {
+    this.setState(state => {
+      state.loader = true;
+      return state;
+    })
+    CoServices.downloadCertificate(beneficiary_reference_id, this.state.token)
+      .then(downloadedFile => {
+
+        var downloadLink      = document.createElement('a');
+        downloadLink.target   = '_blank';
+        downloadLink.download = 'name_to_give_saved_file.pdf';
+      
+        // convert downloaded data to a Blob
+        var blob = new Blob([downloadedFile.data], { type: 'application/pdf' });
+      
+        // create an object URL from the Blob
+        var URL = window.URL || window.webkitURL;
+        var downloadUrl = URL.createObjectURL(blob);
+      
+        // set object URL as the anchor's href
+        downloadLink.href = downloadUrl;
+      
+        // append the anchor to document body
+        document.body.append(downloadLink);
+      
+        // fire a click event on the anchor
+        downloadLink.click();
+      
+        // cleanup: remove element and revoke object URL
+        document.body.removeChild(downloadLink);
+        URL.revokeObjectURL(downloadUrl);
+        this.setState(state => {
+          state.loader = false;
+          return state;
+        })
+      })
+      .catch(err => {
+        this.somethingWentWrong({ ...err });
+      })
   }
 
 
@@ -304,7 +347,7 @@ export default class App extends Component {
   }
 
   somethingWentWrong(err) {
-    // console.log(err);
+    console.log(err);
     this.setState(state => {
       state.loader = false;
       state.showError = true;
@@ -312,7 +355,8 @@ export default class App extends Component {
       if (err.response === undefined) {
         state.errorMessage = 'Internet or server down. Please reload or Try later';
       } else {
-        if (err.response.status === 401) {
+        if (err.response.status === 504) state.errorMessage = err.response.data.message;
+        else if (err.response.status === 401) {
           state.errorMessage = err.response.data;
           state.logged = false;
           localStorage.removeItem('demtake');
@@ -380,17 +424,19 @@ export default class App extends Component {
     })
   }
   componentDidMount() {
-    // CoServices.test(5)
-    //   .then((result) => {
-    //     console.log(result);
-    //   }).catch((err) => {
-
-    //   });
-
     this.getAllStates();
     this.getIDTypes();
     const token = localStorage.getItem('demtake');
-    if (token !== null) this.setState(state => { state.token = token; state.logged = true; return state });
+    if (token !== null) {
+      this.setState(state => {
+        state.token = token;
+        state.logged = true; 
+        return state;
+      }, () => {
+        this.getBeneficiaries();
+      });
+
+    }
 
   }
 
@@ -467,16 +513,16 @@ export default class App extends Component {
       });
   }
 
-  generateOTPTest(e){
+  generateOTPTest(e) {
     e.preventDefault();
     this.setState(state => {
       state.loader = true;
       return state;
-    }, ()=>{
+    }, () => {
       setTimeout(() => {
-        this.setState(state => {  
-          state.showOtpModal= true;
-          state.loader=false;
+        this.setState(state => {
+          state.showOtpModal = true;
+          state.loader = false;
           return state;
 
         })
@@ -484,12 +530,12 @@ export default class App extends Component {
     })
   }
 
-  test(e){
+  test(e) {
     e.preventDefault();
     this.setState(state => {
       state.loader = true;
       return state;
-    }, ()=>{
+    }, () => {
       setTimeout(() => {
         this.setState(state => {
           state.loader = false;
@@ -522,18 +568,7 @@ export default class App extends Component {
           state.beneficiaries = [];
           return state;
         }, () => {
-          CoServices.getBeneficiaries(this.state.token)
-            .then((result) => {
-              this.setState(state => {
-                state.loader = false;
-                // state.beneficiaries = beneficiaries;
-                state.beneficiaries = result.data.beneficiaries;
-                return state;
-              })
-            }).catch((err) => {
-
-              this.somethingWentWrong({ ...err });
-            });
+          this.getBeneficiaries();
         })
       }).catch((err) => {
 
@@ -543,6 +578,24 @@ export default class App extends Component {
 
     // });
 
+  }
+
+  getBeneficiaries() {
+    this.setState(state=>{
+      state.loader = true;
+      return state;
+    })
+    CoServices.getBeneficiaries(this.state.token)
+      .then((result) => {
+        this.setState(state => {
+          state.loader = false;
+          // state.beneficiaries = beneficiaries;
+          state.beneficiaries = result.data.beneficiaries;
+          return state;
+        })
+      }).catch((err) => {
+        this.somethingWentWrong({ ...err });
+      });
   }
 
   render() {
@@ -572,7 +625,6 @@ export default class App extends Component {
               </div>
 
               <article className="mainArticle">
-                {/* <div className="searchS2"></div> */}
 
                 <article className="artic1">
                   <TitleNIconCcomponent icon="search" title="Search Slots" description="Find slots via pincode or district." />
@@ -582,7 +634,6 @@ export default class App extends Component {
                   </div>
 
 
-                  {/* {CoServices.test()} */}
                   {/* By pincode and district */}
 
                   {searchByPin ? <div className="pinclas">
@@ -647,7 +698,6 @@ export default class App extends Component {
 
                     {logged === false ?
                       <article className="artic2">
-                        {/* <div className="bngf littleInf">Please login with your registered mobile before booking the slot</div> */}
                         <TitleNIconCcomponent title="Cowin Login" description="Please login with your registered mobile before booking the slot"
                           icon="phone" />
 
@@ -682,15 +732,15 @@ export default class App extends Component {
                       </article> :
                       <div className="relative bonki" id="bookslot">
                         <button className="fixbluffer" onClick={this.backToList}>Back</button>
-                        <article className={`${expandArtic3 && 'expandedArtic3'} artic3`}>
+                        {beneficiaries.length>0 ?<article className={`${expandArtic3 && 'expandedArtic3'} artic3`}>
                           <TitleNIconCcomponent icon="groups" title="Beneficiaries" description={`Found ${beneficiaries.length} beneficiaries linked with this number`} />
-                            <BeneficiariesListCcomponent beneficiaries={beneficiaries} allIdTypes={allIdTypes}/>
-                        </article>
-                        <article className="artic4"  >
+                          <BeneficiariesListCcomponent beneficiaries={beneficiaries} allIdTypes={allIdTypes} downloadCertificate={this.downloadCertificate} />
+                        </article> : <></>}
+                        <article className={beneficiaries.length>0 ? 'artic4': 'artic3'}  >
                           <TitleNIconCcomponent icon="book_online" title="Book Slot" description={`Proceed for book vaccination slot online`} />
                           <DisplaySlotAndBookComponent confirmBooking={this.confirmBooking} selectedSession={selectedSession} selectedCenter={selectedCenter} beneficiaries={beneficiaries} />
                         </article>
-                        
+
                       </div>
                     }
                   </>

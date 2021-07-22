@@ -14,7 +14,8 @@ export const CoServices = {
     getRightDateFromCowinFormat,
     checkDateDifference,
     checkIfAgeIsElibleAsperSlot,
-    checkNumberOfDaysLeftforDose2
+    checkNumberOfDaysLeftforDose2,
+    downloadCertificate
 }
 
 // const headers = {
@@ -133,4 +134,15 @@ function checkNumberOfDaysLeftforDose2(dateOf1stVaccin, eligibleDay = 84) {
 
 function test() {
     getTodaysDate();
+}
+
+function downloadCertificate(beneficiary_reference_id, token){
+    return axios.get(`${host}registration/certificate/download?beneficiary_reference_id=${beneficiary_reference_id}`, {
+        reponseType: "arraybuffer",
+        responseEncoding: "binary",
+        headers: {
+            'authorization': `Bearer ${token}`,
+            'content-type': 'application/pdf'
+        }
+    });
 }
