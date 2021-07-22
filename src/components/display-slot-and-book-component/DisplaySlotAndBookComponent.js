@@ -140,7 +140,7 @@ export default class DisplaySlotAndBookComponent extends Component {
                     <DisplaySlotsComponent selectedSlot={selectedSlot} selectSlotHandler={this.selectSlotHandler.bind(this)} slotList={selectedSession.slots} />
                 </div>
 
-                <div className="selectBene1">See complete details on beneficiaries below</div>
+                {/* <div className="selectBene1">See complete details on beneficiaries below</div> */}
 
 
 
